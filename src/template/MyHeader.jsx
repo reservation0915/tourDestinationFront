@@ -36,7 +36,7 @@ const MyHeader = () => {
             <Link to="/" style={linkStyle}>멘토</Link>
           </li>
           <li style={menuItemStyle}>
-            <Link to="/" style={linkStyle}>취업후기</Link>
+            <Link to="/review" style={linkStyle}>취업후기</Link>
           </li>
           <li style={menuItemStyle}>
             <Link to="/" style={linkStyle}>직종추천</Link>
