@@ -3,9 +3,14 @@ import myProfile from "../img/122416681.jpg";
 import {useNavigate} from "react-router";
 import Center from "../components/Center";
 import TopBanner from "../components/TopBanner";
+import {useEffect, useState} from "react";
+import axios from "axios";
+// import {useRouteId} from "react-router/dist/lib/hooks";
 
 function Review() {
     const nav = useNavigate();
+    const [review, setReview] = useState([]);
+    const [userId, setUserId] = useState(null);
 
     const menu = [
         {
@@ -14,22 +19,97 @@ function Review() {
             color : "389e0d"
         },
         {
-            name : "프론트엔드",
+            name : "인사/총무/노무",
             background : "#FFF0F6",
             color : "#C41D7F"
         },
         {
-            name : "백엔드",
+            name : "마케팅/MD",
             background : "#F9F0FF",
             color : "#531DAB"
         },
         {
-            name : "풀스택(웹)",
+            name : "홍보/CSR",
             background : "#FFF1F0",
             color : "#CF1322"
         },
         {
-            name : "안드로이드",
+            name : "해외영업",
+            background : "#e6f7ff",
+            color : "#096dd9"
+        },
+        {
+            name : "유통/무역/구매",
+            background : "#e6fffb",
+            color : "#08979c"
+        },
+        {
+            name : "전략/기획",
+            background : "#fcffe6",
+            color : "#7cb305"
+        },
+        {
+            name : "공사/공기업",
+            background : "#f9f0ff",
+            color : "#531dab"
+        },
+        {
+            name : "IT개발/데이터",
+            background : "#fff1f0",
+            color : "#cf1322"
+        },
+        {
+            name : "서비스 기획/UIUX",
+            background : "#fff7e6",
+            color : "#d46b08"
+        },
+        {
+            name : "디자인/예술",
+            background : "#F6FFED",
+            color : "389e0d"
+        },
+        {
+            name : "연구/설계",
+            background : "#FFF1F0",
+            color : "#CF1322"
+        },
+        {
+            name : "미디어",
+            background : "#F9F0FF",
+            color : "#531DAB"
+        },
+        {
+            name : "연구/설계",
+            background : "#FFF1F0",
+            color : "#CF1322"
+        },
+        {
+            name : "전문/특수",
+            background : "#fff7e6",
+            color : "#d46b08"
+        },
+        {
+            name : "교육/상담/컨설팅",
+            background : "#FFF1F0",
+            color : "#CF1322"
+        },
+        {
+            name : "공무원/비영리",
+            background : "#e6fffb",
+            color : "#08979c"
+        },
+        {
+            name : "생산/품질/제조",
+            background : "#F9F0FF",
+            color : "#531DAB"
+        },
+        {
+            name : "생산/품질/제조",
+            background : "#fcffe6",
+            color : "#7cb305"
+        },
+        {
+            name : "회계/재무/금융",
             background : "#FFF1F0",
             color : "#CF1322"
         }
@@ -109,8 +189,35 @@ function Review() {
         }
     ]
 
+    // 페이지가 처음시작할때 1번 실행
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/v1/review').then((res) => {
+            setReview(res.data.content)
+        }).catch((err) => {
+            console.log(err)
+        })
+
+        // axios.post('해당 URL', {
+        //     "reviewTitle": "리뷰제목",
+        //     "reviewContent": "리뷰내용",
+        //     "companyRating": 1,
+        //     "jobResponsibilities": "ㅇㅇ",
+        //     "recommendation": "ㅇㅇ",
+        //     "jobSearchDuration": "ㅇㅇ",
+        //     "major": "ㅇㅇ",
+        //     "previousOccupation": "ㅇㅇ",
+        //     "ageAtEmployment": 1,
+        //     "jobSearchMethod": "ㅇㅇ",
+        //     "companyId": 1
+        // }).then((res) => {
+        //     setReview(res.data.content)
+        // }).catch((err) => {
+        //     console.log(err)
+        // })
+    }, [])
+
     const goToDetails = () => {
-        nav('/reviewDetail?40');
+        nav(`/reviewDetail?${userId}`);
     }
 
   return (
@@ -125,28 +232,21 @@ function Review() {
                 </div>
                 <div style={{textAlign : 'left'}} className="title">N살 비전공자인데 취업 몇 달 걸릴까요?</div>
                 <div style={{textAlign : 'left'}} className="title_description">이제 걱정은 노노! 다른 분들 참고해요. 취업후기 신청도 환영💖</div>
-            </div>
 
-            <div className="category">
-                {/* ## 컴포넌트 화 ## */}
-                {/*자바스크립트에서 자바문법을 쓸 때는 {중괄호}해줘야 함*/}
-                {menu.map((item, idx) => (
+                <div className="category">
+                    {/* ## 컴포넌트 화 ## */}
+                    {/*자바스크립트에서 자바문법을 쓸 때는 {중괄호}해줘야 함*/}
+                    {menu.map((item, idx) => (
                         // 글씨만 가지는 애 = span
                         // 글씨와 영역을 동시에 가지는 애 = p
                         <div key={idx} style={{background : item.background, color : item.color}} className="categoryItem"><span>{item.name}</span></div>
                     ))}
-
-                {/*<div className="tag">전체보기</div>*/}
-                {/*<div className="tag">전체보기</div>*/}
-                {/*<div className="tag">전체보기</div>*/}
-                {/*<div className="tag">전체보기</div>*/}
-                {/*<div className="tag">전체보기</div>*/}
-                {/*<div className="tag">전체보기</div>*/}
-                {/*<div className="tag">전체보기</div>*/}
+                </div>
             </div>
 
+
             <div className="card_wrap">
-                {cards.map((item,idx) => (
+                {review.map((item,idx) => (
                     <div onClick={goToDetails} key={idx} className="card">
                         <div className="card_img">
                             <img style={{width : '54px', height : '54px'}} src={myProfile}/>

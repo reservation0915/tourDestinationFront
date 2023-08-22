@@ -55,9 +55,12 @@ body{
 }
 
 .category{
-  padding: 64px 0 64px 92px;
+  padding: 64px 0 64px 0px;
   display: flex;
-  gap: 10px;
+  /*gap: 10px;*/
+  flex-wrap: wrap; /* 항목이 다음 줄로 넘어가도록 허용 */
+
+
 }
 
 .categoryItem{
