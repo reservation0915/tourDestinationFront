@@ -13,10 +13,6 @@ body{
   background: #eff3f3;
 }
 
-.App{
-
-}
-
 .topBanner{
   width: 100%;
   min-height: 90px;
@@ -55,7 +51,7 @@ body{
 }
 
 .category{
-  padding: 64px 0 64px 0px;
+  /*padding: 64px 0 64px 0px;*/
   display: flex;
   /*gap: 10px;*/
   flex-wrap: wrap; /* 항목이 다음 줄로 넘어가도록 허용 */
@@ -92,6 +88,7 @@ body{
 .story_profile{
   font-size: 14px;
   display: block;
+  color: rgba(0,0,0,.45);
 }
 
 .card_img{
@@ -99,8 +96,6 @@ body{
   border-radius: 50%;
   padding-right: 16px;
 }
-
-
 
 .story_comment{
   padding-top: 8px;
@@ -113,3 +108,24 @@ body{
   flex-wrap: wrap;
   gap : 10px;
 }
+
+.insertButton{
+  color: #975dff;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  user-select: none;
+  background: none;
+  border: none;
+
+}
+.insertButton:hover {
+  color:  #a998c7 /* 마우스를 올렸을 때 글자색 변경 */
+}
+.button_container{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+

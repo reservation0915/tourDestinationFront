@@ -6,6 +6,7 @@ import KakaoCallBack from '../components/KakaoCallBack';
 import LoginInfo from '../components/LoginInfo';
 import Review from "../template/Review";
 import Detail from "../template/Detail";
+import ReviewInsert from "../template/ReviewInsert";
 
 const MyRouter = () => {
 
@@ -16,6 +17,7 @@ const MyRouter = () => {
             <Route path="/login/kakao/callback" element={<KakaoCallBack />}></Route>
             <Route path="/review" element={<Review />}></Route>
             <Route path="/reviewDetail" element={<Detail />}></Route>
+            <Route path="/reviewInsert" element={<ReviewInsert />}></Route>
         </Route>
     </Routes>
 
