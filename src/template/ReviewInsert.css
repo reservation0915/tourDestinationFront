@@ -37,10 +37,12 @@
     border: 1px solid #ddd;
     border-radius: 12px;
     padding: 4px 12px;
-    color: #666;
+    color: CADETBLUE;
     font-size: 19px;
+    cursor: pointer;
 }
 
 .save_button:hover{
     background: #DED8EAFF;
+    color: #5a585e;
 }

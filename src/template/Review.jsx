@@ -125,60 +125,60 @@ function Review() {
         nav(`/reviewInsert?`)
     }
 
-  return (
-    <div className="App">
-        <Center>
-            <TopBanner> </TopBanner>
+    return (
+        <div className="App">
+            <Center>
+                <TopBanner> </TopBanner>
 
-            <div className="infoMent">
-                <div className="infoTopMent">
-                    <div>💼</div>
-                    <div>현실취업후기</div>
+                <div className="infoMent">
+                    <div className="infoTopMent">
+                        <div>💼</div>
+                        <div>현실취업후기</div>
+                    </div>
+                    <div style={{textAlign : 'left'}} className="title">N살 비전공자인데 취업 몇 달 걸릴까요?</div>
+                    <div style={{textAlign : 'left'}} className="title_description">이제 걱정은 노노! 다른 분들 참고해요. 취업후기 신청도 환영💖</div>
+
+                    <div className="category">
+                        {/* ## 컴포넌트 화 ## */}
+                        {/*자바스크립트에서 자바문법을 쓸 때는 {중괄호}해줘야 함*/}
+                        {menu.map((item, idx) => (
+                            // 글씨만 가지는 애 = span
+                            // 글씨와 영역을 동시에 가지는 애 = p
+                            <div key={idx} style={{background : item.background, color : item.color}} className="categoryItem"><span>{item.name}</span></div>
+                        ))}
+                    </div>
                 </div>
-                <div style={{textAlign : 'left'}} className="title">N살 비전공자인데 취업 몇 달 걸릴까요?</div>
-                <div style={{textAlign : 'left'}} className="title_description">이제 걱정은 노노! 다른 분들 참고해요. 취업후기 신청도 환영💖</div>
 
-                <div className="category">
-                    {/* ## 컴포넌트 화 ## */}
-                    {/*자바스크립트에서 자바문법을 쓸 때는 {중괄호}해줘야 함*/}
-                    {menu.map((item, idx) => (
-                        // 글씨만 가지는 애 = span
-                        // 글씨와 영역을 동시에 가지는 애 = p
-                        <div key={idx} style={{background : item.background, color : item.color}} className="categoryItem"><span>{item.name}</span></div>
+
+                <div className="card_wrap">
+                    {review.map((item,idx) => (
+                        <div onClick={goToDetails} key={idx} className="card">
+                            <div className="card_img">
+                                <img style={{width : '54px', height : '54px'}} src={myProfile}/>
+                            </div>
+                            <div className="card_detail">
+                                <div className="story">
+                                    <div className="story_title">{item.story_title}</div>
+                                    <div style={{background : item.background, color : item.color}} className="categoryItem">{item.categoryItem}</div>
+                                </div>
+
+                                <div className="story_profile">전공: (<span>{item.duration}</span>)<span>{item.major}</span> <span>{item.minor}</span> / 취업나이: {item.ageAtEmployment}세 / 취준기간: {item.jobSearchDuration}년</div>
+                                <hr/>
+                                <div className="story_comment"><span>{item.message}</span></div>
+                            </div>
+                        </div>
                     ))}
                 </div>
-            </div>
+
+                <div className="button_container">
+                    <button onClick={ReviewInsert} className="insertButton">취업후기 쓰기 > </button>
+                </div>
+
+            </Center>
 
 
-            <div className="card_wrap">
-                {review.map((item,idx) => (
-                    <div onClick={goToDetails} key={idx} className="card">
-                        <div className="card_img">
-                            <img style={{width : '54px', height : '54px'}} src={myProfile}/>
-                        </div>
-                        <div className="card_detail">
-                            <div className="story">
-                                <div className="story_title">{item.story_title}</div>
-                                <div style={{background : item.background, color : item.color}} className="categoryItem">{item.categoryItem}</div>
-                            </div>
-
-                            <div className="story_profile">전공: (<span>{item.duration}</span>)<span>{item.major}</span> <span>{item.minor}</span> / 취업나이: {item.ageAtEmployment}세 / 취준기간: {item.jobSearchDuration}년</div>
-                            <hr/>
-                            <div className="story_comment"><span>{item.message}</span></div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            <div className="button_container">
-                <button onClick={ReviewInsert} className="insertButton">취업후기 쓰기 > </button>
-            </div>
-
-        </Center>
-
-
-    </div>
-  );
+        </div>
+    );
 }
 
 export default Review;

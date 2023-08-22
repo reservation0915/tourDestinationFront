@@ -26,7 +26,7 @@ const Detail = () => {
                                 {menu.map((item, idx) => (
                                     <option
                                         key={idx}
-                                        style={{ background: item.background, color: item.color }}
+                                        style={{ color: item.color }}
                                         value={item.name}
 
                                     >
