@@ -27,7 +27,7 @@ const MyHeader = () => {
     setUsername(username)
   }, []);
   const mypage = () => {
-    nav('/mypage')
+    nav('/')
   }
   const siteRecommend = () => {
     nav('/siteRecommend')
@@ -49,6 +49,13 @@ const MyHeader = () => {
       nav('/mentorRequests')
     }
 
+  const mentorRoom = () => {
+    nav('/mentorroom')
+  }
+
+  const jobRec = () => {
+    nav('/jobRec')
+  }
     const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
     return <div id="header">
@@ -60,7 +67,7 @@ const MyHeader = () => {
         </div>
 
         <div id="header_content">
-          <button className="header_menu">사이트추천</button>
+          <button onClick={homePage} className="header_menu">사이트추천</button>
         </div>
 
         <div id="header_content">
@@ -72,10 +79,7 @@ const MyHeader = () => {
         </div>
 
         <div id="header_content">
-          <button className="header_menu">직종추천</button>
-        </div>
-        <div id="header_content">
-          <button onClick={review} className="header_menu_login">리뷰</button>
+          <button onClick={jobRec} className="header_menu">직종추천</button>
         </div>
         <div id="header_content">
           <button onClick={mentorRequests} className="header_menu">멘토신청</button>
@@ -86,7 +90,7 @@ const MyHeader = () => {
         {isLoggedIn ? (
             <>
               <div id="header_content">
-                <button className="header_menu_login">{username}님</button>
+                <button className="header_menu_login" onClick={mentorRoom}>{username}님</button>
               </div>
               <div id="header_content">
                 <button onClick={handleLogout} className="header_menu_login">Logout</button>
