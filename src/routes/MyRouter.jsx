@@ -18,6 +18,7 @@ import MentorDetail from "../components/MentorDetail";
 
 import AddMentor from '../components/MyMentor';
 import GetMyMentor from '../components/GetMyMentor';
+import MentorChat from "../components/MentorChat";
 
 
 const MyRouter = () => {
@@ -35,8 +36,9 @@ const MyRouter = () => {
             <Route path='/mentors' element={<Mentors/>}/>
             <Route path='/mentorRequests' element={<MentorRequests/>}/> {/*  멘토 지원 페이지 */}
             <Route path="/mentorDetail" element={<MentorDetail/>}></Route>
-            <Route path="/login/kakao/callback" element={<KakaoCallBack />} /> 
-            <Route path="/mentorroom/:id" element={<AddMentor />} />
+            <Route path="/login/kakao/callback" element={<KakaoCallBack />} />
+            <Route path="/mentoradd/:id" element={<AddMentor />} />
+            <Route path="/mentorroom/:id" element={<MentorChat />} />
             <Route path="/mentorroom" element={<GetMyMentor />} />
         </Route>
     </Routes>
