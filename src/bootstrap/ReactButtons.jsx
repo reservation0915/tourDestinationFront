@@ -14,6 +14,8 @@ const ReactButtons=()=>{
     const [message, setMessage] = useState("");
     const dispatch = useDispatch()
     const { size, page } = useSelector(state => state.all)
+    console.log(size);
+    console.log(page);
     //const {location} = useSelector(state=>state.companyData)
     const [location,setLocation] =  useState("");
     const [siteName,setSiteName] = useState("");

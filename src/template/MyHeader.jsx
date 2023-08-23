@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate } from "react-router-dom";
+import '../../src/css/hightent.css';
+import find from '../../src/css/img/find.png'
+import logo from '../../src/css/img/logo.png'
 
 const MyHeader = () => {
-
+  const nav = useNavigate();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState()
 
   const kakaoLogin = () => {
@@ -21,32 +26,56 @@ const MyHeader = () => {
     const username = localStorage.getItem('username');
     setUsername(username)
   }, []);
+  const mypage = ()=>{
+    nav('/mypage')
+  }
+  const siteRecommend = ()=>{
+    nav('/siteRecommend')
+  }
+  const mentors = ()=>{
+    nav('/mentors')
+  }
+  const review = ()=>{
+    nav('/review')
+  }
+  const recommend = ()=>{
+    nav('/recommend')
+  }
 
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
-  return (
-    <header style={headerStyle}>
-      <div style={logoStyle}><Link to="/" style={linkStyle}>하이텐트</Link></div>
-      <nav style={navStyle}>
-        <ul style={menuStyle}>
-          <li style={menuItemStyle}>
-            <Link to="/" style={linkStyle}>채용사이트 추천</Link>
-          </li>
-          <li style={menuItemStyle}>
-            <Link to="/mentors" style={linkStyle}>멘토</Link>
-          </li>
-          <li style={menuItemStyle}>
-            <Link to="/review" style={linkStyle}>취업후기</Link>
-          </li>
-          <li style={menuItemStyle}>
-            <Link to="/jobRec" style={linkStyle}>직종추천</Link>
-          </li>
-          <li style={menuItemStyle}>
-            <Link to="/mentorRequests" style={linkStyle}>멘토신청</Link>
-          </li>
-        </ul>
-      </nav>
-      {isLoggedIn ? (
+  return <div id="header">
+    <div id="header_wrap">
+      <div id="header_content">
+        <img src={logo} width="150" height="auto"/>
+      </div>
+
+      <div id="header_content">
+        <button className="header_menu">사이트추천</button>
+      </div>
+
+      <div id="header_content">
+        <button onClick={mentors}className="header_menu">멘토</button>
+      </div>
+
+      <div id="header_content">
+        <button onClick={review} className="header_menu">취업후기</button>
+      </div>
+
+      <div id="header_content">
+        <button className="header_menu">직종추천</button>
+      </div>
+      <div id="header_content">
+        <button onClick={review} className="header_menu_login">리뷰</button>
+      </div>
+      <div id="header_content">
+        <button onClick={mypage} className="header_menu_login">내정보</button>
+      </div>
+      <div id="header_content">
+        <p>{username}</p>
+      </div>
+    </div>
+    {isLoggedIn ? (
         <>
           <div style={loginButtonStyle}>
             <div style={loginStyle}>
@@ -57,13 +86,17 @@ const MyHeader = () => {
             </div>
           </div>
         </>
-      ) : (
+    ) : (
         <div style={logoutButtonStyle}>
           <p onClick={kakaoLogin}>Login</p>
         </div>
-      )}
-    </header>
-  );
+    )}
+
+  </div>
+
+
+
+
 };
 
 const headerStyle = {

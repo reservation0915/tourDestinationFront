@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import ReactCard from "../../bootstrap/ReactCard";
 import {setCompany} from "../../feature/company/company";
 import {api} from "../../network/Api";
+import ReactCarousel from "../../bootstrap/ReactCarousel";
 const Company =() =>{
     const dispatch = useDispatch()
     const [message, setMessage] = useState("");
@@ -35,7 +36,6 @@ const Company =() =>{
     return <div>
         {loading && <Loading />}
         {message && <Toast message={message} />}
-        {/*{(loading || message) || <HomeTable />}*/}
         {(loading || message) || <ReactCard nowData={data}/>}
         <div style={{ display: "flex" }}>
             <HomePageButtons />

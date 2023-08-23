@@ -24,31 +24,20 @@ const MyRouter = () => {
 
     return <Routes>
         <Route element={<Template />}>
-
-            <Route path="/" />
             <Route path='/' element={<Home />}></Route>
             <Route path='/mypage' element={<Mypage/>}></Route>
-
-            <Route path='/' element={<Home />}></Route>
-
             <Route path="logininfo" element={<LoginInfo />} />
-
             <Route path="/login/kakao/callback" element={<KakaoCallBack />}></Route>
-
             <Route path="/review" element={<Review />}></Route>
             <Route path="/reviewDetail" element={<Detail />}></Route>
             <Route path="/reviewInsert" element={<ReviewInsert />}></Route>
             <Route path="/jobRec" element={<JobRec />}></Route>
-
             <Route path='/mentors' element={<Mentors/>}/>
             <Route path='/mentorRequests' element={<MentorRequests/>}/> {/*  멘토 지원 페이지 */}
             <Route path="/mentorDetail" element={<MentorDetail/>}></Route>
-
             <Route path="/login/kakao/callback" element={<KakaoCallBack />} /> 
             <Route path="/mentorroom/:id" element={<AddMentor />} />
             <Route path="/mentorroom" element={<GetMyMentor />} />
-
-
         </Route>
     </Routes>
 
