@@ -1,0 +1,60 @@
+
+.chat-room-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.mentor-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px;
+    padding-top: 50px;
+}
+
+.mentor-card {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    width: 100%;
+    position: relative; /* 추가된 부분 */
+}
+
+.mentor-info {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.mentor-info h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.mentor-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.question-button {
+    position: absolute; /* 추가된 부분 */
+    bottom: 10px; /* 추가된 부분 */
+    right: 10px; /* 추가된 부분 */
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.question-button:hover {
+    background-color: #0056b3;
+}
