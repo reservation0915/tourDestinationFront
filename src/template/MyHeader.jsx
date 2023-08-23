@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import '../../src/css/hightent.css';
 import find from '../../src/css/img/find.png'
 import logo from '../../src/css/img/logo.png'
@@ -14,11 +14,11 @@ const MyHeader = () => {
   const kakaoLogin = () => {
     // 카카오 로그인 URL로 이동
     window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=4849e81d641418ab8434257b184d1238&" +
-      "redirect_uri=http://localhost:3000/login/kakao/callback&response_type=code";
+        "redirect_uri=http://localhost:3000/login/kakao/callback&response_type=code";
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn'); 
+    localStorage.removeItem('isLoggedIn');
     window.location.reload()
   };
 
@@ -26,19 +26,19 @@ const MyHeader = () => {
     const username = localStorage.getItem('username');
     setUsername(username)
   }, []);
-  const mypage = ()=>{
+  const mypage = () => {
     nav('/mypage')
   }
-  const siteRecommend = ()=>{
+  const siteRecommend = () => {
     nav('/siteRecommend')
   }
-  const mentors = ()=>{
+  const mentors = () => {
     nav('/mentors')
   }
-  const review = ()=>{
+  const review = () => {
     nav('/review')
   }
-  const recommend = ()=>{
+  const recommend = () => {
     nav('/recommend')
   }
 
@@ -47,7 +47,7 @@ const MyHeader = () => {
   return <div id="header">
     <div id="header_wrap">
       <div id="header_content">
-        <img src={logo} width="150" height="auto"/>
+        <img src={logo} width="150" height="auto" />
       </div>
 
       <div id="header_content">
@@ -55,7 +55,7 @@ const MyHeader = () => {
       </div>
 
       <div id="header_content">
-        <button onClick={mentors}className="header_menu">멘토</button>
+        <button onClick={mentors} className="header_menu">멘토</button>
       </div>
 
       <div id="header_content">
@@ -70,27 +70,23 @@ const MyHeader = () => {
       </div>
       <div id="header_content">
         <button onClick={mypage} className="header_menu_login">내정보</button>
-      </div>
-      <div id="header_content">
-        <p>{username}</p>
-      </div>
-    </div>
-    {isLoggedIn ? (
-        <>
-          <div style={loginButtonStyle}>
-            <div style={loginStyle}>
-              <p>{username}</p>
+      </div >
+      {isLoggedIn ? (
+          <>
+            <div id="header_content">
+              <button className="header_menu_login">{username}님</button>
             </div>
-            <div style={loginStyle}>
-              <p onClick={handleLogout}>Logout</p>
+            <div id="header_content">
+              <button onClick={handleLogout} className="header_menu_login">Logout</button>
             </div>
+          </>
+      ) : (
+          <div id="header_content">
+            <button onClick={kakaoLogin} className="header_menu_login">Login</button>
           </div>
-        </>
-    ) : (
-        <div style={logoutButtonStyle}>
-          <p onClick={kakaoLogin}>Login</p>
-        </div>
-    )}
+      )}
+    </div>
+
 
   </div>
 
