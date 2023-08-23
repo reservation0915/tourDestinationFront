@@ -5,7 +5,9 @@ const IME = {
     location: "",
     grade:"",
     siteName:"",
-    gradeData: false
+    gradeData: false,
+    regionData: false,
+    region:""
 }
 
 export const companyDataSlice = createSlice({
@@ -20,9 +22,15 @@ export const companyDataSlice = createSlice({
         },
         setGrade:(state, {payload})=>{
             state.grade=payload.grade;
+        },
+        setRegionData:(state)=>{
+            state.regionData=!state.regionData;
+        },
+        setRegion:(state,{payload})=>{
+          state.region=payload.region;
         }
     }
 })
-export const { setLocation,setGradeData,setGrade} = companyDataSlice.actions
+export const { setLocation,setGradeData,setGrade,setRegionData,setRegion} = companyDataSlice.actions
 
 export default companyDataSlice.reducer

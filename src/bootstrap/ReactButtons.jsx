@@ -1,15 +1,14 @@
 import '../css/buttons.css'
 import ReactSlider from "./ReactSlider";
 import {useState} from "react";
-import {setGradeData, setLocation} from "../feature/companydata/companydata";
+import {setGradeData, setLocation, setRegionData} from "../feature/companydata/companydata";
 import { useDispatch, useSelector } from 'react-redux'
 import {useNavigate} from "react-router";
 import ReactCard from "./ReactCard";
 import {apiNoToken} from "../network/Api";
+import ReactRegionButtons from "./ReactRegionButtons";
 
 const ReactButtons=()=>{
-
-
     const nav = useNavigate();
     const [message, setMessage] = useState("");
     const dispatch = useDispatch()
@@ -21,9 +20,10 @@ const ReactButtons=()=>{
     const [siteName,setSiteName] = useState("");
     const[data,setData]=useState([]);
     const { grade,gradeData } = useSelector(state => state.companyData)
+    const { region,regionData } = useSelector(state => state.companyData)
     // const[nowGrade,SetGrade] =useState(false);
     const regionFun =() =>{
-
+        dispatch(setRegionData());
     }
     const jobsFun = () =>{
 
@@ -89,6 +89,10 @@ const ReactButtons=()=>{
             {
                 gradeData === true && <ReactSlider></ReactSlider>
             }
+            {
+                regionData === true && <ReactRegionButtons></ReactRegionButtons>
+            }
+
         </div>
     )
 }
