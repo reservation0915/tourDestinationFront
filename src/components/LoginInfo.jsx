@@ -13,8 +13,10 @@ const LoginInfo = () => {
 
                 const reponse = await Api('/logininfo', "GET")
                 const username = reponse.data.username
+                const userId = reponse.data.id
 
                 localStorage.setItem('username', username)
+                localStorage.setItem('userId', userId)
                 console.log(reponse)
                 nav("/")
             } catch (error) {

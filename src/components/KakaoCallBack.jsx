@@ -27,10 +27,6 @@ const KakaoCallBack = () => {
 
     }, [])
 
-    return (
-        <div>
-        </div>
-    );
 };
 
 export default KakaoCallBack;

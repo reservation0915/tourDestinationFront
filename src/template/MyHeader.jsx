@@ -33,13 +33,16 @@ const MyHeader = () => {
             <Link to="/" style={linkStyle}>채용사이트 추천</Link>
           </li>
           <li style={menuItemStyle}>
-            <Link to="/" style={linkStyle}>멘토</Link>
+            <Link to="/mentors" style={linkStyle}>멘토</Link>
           </li>
           <li style={menuItemStyle}>
             <Link to="/review" style={linkStyle}>취업후기</Link>
           </li>
           <li style={menuItemStyle}>
             <Link to="/jobRec" style={linkStyle}>직종추천</Link>
+          </li>
+          <li style={menuItemStyle}>
+            <Link to="/mentorRequests" style={linkStyle}>멘토신청</Link>
           </li>
         </ul>
       </nav>
