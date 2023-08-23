@@ -25,6 +25,8 @@ const ReactRegionButtons =() =>{
         nav('/');
     }
     return <div className="button-div">
+
+        <form >
             <button  onClick={regionSubmit} onChange={onChangeHandler}  className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
                 서울
             </button>
