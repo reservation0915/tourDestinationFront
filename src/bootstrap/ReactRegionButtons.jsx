@@ -2,6 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
 import {setRegion, setRegionData} from "../feature/companydata/companydata";
+import {useEffect, useState} from "react";
 import '../css/buttons.css'
 
 const ReactRegionButtons =() =>{
@@ -21,11 +22,9 @@ const ReactRegionButtons =() =>{
     const regionSubmit = (e) =>{
         dispatch(setRegion(value));
         dispatch(setRegionData());
-        console.log(value);
         nav('/');
     }
     return <div className="button-div">
-        <form onSubmit={onSubmitHandler}>
             <button  onClick={regionSubmit} onChange={onChangeHandler}  className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
                 서울
             </button>
@@ -62,9 +61,6 @@ const ReactRegionButtons =() =>{
             <button onClick={regionSubmit} onChange={onChangeHandler} className="w-btn-outline w-btn-gray-outline" type="button">
                 취소
             </button>
-            <input className="input-button" name="location" placeholder="search" onChange={onChangeHandler} />
-            <input type="submit" value="검색하기" />
-        </form>
 
     </div>
 }

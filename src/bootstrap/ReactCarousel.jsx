@@ -65,6 +65,7 @@ const ReactCarousel =()=>
                             margin: "40px auto",
                         }}
                     />
+
                 </div>
             </div>
         </div>
