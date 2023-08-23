@@ -1,5 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
+import Home from '../components/main/Home';
+import Template from "../components/templates/Template";
+import Mypage from "../components/auth/Mypage";
 // import Main from '../components/Main';
 import Template from '../template/Template';
 import KakaoCallBack from '../components/KakaoCallBack';
@@ -28,6 +31,8 @@ const MyRouter = () => {
         <Route element={<Template />}>
 
             <Route path="/" />
+            <Route path='/' element={<Home />}></Route>
+            <Route path='/mypage' element={<Mypage/>}></Route>
 
             <Route path='/' element={<Home />}></Route>
 
