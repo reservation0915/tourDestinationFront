@@ -1,5 +1,4 @@
 import { Carousel } from 'react-carousel-minimal';
-import '../css/carousel.css'
 const ReactCarousel =()=>
 {
     const data = [
