@@ -29,6 +29,7 @@ const Home = () => {
     // //     getAll();
     // // }, [page, size])
 
+
     return <div>
         <ReactCarousel/>
         <ReactButtons></ReactButtons>

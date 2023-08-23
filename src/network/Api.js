@@ -32,7 +32,9 @@ export const api = async (url, method, data) => {
 export const apipost = async (url, method, body) => {
     try {
         const { status, data } = await axios({
-            method, url, data: body
+            method, url, data: body,
+            headers: { 'Content-Type': 'application/json' }
+
         })
         return { body: data, status: "success" }
     } catch (error) {

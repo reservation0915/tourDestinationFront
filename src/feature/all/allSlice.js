@@ -13,7 +13,6 @@ export const allSlice = createSlice({
         setAll: (state, { payload }) => {
             state.all = payload.content
             state.totalPages = payload.totalPages
-            console.log(payload);
         },
         changeSize: (state, { payload }) => {
             state.size = payload

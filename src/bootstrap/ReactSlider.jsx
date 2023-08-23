@@ -19,7 +19,6 @@ const ReactSlider =() =>{
     const Grade = (e) =>{
         dispatch(setGrade(value));
         dispatch(setGradeData());
-        console.log(value);
         nav('/');
     }
         return <div>

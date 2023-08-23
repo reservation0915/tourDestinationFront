@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import '../../src/css/hightent.css';
 import find from '../../src/css/img/find.png'
@@ -42,12 +42,20 @@ const MyHeader = () => {
     nav('/recommend')
   }
 
-  const homePage = () => {
-    nav('/')
-  }
+  const GoMain = () =>{
+
+
+  
     const mentorRequests = () => {
       nav('/mentorRequests')
     }
+
+
+
+    const mentorRequests = () => {
+      nav('/mentorRequests')
+    }
+
 
   const mentorRoom = () => {
     nav('/mentorroom')
@@ -56,18 +64,23 @@ const MyHeader = () => {
   const jobRec = () => {
     nav('/jobRec')
   }
+
     const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
     return <div id="header">
       <div id="header_wrap">
         <div id="header_content">
-          <button onClick={homePage} className="header_menu">
+
+          <button onClick={GoMain} className="header_menu">
+
             <img src={logo} width="150" height="auto"/>
           </button>
         </div>
 
         <div id="header_content">
-          <button onClick={homePage} className="header_menu">사이트추천</button>
+
+          <button className="header_menu">사이트추천</button>
+
         </div>
 
         <div id="header_content">
@@ -79,7 +92,14 @@ const MyHeader = () => {
         </div>
 
         <div id="header_content">
+
           <button onClick={jobRec} className="header_menu">직종추천</button>
+        </div>
+        <div id="header_content">
+          <button onClick={review} className="header_menu_login">리뷰</button>
+
+     
+
         </div>
         <div id="header_content">
           <button onClick={mentorRequests} className="header_menu">멘토신청</button>
@@ -90,7 +110,9 @@ const MyHeader = () => {
         {isLoggedIn ? (
             <>
               <div id="header_content">
+
                 <button className="header_menu_login" onClick={mentorRoom}>{username}님</button>
+
               </div>
               <div id="header_content">
                 <button onClick={handleLogout} className="header_menu_login">Logout</button>
@@ -158,6 +180,8 @@ const MyHeader = () => {
   const logoutButtonStyle = {
     display: 'flex',
     marginLeft: '800px'
-  }
+
+  };
+
 
 export default MyHeader;

@@ -13,18 +13,19 @@ const ReactButtons=()=>{
     const [message, setMessage] = useState("");
     const dispatch = useDispatch()
     const { size, page } = useSelector(state => state.all)
-    console.log(size);
-    console.log(page);
     //const {location} = useSelector(state=>state.companyData)
     const [location,setLocation] =  useState("");
     const [siteName,setSiteName] = useState("");
     const[data,setData]=useState([]);
-    const { grade,gradeData } = useSelector(state => state.companyData)
-    const { region,regionData } = useSelector(state => state.companyData)
-    // const[nowGrade,SetGrade] =useState(false);
+    const grade = useSelector(state => state.companyData.grade)
+    const gradeData = useSelector(state => state.companyData.gradeData)
+    const region = useSelector(state => state.companyData.region)
+    const regionData = useSelector(state => state.companyData.regionData)
+    console.log(grade);
+    console.log(region);
+    const[nowGrade,SetGrade] =useState(false);
     const regionFun =() =>{
         dispatch(setRegionData());
-        console.log("옴")
     }
     const jobsFun = () =>{
 
@@ -55,7 +56,6 @@ const ReactButtons=()=>{
             const siteNameValue = values2.at(0);
             const getData = await apiNoToken(`/api/v1/company` +
                 `?page=${page}&size=${size}&siteName=${siteNameValue}`, "GET")
-            console.log(getData);
             setData(getData.content);
         } catch (error) {
             setMessage(error.response.data);
@@ -83,8 +83,11 @@ const ReactButtons=()=>{
                 <button className="w-btn-outline w-btn-gray-outline" type="button">
                     내 성향 추천
                 </button>
+                <button className="w-btn-outline w-btn-gray-outline" type="button">
+                    검색 리셋
+                </button>
                 <input className="input-button" name="location" placeholder="search" onChange={onChangeHandler} />
-                <input type="submit" value="검색하기" />
+                <input type="submit" value="사이트명 검색" />
             </form>
             <ReactCard nowData={data}/>
             {
