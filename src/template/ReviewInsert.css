@@ -1,0 +1,48 @@
+.contents{
+    width: 80%;
+    /*가로 정렬*/
+    display: flex;
+    /*가로 정렬*/
+    align-items: center;
+}
+.review_input{
+    width: 90%;
+    height: 75%;
+}
+.review_input:focus{
+    background: #eff3f3;
+}
+
+.input_contents {
+    width: 95%;
+    resize: none;
+    font-size: 16px; /* 입력되는 글씨 크기 설정 */
+    line-height: 1.5; /* 글씨 간격 설정 */
+    padding: 10px; /* 테두리와 글씨 입력 영역 사이의 간격 설정 */
+}
+
+.description{
+    text-align: center;
+}
+
+.description_container{
+    min-height: 300px;
+}
+
+.input_contents:focus{
+    background: #eff3f3;
+}
+
+.save_button{
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 4px 12px;
+    color: CADETBLUE;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.save_button:hover{
+    background: #DED8EAFF;
+    color: #5a585e;
+}
