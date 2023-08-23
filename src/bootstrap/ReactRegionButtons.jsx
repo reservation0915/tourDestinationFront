@@ -63,7 +63,7 @@ const ReactRegionButtons =() =>{
             <button onClick={regionSubmit} onChange={onChangeHandler} className="w-btn-outline w-btn-gray-outline" type="button">
                 취소
             </button>
-
+        </form>
     </div>
 }
 export default ReactRegionButtons;
