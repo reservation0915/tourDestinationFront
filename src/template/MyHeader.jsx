@@ -94,9 +94,6 @@ const MyHeader = () => {
 
   </div>
 
-
-
-
 };
 
 const headerStyle = {
