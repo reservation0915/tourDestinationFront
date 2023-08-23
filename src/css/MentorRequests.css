@@ -15,9 +15,9 @@
 
 .item-content {
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #6e6e6e;
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-    width: 500px;
+    width: 470px;
     height: 300px;
 
 }
@@ -45,8 +45,22 @@ label {
 
 input {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #868e96;
     border-radius: 5px;
 }
+
+
+.custom-textarea {
+    width: 110%;
+    height: 300px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    resize: vertical;
+    border-radius: 5px;
+}
+
+
+
+
 
 

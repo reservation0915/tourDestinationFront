@@ -19,21 +19,20 @@ const MentorRequests = () => {
     }
 
     useEffect(() => {
-        localStorage.getItem("userId")
-
+        const userId = localStorage.getItem("userId");
+        setUser((prevUser) =>({...prevUser, userId}));
     }, [])
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            axios.post(`http://localhost:8080/api/v1/mentors`, user, {withCredentials:true})
-            nav('/mentors')
+            axios.post(`http://localhost:8080/api/v1/mentors`, user,
+                {withCredentials:true})
+            nav("/mentors")
         }catch (error) {
             console.error("Error:", error);
 
         }
     }
-
-
 
     return <>
         <div className="App">
@@ -46,29 +45,43 @@ const MentorRequests = () => {
                         <form onSubmit={onSubmitHandler}>
                             <div className="item-input">
                                 <label htmlFor="company">회사명</label>
-                                <input type="text" id="companyName" placeholder="예) play data" onChange={onChangeHandler}/>
+                                <input type="text"
+                                       id="companyName"
+                                       placeholder="예) play data"
+                                       name="company"
+                                       onChange={onChangeHandler}/>
                             </div>
                             <div className="item-input">
                                 <label htmlFor="department">부서</label>
-                                <input type="text" id="department" placeholder="예) 제품개발팀" onChange={onChangeHandler}/>
+                                <input type="text"
+                                       id="department"
+                                       placeholder="예) 제품개발팀"
+                                       name="department"
+                                       onChange={onChangeHandler}/>
                             </div>
                             <div className="item-input">
                                 <label htmlFor="majorCareer">주요 경력</label>
-                                <input type="text" id="majorCareer" placeholder="내용을 입력해 주세요." onChange={onChangeHandler}/>
+                                <input type="text"
+                                       id="majorCareer"
+                                       placeholder="내용을 입력해 주세요."
+                                       name="majorCareer"
+                                       onChange={onChangeHandler}/>
                             </div>
                             <div className="item-input-introduction">
                                 <label htmlFor="introduction">멘토 소개</label>
-                                <textarea type="text" id="introduction" placeholder="내용을 입력해 주세요." onChange={onChangeHandler}/>
+                                <textarea type="text"
+                                          id="introduction"
+                                          placeholder="내용을 입력해 주세요."
+                                          name="introduction"
+                                          className="custom-textarea"
+                                          nChange={onChangeHandler}/>
                             </div>
                                 <input type="submit" value={"등록"}/>
                         </form>
                     </div>
-
                 </div>
             </Center>
         </div>
-
-
     </>
 }
 export default MentorRequests;
