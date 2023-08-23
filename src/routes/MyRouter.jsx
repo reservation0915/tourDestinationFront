@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 import Home from '../components/main/Home';
-import Template from "../components/templates/Template";
 import Mypage from "../components/auth/Mypage";
 // import Main from '../components/Main';
 import Template from '../template/Template';
@@ -16,10 +15,6 @@ import JobRec from "../template/JobRec";
 import Mentors from "../components/Mentors";
 import MentorRequests from "../components/MentorRequests";
 import MentorDetail from "../components/MentorDetail";
-
-
-import ReactCarousel from "../bootstrap/ReactCrousel";
-import Home from "../components/main/Home";
 
 import AddMentor from '../components/MyMentor';
 import GetMyMentor from '../components/GetMyMentor';

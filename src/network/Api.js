@@ -12,6 +12,7 @@ export const Api = async (url, method, data) => {
     return body;
 };
 
+
 export const apiNoToken = async (url, method, data) => {
     const body = await axios({
         url, method, data
@@ -38,29 +39,5 @@ export const apipost = async (url, method, body) => {
         return { body: null, status: "error" }
     }
 }
-export const apiNoToken = async (url, method, data) => {
-    const body = await axios({
-        url, method, data
-    })
-    return body.data
-}
 
-export const api = async (url, method, data) => {
-    const token = localStorage.getItem('token')
-    const body = await axios({
-        url, method, data,
-        headers: { "Authorization": `Bearer ${token}` }
-    })
-    return body.data
-}
 
-export const apipost = async (url, method, body) => {
-    try {
-        const { status, data } = await axios({
-            method, url, data: body
-        })
-        return { body: data, status: "success" }
-    } catch (error) {
-        return { body: null, status: "error" }
-    }
-}

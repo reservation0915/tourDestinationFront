@@ -3,9 +3,9 @@ import ReactSlider from "./ReactSlider";
 import {useState} from "react";
 import {setGradeData, setLocation} from "../feature/companydata/companydata";
 import { useDispatch, useSelector } from 'react-redux'
-import {api, apiNoToken} from "../network/api";
 import {useNavigate} from "react-router";
 import ReactCard from "./ReactCard";
+import {apiNoToken} from "../network/Api";
 
 const ReactButtons=()=>{
 

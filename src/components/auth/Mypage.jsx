@@ -1,14 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {api, apiNoToken} from "../../network/api";
-import {setAll} from "../../feature/all/allSlice";
-import ReactCarousel from "../../bootstrap/ReactCarousel";
-import Loading from "../tools/Loading";
-import Toast from "../tools/Toast";
-import HomeTable from "../main/HomeTable";
-import HomePageButtons from "../main/HomePageButtons";
-import HomeSizeSelect from "../main/HomeSizeSelect";
 import MypageTable from "./MypageTable";
+import {apiNoToken} from "../../network/Api";
 
 
 const Mypage=() =>{

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import {api, apiNoToken} from "../../network/api";
 import Loading from "../tools/Loading";
 import Toast from "../tools/Toast";
 import HomePageButtons from "./HomePageButtons";
@@ -7,6 +6,7 @@ import HomeSizeSelect from "./HomeSizeSelect";
 import { useDispatch, useSelector } from 'react-redux'
 import ReactCard from "../../bootstrap/ReactCard";
 import {setCompany} from "../../feature/company/company";
+import {api} from "../../network/Api";
 const Company =() =>{
     const dispatch = useDispatch()
     const [message, setMessage] = useState("");
