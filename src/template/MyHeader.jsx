@@ -41,6 +41,9 @@ const MyHeader = () => {
   const recommend = () => {
     nav('/recommend')
   }
+  const mentorRequests = () => {
+    nav('/mentorRequests')
+  }
 
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
@@ -67,6 +70,9 @@ const MyHeader = () => {
       </div>
       <div id="header_content">
         <button onClick={review} className="header_menu_login">리뷰</button>
+      </div>
+      <div id="header_content">
+        <button onClick={mentorRequests} className="header_menu">멘토신청</button>
       </div>
       <div id="header_content">
         <button onClick={mypage} className="header_menu_login">내정보</button>
