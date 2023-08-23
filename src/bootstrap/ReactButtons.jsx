@@ -24,6 +24,7 @@ const ReactButtons=()=>{
     // const[nowGrade,SetGrade] =useState(false);
     const regionFun =() =>{
         dispatch(setRegionData());
+        console.log("옴")
     }
     const jobsFun = () =>{
 

@@ -41,6 +41,10 @@ const MyHeader = () => {
   const recommend = () => {
     nav('/recommend')
   }
+
+  const homePage =() =>{
+    nav('/')
+
   const mentorRequests = () => {
     nav('/mentorRequests')
   }
@@ -50,7 +54,9 @@ const MyHeader = () => {
   return <div id="header">
     <div id="header_wrap">
       <div id="header_content">
-        <img src={logo} width="150" height="auto" />
+        <button onClick={homePage} className="header_menu">
+          <img src={logo} width="150" height="auto" />
+        </button>
       </div>
 
       <div id="header_content">
