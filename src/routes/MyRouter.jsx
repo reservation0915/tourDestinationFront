@@ -7,7 +7,8 @@ import LoginInfo from '../components/LoginInfo';
 import Review from "../template/Review";
 import Detail from "../template/Detail";
 import ReviewInsert from "../template/ReviewInsert";
-import JobRec from "../template/JobRec";
+import JobRec from "../template/MBTI";
+import MBTI from "../template/MBTI";
 
 const MyRouter = () => {
 
@@ -19,7 +20,7 @@ const MyRouter = () => {
             <Route path="/review" element={<Review />}></Route>
             <Route path="/reviewDetail" element={<Detail />}></Route>
             <Route path="/reviewInsert" element={<ReviewInsert />}></Route>
-            <Route path="/jobRec" element={<JobRec />}></Route>
+            <Route path="/mbti" element={<MBTI />}></Route>
         </Route>
     </Routes>
 

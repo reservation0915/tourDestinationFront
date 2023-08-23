@@ -13,7 +13,7 @@ const MyHeader = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn'); 
+    localStorage.removeItem('isLoggedIn');
     window.location.reload()
   };
 
@@ -39,7 +39,7 @@ const MyHeader = () => {
             <Link to="/review" style={linkStyle}>취업후기</Link>
           </li>
           <li style={menuItemStyle}>
-            <Link to="/jobRec" style={linkStyle}>직종추천</Link>
+            <Link to="/mbti" style={linkStyle}>직종추천</Link>
           </li>
         </ul>
       </nav>
