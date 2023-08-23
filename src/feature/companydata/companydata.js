@@ -21,13 +21,15 @@ export const companyDataSlice = createSlice({
             state.gradeData=!state.gradeData;
         },
         setGrade:(state, {payload})=>{
-            state.grade=payload.grade;
+
+            state.grade=payload;
+
         },
         setRegionData:(state)=>{
             state.regionData=!state.regionData;
         },
         setRegion:(state,{payload})=>{
-          state.region=payload.region;
+          state.region=payload;
         }
     }
 })

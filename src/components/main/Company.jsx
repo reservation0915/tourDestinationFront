@@ -24,7 +24,6 @@ const Company =() =>{
             setLoading(false)
             dispatch(setCompany(getData));
             setData(getData.content);
-            console.log(getData.content);
         } catch (error) {
             setMessage(error.response.data)
         }
