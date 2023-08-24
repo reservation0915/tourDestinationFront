@@ -5,7 +5,6 @@ import axios from "axios";
 import {useNavigate} from "react-router";
 import {Api} from "../network/Api";
 import {menu} from "../common/menu";
-import {PhotoIcon, UserCircleIcon} from '@heroicons/react/24/solid'
 
 
 const MentorRequests = () => {

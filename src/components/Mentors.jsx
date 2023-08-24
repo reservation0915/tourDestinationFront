@@ -188,7 +188,7 @@ const Mentors = () => {
                             <div><strong>{mentor.username} <span> 멘토 </span></strong></div>
                             <div className="story_profile"> <span>{mentor.department}</span></div>
 
-                            <div>{mentor.majorCareer}</div>
+                            {/*<div>{mentor.majorCareer}</div>*/}
                         </div>
                     </div>
                 )}
