@@ -13,6 +13,7 @@ const MyMentor = () => {
 
         addMentor()
         nav('/mentorroom')
+        window.location.reload()
     }, []);
 
 };
