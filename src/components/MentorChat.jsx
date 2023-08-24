@@ -5,8 +5,9 @@ import {useEffect} from 'react';
 import {useParams} from 'react-router';
 import {Client} from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-import '../css/MentorChat.css';
+// import '../css/MentorChat.css';
 import {Api} from "../network/Api";
+
 
 const MentorChat = () => {
     const messagesEndRef = useRef(null)
@@ -104,35 +105,55 @@ const MentorChat = () => {
     }
 
     return (
-        <div className="chat-container">
-            <div className="chat-room">
-                <div className="chat-header">
-                    <h1>질문하기</h1>
-                </div>
-                <div className="chat-messages">
-                    {saveMessages.map((save, index) => (
-                        <div key={index}
-                             className={`message ${save.sender === localStorage.getItem('username') ? 'sent' : 'received'}`}>
-                            <span>{save.message}</span>
-                        </div>
-                    ))}
-                    {chatMessages.map((chat, index) => (
-                        <div key={index}
-                             className={`message ${chat.sender === localStorage.getItem('username') ? 'sent' : 'received'}`}>
-                            <span>{chat.message}</span>
-                        </div>
-                    ))}
-                    <div ref={messagesEndRef}/>
+        <div>
+            <div
+                className="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10">
+                <div className="flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
+                    <div className="flex flex-col flex-grow h-0 p-4 overflow-auto">
+                        {saveMessages.map((save, index) => (
+                            <div key={index}
+                                 className={`${save.sender === localStorage.getItem('username') ?
+                                     'flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end' :
+                                     'flex w-full mt-2 space-x-3 max-w-xs'}`}>
+                                {/*<div className="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>*/}
+                                <div className={`${save.sender === localStorage.getItem('username') ?
+                                    'bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg' :
+                                    'bg-gray-300 p-3 rounded-r-lg rounded-bl-lg'}`}>
+                                    <div>
+                                        <p className="text-sm">{save.message}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {chatMessages.map((save, index) => (
+                            <div key={index}
+                                 className={`${save.sender === localStorage.getItem('username') ?
+                                     'flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end' :
+                                     'flex w-full mt-2 space-x-3 max-w-xs'}`}>
+                                {/*<div className="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>*/}
+                                <div className={`${save.sender === localStorage.getItem('username') ?
+                                    'bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg' :
+                                    'bg-gray-300 p-3 rounded-r-lg rounded-bl-lg'}`}>
+                                    <div>
+                                        <p className="text-sm">{save.message}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        <div ref={messagesEndRef}/>
+                    </div>
+                    <div className="bg-gray-300 p-4 flex items-center">
+                        <input className="flex-grow h-10 rounded px-3 text-sm border border-gray-400" type="text"
+                               value={inputValue} onChange={handleMessage} />
+                        <button type="button" className="bg-blue-600 text-white py-2 px-4 rounded ml-2"
+                                onClick={sendValue}>전송</button>
+                    </div>
+
+                    <div ref={roomEndRef}/>
                 </div>
 
-                <div className="chat-input">
-                    <input type="text" value={inputValue} placeholder="메시지 입력" onChange={handleMessage}/>
-                    <button type="button" className="send-button" onClick={sendValue}>전송</button>
-                </div>
-                <div ref={roomEndRef}/>
             </div>
         </div>
-
     );
 };
 
