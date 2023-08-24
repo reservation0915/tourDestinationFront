@@ -38,8 +38,8 @@ const MyHeader = () => {
   const review = () => {
     nav('/review')
   }
-  const recommend = () => {
-    nav('/recommend')
+  const jobRec = () => {
+    nav('/jobRec')
   }
 
   const homePage = () => {
@@ -72,10 +72,7 @@ const MyHeader = () => {
       </div>
 
       <div id="header_content">
-        <button className="header_menu">직종추천</button>
-      </div>
-      <div id="header_content">
-        <button onClick={review} className="header_menu_login">리뷰</button>
+        <button onClick={jobRec} className="header_menu">직종추천</button>
       </div>
       <div id="header_content">
         <button onClick={mentorRequests} className="header_menu">멘토신청</button>
