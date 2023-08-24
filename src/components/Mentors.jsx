@@ -127,7 +127,7 @@ const Mentors = () => {
                 // loading 상태 true
                 setLoading(true);
                 const mentors = await Api(`api/v1/mentors`, "GET");
-                console.log(mentors)
+                console.log(mentors.data)
                 setMentors(mentors.data);
             } catch (e) {
                 setError(e);

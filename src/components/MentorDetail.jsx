@@ -25,20 +25,35 @@ const MentorDetail = () => {
 
     return <>
         <div className="App">
-            <div className="detail_box">
+            <div className="mentor_detail_box">
                 <div className="mentor-container">
-                    <div>
-                        <div className="profile-image">
-                            <img style={{width: '150px', height: '150px'}}
-                                 src={myImg}/>
-                        </div>
-                        <div>{mentor.company}</div>
-                        <div>{mentor.department}</div>
-                        <div>{mentor.introduction}</div>
-                        <div>{mentor.majorCareer}</div>
-                        <div className="name">{mentor.username}</div>
+                    <div className="profile-image">
+                        <img style={{width: '150px', height: '150px'}}
+                             src={myImg}/>
                     </div>
-
+                    <div>{mentor.company}</div>
+                    <div>{mentor.department}</div>
+                    <div>{mentor.majorCareer}</div>
+                    <div className="name">{mentor.username}</div>
+                </div>
+                <div className="mentor_introduction">
+                    <div>
+                        <div className="mentor_introduction_detail">
+                            <h2>대표 멘토링 분야</h2>
+                        </div>
+                        {mentor.mentoringFields && Array.isArray(mentor.mentoringFields) && mentor.mentoringFields.map((item, idx) => (
+                            <div><p key={idx}>#{item.fieldName}</p></div>
+                        ))}
+                        <div className="mentor_introduction_detail">
+                            <h2>멘토 소개</h2>
+                        </div>
+                       <div className="mentor_introduction_detail">
+                           {mentor.introduction}
+                       </div>
+                        <div>
+                            <h2>주요 경력</h2>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
