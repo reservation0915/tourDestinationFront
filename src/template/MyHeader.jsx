@@ -49,6 +49,10 @@ const MyHeader = () => {
     nav('/mentorRequests')
   }
 
+  const mentorRoom = () => {
+    nav('/mentorroom')
+  }
+
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
   return <div id="header">
@@ -83,7 +87,7 @@ const MyHeader = () => {
       {isLoggedIn ? (
           <>
             <div id="header_content">
-              <button className="header_menu_login">{username}님</button>
+              <button onClick={mentorRoom} className="header_menu_login">{username}님</button>
             </div>
             <div id="header_content">
               <button onClick={handleLogout} className="header_menu_login">Logout</button>
