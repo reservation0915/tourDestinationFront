@@ -3,32 +3,54 @@ import Center from "./Center";
 import "../css/MentorRequests.css"
 import axios from "axios";
 import {useNavigate} from "react-router";
+import {Api} from "../network/Api";
+import {menu} from "../common/menu";
+import {PhotoIcon, UserCircleIcon} from '@heroicons/react/24/solid'
+
 
 const MentorRequests = () => {
     const nav = useNavigate();
+    const [mentoringField, setMentoringField] = useState([]);
+    const [profilePicture, setProfilePicture] = useState(null);
     const [user, setUser] = useState({
         company: "",
-        department:"",
+        department: "",
         introduction: "",
-        majorCareer:""
+        majorCareer: "",
+        picture: ""
     })
 
+    useEffect(() => {
+        const fetchField = async () => {
+            try {
+                setMentoringField([]);
+                const mentoringField = await Api(`api/v1/mentoringField`, "GET");
+                console.log(mentoringField.data)
+                setMentoringField(mentoringField.data);
+            } catch (e) {
+                // console.error("Error:");
+            }
+        };
+        fetchField();
+    }, [])
+
     const onChangeHandler = (e) => {
-        const { value, name } = e.target
-        setUser({ ...user, [name]: value })
+        const {value, name} = e.target
+        setUser({...user, [name]: value})
     }
 
     useEffect(() => {
+        console.log(localStorage.getItem("username"))
         const userId = localStorage.getItem("userId");
-        setUser((prevUser) =>({...prevUser, userId}));
+        setUser((prevUser) => ({...prevUser, userId}));
     }, [])
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
             axios.post(`http://localhost:8080/api/v1/mentors`, user,
-                {withCredentials:true})
+                {withCredentials: true})
             nav("/mentors")
-        }catch (error) {
+        } catch (error) {
             console.error("Error:", error);
 
         }
@@ -67,6 +89,14 @@ const MentorRequests = () => {
                                        name="majorCareer"
                                        onChange={onChangeHandler}/>
                             </div>
+                                <label htmlFor="majorCareer">멘토링 가능 분야</label>
+                            <div className="mentoring_container">
+                                <div className="mentor_field">
+                                    {mentoringField.map((item, idx) =>
+                                        <div className="field_detail">{item.fieldName}</div>
+                                    )}
+                                </div>
+                            </div>
                             <div className="item-input-introduction">
                                 <label htmlFor="introduction">멘토 소개</label>
                                 <textarea type="text"
@@ -74,7 +104,7 @@ const MentorRequests = () => {
                                           placeholder="내용을 입력해 주세요."
                                           name="introduction"
                                           className="custom-textarea"
-                                          nChange={onChangeHandler}/>
+                                          onChange={onChangeHandler}/>
                             </div>
                                 <input type="submit" value={"등록"}/>
                         </form>
