@@ -10,52 +10,49 @@ import {menu} from "../common/menu";
 const MentorRequests = () => {
     const nav = useNavigate();
     const [mentoringField, setMentoringField] = useState([]);
-    const [profilePicture, setProfilePicture] = useState(null);
     const [user, setUser] = useState({
         company: "",
         department: "",
         introduction: "",
         majorCareer: "",
-        picture: ""
-    })
+        picture: "",
+        mentoringFieldId: []
+    });
+    const [selectedMentoringFieldIds, setSelectedMentoringFieldIds] = useState([]);
 
     useEffect(() => {
         const fetchField = async () => {
             try {
-                setMentoringField([]);
-                const mentoringField = await Api(`api/v1/mentoringField`, "GET");
-                console.log(mentoringField.data)
-                setMentoringField(mentoringField.data);
-            } catch (e) {
-                // console.error("Error:");
+                const mentoringFieldResponse = await axios.get("api/v1/mentoringField");
+                setMentoringField(mentoringFieldResponse.data);
+            } catch (error) {
+                console.error("Error fetching mentoring fields:", error);
             }
         };
         fetchField();
-    }, [])
+    }, []);
 
     const onChangeHandler = (e) => {
-        const {value, name} = e.target
-        setUser({...user, [name]: value})
+        const {value, name} = e.target;
+        setUser({...user, [name]: value});
     }
 
-    useEffect(() => {
-        console.log(localStorage.getItem("username"))
-        const userId = localStorage.getItem("userId");
-        setUser((prevUser) => ({...prevUser, userId}));
-    }, [])
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            axios.post(`http://localhost:8080/api/v1/mentors`, user,
-                {withCredentials: true})
-            nav("/mentors")
+            const userWithMentoringField = {
+                ...user,
+                mentoringFieldId: selectedMentoringFieldIds
+            };
+            const response = await axios.post("http://localhost:8080/api/v1/mentors", userWithMentoringField, {withCredentials: true});
+            console.log("Mentor created:", response.data);
+            nav("/mentors");
         } catch (error) {
-            console.error("Error:", error);
-
+            console.error("Error creating mentor:", error);
         }
     }
 
-    return <>
+    return (
         <div className="App">
             <Center>
                 <div className="mentor-requests-container">
@@ -88,12 +85,27 @@ const MentorRequests = () => {
                                        name="majorCareer"
                                        onChange={onChangeHandler}/>
                             </div>
-                                <label htmlFor="majorCareer">멘토링 가능 분야</label>
+                            <label htmlFor="majorCareer">멘토링 가능 분야</label>
                             <div className="mentoring_container">
                                 <div className="mentor_field">
-                                    {mentoringField.map((item, idx) =>
-                                        <div className="field_detail">{item.fieldName}</div>
-                                    )}
+                                    {mentoringField.map((item) => (
+                                        <button
+                                            type="button"
+                                            key={item.id}
+                                            className={`${
+                                                selectedMentoringFieldIds.includes(item.id) ? 'bg-blue-500' : 'bg-gray-300'
+                                            } text-white px-2 ml-2 rounded`}
+                                            onClick={() => {
+                                                if (selectedMentoringFieldIds.includes(item.id)) {
+                                                    setSelectedMentoringFieldIds(selectedMentoringFieldIds.filter(id => id !== item.id));
+                                                } else {
+                                                    setSelectedMentoringFieldIds([...selectedMentoringFieldIds, item.id]);
+                                                }
+                                            }}
+                                        >
+                                            <div className="field_detail">{item.fieldName}</div>
+                                        </button>
+                                    ))}
                                 </div>
                             </div>
                             <div className="item-input-introduction">
@@ -105,12 +117,13 @@ const MentorRequests = () => {
                                           className="custom-textarea"
                                           onChange={onChangeHandler}/>
                             </div>
-                                <input type="submit" value={"등록"}/>
+                            <input type="submit" value={"등록"}/>
                         </form>
                     </div>
                 </div>
             </Center>
         </div>
-    </>
+    );
 }
+
 export default MentorRequests;
