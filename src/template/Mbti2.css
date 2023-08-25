@@ -49,3 +49,62 @@
 .selectBtn {
 
 }
+
+
+.mbti_result_container{
+    padding-top: 1400px;
+}
+.mbti_result_container_2{
+    background: #f6f5f5;
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 10px;
+    padding: 30px 40px;
+    border-radius: 8px;
+    margin: -45px;
+}
+.result_jobTitle {
+    display: flex;
+    flex-direction: row; /* 가로 방향으로 배열 */
+    gap: 10px; /* 각 아이템 사이 간격 */
+    margin: 31px 30px;
+}
+.p_jobTitle{
+    background: #dfdfed;
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.Compatibility{
+    display: flex;
+    flex-direction: row; /* 가로 방향으로 배열 */
+    gap: 10px; /* 각 아이템 사이 간격 */
+    margin-bottom: 15px;
+}
+
+.option_Compatibility{
+    box-sizing: border-box;
+    width: calc(50% - 5px);
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    min-height: 329px;
+    border-radius: 14px;
+    border: 1px solid #dadada;
+    padding: 30px 10px 20px;
+}
+
+.replay{
+    background: #0077C9;
+    color: white;
+    outline: none;
+}
+.replay:hover{
+    background: #f3f4f8;
+    color: #83919e;
+    border: none;
+}
+
+

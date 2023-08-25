@@ -4,6 +4,8 @@ import TopBanner from "../components/TopBanner";
 import "./Mbti2.css"
 import axios from "axios";
 import Layout from "./Layout";
+import {menu} from "../common/menu";
+import {useNavigate} from "react-router-dom";
 
 const Mbti2 = () => {
     const [questions, setQuestions] = useState([]);
@@ -12,10 +14,13 @@ const Mbti2 = () => {
     const [selectedChoice, setSelectedChoice] = useState(null);
     const [mbti, setMbti] = useState('');
     const [mbtiType, setMbtiType] = useState({});
+    const nav = useNavigate();
 
     useEffect(() => {
+
         axios.get('http://localhost:8080/api/v1/questions/results').then((res) => {
             setQuestions(res.data.questions);
+
         }).catch((err) => {
 
         })
@@ -23,6 +28,7 @@ const Mbti2 = () => {
 
     // user select method..
     const handleChoiceSelect = (choice) => {
+
         // 1번 골랐는지 2번 골랐는지
         setSelectedChoice(choice);
 
@@ -67,6 +73,7 @@ const Mbti2 = () => {
 
         axios.get('http://localhost:8080/api/v1/questions/results')
             .then((res) => {
+
                 setMbti(res.data.type);
                 axios.get(`http://localhost:8080/api/v1/mbti/${res.data.type}`)
                     .then((res) => {
@@ -91,6 +98,7 @@ const Mbti2 = () => {
     const cleanQuestionText = (question, type) => {
 
         const headerEndIndex = question.indexOf("1.") !== -1 ? question.indexOf("1.") : question.indexOf("2.");
+
         const msg = question.substring(headerEndIndex).trim().split('//');
 
         if (type == 'left') {
@@ -105,8 +113,8 @@ const Mbti2 = () => {
     const reloadPage = async () => {
 
         const data = await axios.post('http://localhost:8080/api/v1/questions/clear');
-
-        window.location.reload();
+        nav('/mbti');
+        // window.location.reload();
     }
 
     {/*<div className={`mbti_container slide-${slidIndex}+1`}>*/}
@@ -140,11 +148,11 @@ const Mbti2 = () => {
                                 // 질문의 index 가  map 의 idx 와 같으면 "active" 를 줌으로써 css controling..
                                 <div key={questionIndex} className={`mbti_container question ${currentQuestionIndex === questionIndex ? "active" : ""}`}>
                                     <div className="question-p question-header">
-                                        <p onClick={() => handleChoiceSelect(1)} style={{fontSize : '22px', textAlign : 'center', marginBottom : '20px', cursor : 'pointer'}}>{cleanQuestionHeader(question.question)}</p>
+                                        <p  style={{fontSize : '22px', textAlign : 'center', marginBottom : '20px', cursor : 'pointer'}}>{cleanQuestionHeader(question.question)}</p>
                                     </div>
-                                    <div onClick={() => handleChoiceSelect(2)} className="question-p question-text" style={{display : 'flex', gap : '15px', justifyContent : 'center'}}>
-                                        <p className='choice-button' style={{fontSize : '22px', textAlign : 'center', marginBottom : '20px', cursor : 'pointer'}}>{cleanQuestionText(question.question, 'left')}</p>
-                                        <p className='choice-button' style={{fontSize : '22px', textAlign : 'center', marginBottom : '20px', cursor : 'pointer'}}>{cleanQuestionText(question.question, 'right')}</p>
+                                    <div  className="question-p question-text" style={{display : 'flex', gap : '15px', justifyContent : 'center'}}>
+                                        <p onClick={() => handleChoiceSelect(1)} className='choice-button' style={{fontSize : '22px', textAlign : 'center', marginBottom : '20px', cursor : 'pointer'}}>{cleanQuestionText(question.question, 'left')}</p>
+                                        <p onClick={() => handleChoiceSelect(2)} className='choice-button' style={{fontSize : '22px', textAlign : 'center', marginBottom : '20px', cursor : 'pointer'}}>{cleanQuestionText(question.question, 'right')}</p>
                                     </div>
                                     {/*<div className="button-group">*/}
                                     {/*    <button className="option1 choice-button" onClick={() => handleChoiceSelect(1)}>*/}
@@ -158,20 +166,52 @@ const Mbti2 = () => {
                             ))}
                         </div>
                     ))}
-                <div className='mbti_container' style={{ display: currentCategoryIndex === questions.length ? "block" : "none", position : 'relative' }}>
-                    <div style={{position : 'absolute', top : '50%', left : '50%', transform :'translate(-50%, -50%)', marginBottom : '10px'}}>
-                        <h1 className="mbti-result" style={{color: '#fff'}}>Your MBTI: {mbti}</h1>
-                        <p>{mbtiType.hashtag}</p>
-                        <p>최고의 궁합 : {mbtiType.bestCompatibility}</p>
-                        <p>최악의 궁합 : {mbtiType.worstCompatibility}</p>
-                        <p>{mbtiType.subTitle}</p>
-                        <p>{mbtiType.trait}</p>
+                <div className='mbti_result_container' style={{ display: currentCategoryIndex === questions.length ? "block" : "none", position : 'relative' }}>
+                    <div className={"mbti_result_container_2"} style={{position : 'absolute', top : '50%', left : '50%', transform :'translate(-50%, -50%)', marginBottom : '10px'}}>
+                        <h1 className="mbti-result" style={{color: 'black', textAlign: 'center'}}>Your MBTI</h1>
+                        <p style={{color: 'black', textAlign: 'center', fontWeight: '700', fontSize: '50px'}} className={"mbti-result_yourmbti"}>{mbti}</p>
+                        <p style={{textAlign: 'center'}}>  {mbtiType.hashtag != undefined && mbtiType.hashtag.split(",").map((tag, index) => (
+                                <span key={index}> #{tag}</span>
+                            ))}</p>
+                        <p style={{textAlign: 'center'}}><strong style={{ fontSize: '24px', fontWeight: 'normal' }}>{mbtiType.subTitle}</strong></p>
+                        <img style={{width: '50%'}} src={"\thttps://spti.snackpot.kr/images/type/1_1.png\n"}/>
+                        <p style={{ textAlign: 'justify' }}>{mbtiType.trait}</p>
                         {/*{mbtiType.jobRecommend == undefined || mbtiType.jobRecommend == null && <p>나와</p>}*/}
-                        {mbtiType.jobRecommend != undefined && mbtiType.jobRecommend.map((item, idx) => (
-                            <p>{item.jobTitle}</p>
-                        ))}
 
-                        <button style={{width : '100%', height: '50px'}} className='option1' onClick={reloadPage}>다시하기</button>
+                        <div className={"result_jobTitle"}>
+                            {mbtiType.jobRecommend != undefined && mbtiType.jobRecommend.map((item, idx) => (
+
+                                <p key={idx} className={"p_jobTitle"}>{item.jobTitle}</p>
+                            ))}
+                        </div>
+
+
+                        <div className="Compatibility" style={{ textAlign: 'center' }}>
+                            <p className={"option_Compatibility"} style={{ marginBottom: '10px', fontWeight: '700' }}>
+                                환상의 케미 <br />
+                                <img style={{width: '50%'}} src={"https://spti.snackpot.kr/images/type/5_1.png"}/> <br />
+                                {mbtiType.bestCompatibility}
+                            </p>
+                            <p className={"option_Compatibility"} style={{ marginBottom: '10px', fontWeight: '700' }}>
+                                환장의 케미 <br />
+                                <img style={{width: '50%'}} src={"https://spti.snackpot.kr/images/type/7_1.png"}/> <br />
+                                {mbtiType.bestCompatibility}
+                            </p>
+                        </div>
+
+
+
+                        {/*<div className="category">*/}
+                        {/*    /!* ## 컴포넌트 화 ## *!/*/}
+                        {/*    /!*자바스크립트에서 자바문법을 쓸 때는 {중괄호}해줘야 함*!/*/}
+                        {/*    {menu.map((item, idx) => (*/}
+                        {/*        // 글씨만 가지는 애 = span*/}
+                        {/*        // 글씨와 영역을 동시에 가지는 애 = p*/}
+                        {/*        <div key={idx} style={{background : item.background, color : item.color, cursor : 'pointer'}} onClick={() => {findCategory(item.name)}} className="categoryItem"><span>{item.name}</span></div>*/}
+                        {/*    ))}*/}
+                        {/*</div>*/}
+
+                        <button style={{width : '100%', height: '50px'}} className='replay' onClick={reloadPage}>다시하기</button>
                     </div>
                 </div>
             </Layout>
