@@ -4,7 +4,7 @@ const INIT_ALL = {
     all: [],
     totalPages: 0,
     page: 0,
-    size: 5
+    size: 20
 }
 export const allSlice = createSlice({
     name: "all",

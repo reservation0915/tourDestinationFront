@@ -19,8 +19,11 @@ const MyHeader = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
+    localStorage.clear()
+    document.cookie = 'Token; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    nav('/')
     window.location.reload()
+
   };
 
   useEffect(() => {
@@ -39,8 +42,8 @@ const MyHeader = () => {
   const review = () => {
     nav('/review')
   }
-  const recommend = () => {
-    nav('/recommend')
+  const jobRec = () => {
+    nav('/jobRec')
   }
 
   const homePage = () => {
@@ -50,8 +53,12 @@ const MyHeader = () => {
     nav('/mentorRequests')
   }
 
+
   const mbti = () => {
     nav('/mbti')
+
+  const mentorRoom = () => {
+    nav('/mentorroom')
   }
 
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
@@ -66,7 +73,7 @@ const MyHeader = () => {
       </div>
 
       <div id="header_content">
-        <button className="header_menu">사이트추천</button>
+        <button onClick={siteRecommend} className="header_menu">사이트추천</button>
       </div>
 
       <div id="header_content">
@@ -78,10 +85,12 @@ const MyHeader = () => {
       </div>
 
       <div id="header_content">
+
         <button onClick={mbti} className="header_menu">직종추천</button>
       </div>
       <div id="header_content">
         <button onClick={review} className="header_menu_login">리뷰</button>
+
       </div>
       <div id="header_content">
         <button onClick={mentorRequests} className="header_menu">멘토신청</button>
@@ -93,7 +102,7 @@ const MyHeader = () => {
       {isLoggedIn ? (
           <>
             <div id="header_content">
-              <button className="header_menu_login">{username}님</button>
+              <button onClick={mentorRoom} className="header_menu_login">{username}님</button>
             </div>
             <div id="header_content">
               <button onClick={handleLogout} className="header_menu_login">Logout</button>

@@ -127,7 +127,7 @@ const Mentors = () => {
                 // loading 상태 true
                 setLoading(true);
                 const mentors = await Api(`api/v1/mentors`, "GET");
-                console.log(mentors)
+                console.log(mentors.data)
                 setMentors(mentors.data);
             } catch (e) {
                 setError(e);
@@ -188,7 +188,7 @@ const Mentors = () => {
                             <div><strong>{mentor.username} <span> 멘토 </span></strong></div>
                             <div className="story_profile"> <span>{mentor.department}</span></div>
 
-                            <div>{mentor.majorCareer}</div>
+                            {/*<div>{mentor.majorCareer}</div>*/}
                         </div>
                     </div>
                 )}

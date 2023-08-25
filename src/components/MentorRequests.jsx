@@ -3,39 +3,56 @@ import Center from "./Center";
 import "../css/MentorRequests.css"
 import axios from "axios";
 import {useNavigate} from "react-router";
+import {Api} from "../network/Api";
+import {menu} from "../common/menu";
+
 
 const MentorRequests = () => {
     const nav = useNavigate();
+    const [mentoringField, setMentoringField] = useState([]);
     const [user, setUser] = useState({
         company: "",
-        department:"",
+        department: "",
         introduction: "",
-        majorCareer:""
-    })
-
-    const onChangeHandler = (e) => {
-        const { value, name } = e.target
-        setUser({ ...user, [name]: value })
-    }
+        majorCareer: "",
+        picture: "",
+        mentoringFieldId: []
+    });
+    const [selectedMentoringFieldIds, setSelectedMentoringFieldIds] = useState([]);
 
     useEffect(() => {
-        localStorage.getItem("userId")
+        const fetchField = async () => {
+            try {
+                const mentoringFieldResponse = await axios.get("api/v1/mentoringField");
+                setMentoringField(mentoringFieldResponse.data);
+            } catch (error) {
+                console.error("Error fetching mentoring fields:", error);
+            }
+        };
+        fetchField();
+    }, []);
 
-    }, [])
+    const onChangeHandler = (e) => {
+        const {value, name} = e.target;
+        setUser({...user, [name]: value});
+    }
+
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            axios.post(`http://localhost:8080/api/v1/mentors`, user, {withCredentials:true})
-            nav('/mentors')
-        }catch (error) {
-            console.error("Error:", error);
-
+            const userWithMentoringField = {
+                ...user,
+                mentoringFieldId: selectedMentoringFieldIds
+            };
+            const response = await axios.post("http://localhost:8080/api/v1/mentors", userWithMentoringField, {withCredentials: true});
+            console.log("Mentor created:", response.data);
+            nav("/mentors");
+        } catch (error) {
+            console.error("Error creating mentor:", error);
         }
     }
 
-
-
-    return <>
+    return (
         <div className="App">
             <Center>
                 <div className="mentor-requests-container">
@@ -46,29 +63,67 @@ const MentorRequests = () => {
                         <form onSubmit={onSubmitHandler}>
                             <div className="item-input">
                                 <label htmlFor="company">회사명</label>
-                                <input type="text" id="companyName" placeholder="예) play data" onChange={onChangeHandler}/>
+                                <input type="text"
+                                       id="companyName"
+                                       placeholder="예) play data"
+                                       name="company"
+                                       onChange={onChangeHandler}/>
                             </div>
                             <div className="item-input">
                                 <label htmlFor="department">부서</label>
-                                <input type="text" id="department" placeholder="예) 제품개발팀" onChange={onChangeHandler}/>
+                                <input type="text"
+                                       id="department"
+                                       placeholder="예) 제품개발팀"
+                                       name="department"
+                                       onChange={onChangeHandler}/>
                             </div>
                             <div className="item-input">
                                 <label htmlFor="majorCareer">주요 경력</label>
-                                <input type="text" id="majorCareer" placeholder="내용을 입력해 주세요." onChange={onChangeHandler}/>
+                                <input type="text"
+                                       id="majorCareer"
+                                       placeholder="내용을 입력해 주세요."
+                                       name="majorCareer"
+                                       onChange={onChangeHandler}/>
+                            </div>
+                            <label htmlFor="majorCareer">멘토링 가능 분야</label>
+                            <div className="mentoring_container">
+                                <div className="mentor_field">
+                                    {mentoringField.map((item) => (
+                                        <button
+                                            type="button"
+                                            key={item.id}
+                                            className={`${
+                                                selectedMentoringFieldIds.includes(item.id) ? 'bg-blue-500' : 'bg-gray-300'
+                                            } text-white px-2 ml-2 rounded`}
+                                            onClick={() => {
+                                                if (selectedMentoringFieldIds.includes(item.id)) {
+                                                    setSelectedMentoringFieldIds(selectedMentoringFieldIds.filter(id => id !== item.id));
+                                                } else {
+                                                    setSelectedMentoringFieldIds([...selectedMentoringFieldIds, item.id]);
+                                                }
+                                            }}
+                                        >
+                                            <div className="field_detail">{item.fieldName}</div>
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                             <div className="item-input-introduction">
                                 <label htmlFor="introduction">멘토 소개</label>
-                                <textarea type="text" id="introduction" placeholder="내용을 입력해 주세요." onChange={onChangeHandler}/>
+                                <textarea type="text"
+                                          id="introduction"
+                                          placeholder="내용을 입력해 주세요."
+                                          name="introduction"
+                                          className="custom-textarea"
+                                          onChange={onChangeHandler}/>
                             </div>
-                                <input type="submit" value={"등록"}/>
+                            <input type="submit" value={"등록"}/>
                         </form>
                     </div>
-
                 </div>
             </Center>
         </div>
-
-
-    </>
+    );
 }
+
 export default MentorRequests;

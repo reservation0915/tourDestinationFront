@@ -34,36 +34,20 @@ body {
     color: #666666;
 }
 
-/* 연락처 정보 */
-.contact {
-    margin-top: 16px;
-}
-
-.email,
-.phone {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.contact-icon {
-    margin-right: 8px;
-}
-
 /* 멘토링 분야 리스트 */
 .mentoring-fields {
     margin-top: 16px;
 }
 
-.field {
-    display: inline-block;
-    padding: 6px 8px;
-    margin-right: 8px;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    background-color: #f7f7f7;
-    font-size: 14px;
-}
+/*.field {*/
+/*    display: inline-block;*/
+/*    padding: 4px 8px;*/
+/*    margin-right: 8px;*/
+/*    border: 1px solid #dddddd;*/
+/*    border-radius: 4px;*/
+/*    background-color: #f7f7f7;*/
+/*    font-size: 14px;*/
+/*}*/
 
 /* */
 

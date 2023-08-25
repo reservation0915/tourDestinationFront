@@ -4,6 +4,8 @@ import ReactCarousel from "../../bootstrap/ReactCarousel";
 import Company from "./Company";
 
 import ReactButtons from "../../bootstrap/ReactButtons";
+import HomeSizeSelect from "./HomeSizeSelect";
+import HomePageButtons from "./HomePageButtons";
 const Home = () => {
 
     // const getAll = async () => {
@@ -32,7 +34,6 @@ const Home = () => {
 
     return <div>
         <ReactCarousel/>
-        <ReactButtons></ReactButtons>
         <Company></Company>
     </div>
 }

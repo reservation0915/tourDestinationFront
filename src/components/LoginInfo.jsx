@@ -19,6 +19,7 @@ const LoginInfo = () => {
                 localStorage.setItem('userId', userId)
                 console.log(reponse)
                 nav("/")
+                window.location.reload()
             } catch (error) {
                 console.log(error.response)
             }

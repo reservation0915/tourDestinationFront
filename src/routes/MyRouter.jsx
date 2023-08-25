@@ -19,8 +19,12 @@ import AddMentor from '../components/MyMentor';
 import GetMyMentor from '../components/GetMyMentor';
 import MentorChat from "../components/MentorChat";
 import MePage from "../components/auth/MePage";
+
 import "../App.css";
 import Mbti2 from "../template/Mbti2";
+
+import ReactButtons from "../bootstrap/ReactButtons";
+
 
 
 const MyRouter = () => {
@@ -29,6 +33,7 @@ const MyRouter = () => {
         <Route element={<Template />}>
             <Route path='/' element={<Home />}></Route>
             <Route path='/mypage' element={<MePage/>}></Route>
+            <Route path="/siteRecommend" element={<ReactButtons/>}></Route>
             <Route path="logininfo" element={<LoginInfo />} />
             <Route path="/login/kakao/callback" element={<KakaoCallBack />}></Route>
             <Route path="/review" element={<Review />}></Route>
