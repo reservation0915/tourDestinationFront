@@ -23,6 +23,7 @@ const Company =() =>{
                 `?page=${page}&size=${size}`, "GET")
             setLoading(false)
             dispatch(setCompany(getData));
+            console.log(getData);
             setData(getData.content);
         } catch (error) {
             setMessage(error.response.data)

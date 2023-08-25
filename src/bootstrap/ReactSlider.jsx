@@ -19,7 +19,7 @@ const ReactSlider =() =>{
     const Grade = (e) =>{
         dispatch(setGrade(value));
         dispatch(setGradeData());
-        nav('/');
+        nav('/siteRecommend');
     }
         return <div>
                 <RangeSlider
