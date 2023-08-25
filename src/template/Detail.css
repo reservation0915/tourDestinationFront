@@ -11,10 +11,18 @@
     border-radius: 8px;
     width : 40%;
     min-width: 450px;
+    box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.1), 0px 3px 6px rgba(0, 0, 0, 0.2)
 }
 
 .flex-row{
     display: flex;
+    align-items: center;
+}
+
+.flex-row-wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .card_img2 {
@@ -62,11 +70,11 @@
 
 .description_container{
     width: 1000px;
-    background-color: #fff;
-    padding: 24px;
-    border-radius: 8px;
-    max-width: 1000px;
-
+    /*background-color: #fff;*/
+    /*padding: 24px;*/
+    /*border-radius: 8px;*/
+    /*max-width: 1000px;*/
+    /*box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.1), 0px 3px 6px rgba(0, 0, 0, 0.2)*/
 }
 .contentLine{
     margin: 24px 0;

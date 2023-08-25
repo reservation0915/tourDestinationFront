@@ -21,7 +21,10 @@
     padding: 10px; /* 테두리와 글씨 입력 영역 사이의 간격 설정 */
     border: 1px solid #ddd;
 }
-q
+
+.description{
+    text-align: center;
+}
 
 .description_container{
     min-height: 300px;
@@ -60,34 +63,4 @@ q
     flex-wrap: wrap;
     display: flex;
     gap: 10px;
-}
-
-.new_field {
-    font-weight: 500;
-    width: 100px;
-    color: rgb(0, 0, 0);
-    margin-right: 8px;
-    line-height: 200%;
-    display: inline-block;
-    padding: 6px 8px;
-    margin-right: 8px;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    background-color: #f7f7f7;
-    font-size: 14px;
-}
-
-.new_field_detail {
-    font-weight: 500;
-    width: 120px;
-    color: rgb(0, 0, 0);
-    margin-right: 8px;
-    line-height: 200%;
-    display: inline-block;
-    padding: 6px 8px;
-    margin-right: 8px;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    background-color: #f7f7f7;
-    font-size: 14px;
 }

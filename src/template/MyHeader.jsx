@@ -6,6 +6,7 @@ import '../../src/css/hightent.css';
 import find from '../../src/css/img/find.png'
 import logo from '../../src/css/img/logo.png'
 
+
 const MyHeader = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -52,11 +53,16 @@ const MyHeader = () => {
     nav('/mentorRequests')
   }
 
+
+  const mbti = () => {
+    nav('/mbti')
+
   const mentorRoom = () => {
     nav('/mentorroom')
   }
 
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+
 
   return <div id="header">
     <div id="header_wrap">
@@ -79,7 +85,12 @@ const MyHeader = () => {
       </div>
 
       <div id="header_content">
-        <button onClick={jobRec} className="header_menu">직종추천</button>
+
+        <button onClick={mbti} className="header_menu">직종추천</button>
+      </div>
+      <div id="header_content">
+        <button onClick={review} className="header_menu_login">리뷰</button>
+
       </div>
       <div id="header_content">
         <button onClick={mentorRequests} className="header_menu">멘토신청</button>
@@ -87,6 +98,7 @@ const MyHeader = () => {
       <div id="header_content">
         <button onClick={mypage} className="header_menu_login">내정보</button>
       </div>
+
       {isLoggedIn ? (
           <>
             <div id="header_content">

@@ -24,118 +24,6 @@ const ReviewInsert = () => {
     const nav = useNavigate();
 
 
-    const handleCategoryChange = (event) => {
-        const selectedValue = event.target.value;
-        setSelectedCategory(selectedValue.replaceAll('/', ','));
-    }
-
-    const majorHandler = (e) => {
-        setMajor(e.target.value);
-    }
-    const minorHandler = (e) => {
-        setMinor(e.target.value);
-    }
-    const prevJobHandler = (e) => {
-        setPrevJob(e.target.value);
-    }
-    const durationHandler = (e) => {
-        setDuration(e.target.value);
-    }
-    const ageAtEmploymentHandler = (e) => {
-        setAgeAtEmployment(e.target.value);
-    }
-    const storyTitleHandler = (e) => {
-        setStoryTitle(e.target.value);
-    }
-    const satisfactionHandler = (e) => {
-        setSatisfaction(e.target.value);
-    }
-    const jobResponsibilitiesHandler = (e) => {
-        setJobResponsibilities(e.target.value);
-    }
-    const messageHandler = (e) => {
-        setMessage(e.target.value);
-    }
-    const companyIdHandler = (e) => {
-        setCompanyId(e.target.value);
-    }
-
-    const saveReview = () => {
-
-        if (selectedCategory == "") {
-            alert("취업 카테고리를 선택 하세요");
-            return;
-        }
-        if (major == "") {
-            alert("전공을 입력하세요");
-            return;
-        }
-        if (minor == "") {
-            alert("부전공을 입력하세요");
-            return;
-        }
-        if (duration == "") {
-            alert("취업기간을 입력하세요");
-            return;
-        }
-        if (ageAtEmployment == "") {
-            alert("취업나이를 입력하세요");
-            return;
-        }
-        if (isNaN(parseInt(ageAtEmployment))) {
-            alert("취업나이를 숫자로 입력하세요.");
-            return;
-        }
-        if (storyTitle == "") {
-            alert("취업처를 입력하세요");
-            return;
-        }
-        if (satisfaction == "") {
-            alert("취업만족도를 입력하세요");
-            return;
-        }
-        if (isNaN(parseInt(satisfaction))) {
-            alert("취업만족도를 숫자로 입력하세요.");
-            return;
-        }
-        if (jobResponsibilities == "") {
-            alert("업무내용을 입력하세요");
-            return;
-        }
-        if (message == "") {
-            alert("하고싶은 말을 입력하세요");
-            return;
-        }
-        // const routeHistory = useHistory();
-        // review 데이터를 서버로 전송
-        axios
-            .post(`http://localhost:8080/api/v1/review/insert/1`, {
-                "categoryItem": selectedCategory,
-                "major": major,
-                "minor": minor,
-                "previousOccupation": prevJob,
-                "duration": duration,
-                "ageAtEmployment": ageAtEmployment,
-                "storyTitle" : storyTitle,
-                "satisfaction": satisfaction,
-                "jobResponsibilities": jobResponsibilities,
-                "message": message,
-                "companyId" : 1
-            })
-            .then((response) => {
-                    console.log("리뷰가 성공적으로 저장되었습니다.", response);
-                alert("리뷰가 성공적으로 저장되었습니다."); // 예시: 알림 메시지 표시
-                // 리뷰 저장 성공 후 원하는 경로로 이동
-                nav("/review");
-            })
-            .catch((error) => {
-                console.error("리뷰 저장 중 오류가 발생했습니다.", error);
-                alert("리뷰 저장에 실패했습니다. 다시 시도 해주세요."); // 예시: 알림 메시지 표시
-            });
-
-    }
-
-
     return (
         <Center>
             <TopBanner></TopBanner>
@@ -163,35 +51,35 @@ const ReviewInsert = () => {
                     </div>
                     <div className="flex-row-wrap">
                         <div className="flex-row">
-                            <div className="new_field">전공</div>
+                            <div className="field">전공</div>
                             <div className="contents">
-                                <input onChange={majorHandler} className="review_input"/>
+                                <p className="review_input"/>
                             </div>
                         </div>
                         <div className="flex-row">
-                            <div className="new_field">부전공</div>
+                            <div className="field">부전공</div>
                             <div className="contents">
                                 <input onChange={minorHandler} className="review_input"/>
                             </div>
                         </div>
                         <div className="flex-row">
-                            <div className="new_field">이전 직업</div>
+                            <div className="field">이전 직업</div>
                             <div className="contents">
                                 <input onChange={prevJobHandler} className="review_input"/>
                             </div>
                         </div>
                         <div className="flex-row">
-                            <div className="new_field">취준기간</div>
+                            <div className="field">취준기간</div>
                             <div  className="contents">
                                 <input onChange={durationHandler} className="review_input"/></div>
                         </div>
                         <div className="flex-row">
-                            <div className="new_field">취업나이</div>
+                            <div className="field">취업나이</div>
                             <div className="contents">
                                 <input onChange={ageAtEmploymentHandler} className="review_input" placeholder="숫자만 입력해주세요."/></div>
                         </div>
                         <div className="flex-row">
-                            <div className="new_field">취업처</div>
+                            <div className="field">취업처</div>
                             <div className="contents">
                                 <input onChange={storyTitleHandler} className="review_input"/></div>
                         </div>
