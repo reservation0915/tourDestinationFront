@@ -1,7 +1,7 @@
 import Center from "../Center";
 import TopBanner from "../TopBanner";
 import {Api, apipost} from "../../network/Api";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import myProfile from "../../img/122416681.jpg";
 import ReactCard from "../../bootstrap/ReactCard";
@@ -12,7 +12,9 @@ import '../../template/Review.css'
 import myImg from "../../img/122416681.jpg";
 import {useDispatch, useSelector} from "react-redux";
 import {setRegionData} from "../../feature/companydata/companydata";
-import {setMyMentors, setReviewBoolean} from "../../feature/mypage/myPageSlice";
+import {setCompanyBoolean, setMentoBoolean, setMyMentors, setReviewBoolean} from "../../feature/mypage/myPageSlice";
+import '../../css/Mentors.css'
+import contentimg from '../../img/content.png'
 
 const MePage =()=>{
     const [nowUser, setUser] = useState([]);
@@ -47,6 +49,12 @@ const MePage =()=>{
     const reviewFun =() =>{
         dispatch(setReviewBoolean());
     }
+    const companyFun =() =>{
+        dispatch(setCompanyBoolean());
+    }
+    const mentoFun =() =>{
+        dispatch(setMentoBoolean)();
+    }
 
     return (
         <Center>
@@ -65,23 +73,17 @@ const MePage =()=>{
                         <div className="field">이메일</div>
                         <div className="contents">{nowUser.email}</div>
                     </div>
-                    <div className="flex-row">
-                        {nowUser.companyList.map(c=><>
-                            <div className="field">이메일</div>
-                            <div className="contents">{c.siteName}</div>
-                        </>)}
 
-                    </div>
                 </div>
 
                 <div className="button-div">
-                    <button  onClick={reviewFun} className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
+                    <button className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
                         내 멘토 확인
                     </button>
-                    <button  className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
+                    <button className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
                         작성 리뷰 확인
                     </button>
-                    <button  className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
+                    <button className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
                         관심 회사 확인
                     </button>
                     <button className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
@@ -89,6 +91,73 @@ const MePage =()=>{
                     </button>
 
                 </div>
+                {
+                    companyData === true && <ReactSlider></ReactSlider>
+                }
+                <div className="card_wrap">
+                    {nowUser?.companyList?.map((item,idx) => (
+                        <div key={idx} className="card">
+                            <div className="card_img">
+                                <img style={{width : '54px', height : '54px'}} src={item.pagePicture}/>
+                            </div>
+                            <div className="card_detail">
+                                <div className="story">
+                                    <div className="story_title">사이트 이름 : {item.siteName}</div>
+                                </div>
+                            </div>
+                            <div className="card_detail">
+                                <div className="story">
+                                    <div className="story_title">사이트 평점 : {item.grade}</div>
+                                </div>
+                            </div>
+                            <div className="card_detail">
+                                <div className="story">
+                                    <div className="story_title">
+                                        <a href={item.pageLink}>사이트 주소이동</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div>
+                    {nowUser?.reviewList?.map((item,idx) => (
+                        <div className="review-css">
+                            <img src={contentimg}/>
+                            <p>리뷰 제목 : {item.reviewTitle}</p>
+                            <p>리뷰 내용 : {item.reviewContent}</p>
+                            {/*<div className="card_img">*/}
+                            {/*    <img style={{width : '54px', height : '54px'}} src={contentimg}/>*/}
+                            {/*</div>*/}
+                            {/*<div className="card_detail">*/}
+                            {/*    <div className="story">*/}
+                            {/*        <div className="story_title">리뷰 내용 : {item.content}</div>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+
+
+                        </div>
+                    ))}
+                </div>
+
+
+
+
+                {/*{*/}
+
+                {/*   */}
+
+                {/*    </div>*/}
+                {/*}*/}
+                {/*{*/}
+                {/*    mentoFun() === true && <div className="flex-row">*/}
+                {/*        {nowUser?.?.map(c=><>*/}
+                {/*            <div className="field">이메일</div>*/}
+                {/*            <div className="contents">{c.siteName}</div>*/}
+                {/*        </>)}*/}
+
+                {/*    </div>*/}
+                {/*}*/}
 
 
 

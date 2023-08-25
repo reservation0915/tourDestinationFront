@@ -88,4 +88,7 @@
     border: solid 1px black;
     padding: 20px 40px;
 }
+.review-css{
+    display: flex;
+}
 
