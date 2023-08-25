@@ -5,6 +5,7 @@
   padding: 10px;
 }
 
+
 /*<body> 태그를 고를땐 그냥 body*/
 /* 기본 세팅 : body 0으로 해주고 시작 */
 body{
@@ -90,7 +91,15 @@ body{
   display: block;
   color: rgba(0,0,0,.45);
 }
-
+.card_detail_wrap{
+  display: flex;
+}
+.card_detail_new{
+  background-color: white;
+  border: solid 1px black;
+  padding: 10px 10px;
+  width: 82%;
+}
 .card_img{
   /*width: 80px;*/
   border-radius: 50%;

@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import '../../src/css/hightent.css';
+import find from '../../src/css/img/find.png'
+import logo from '../../src/css/img/logo.png'
+
 
 const MyHeader = () => {
-
+  const nav = useNavigate();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState()
 
   const kakaoLogin = () => {
     // 카카오 로그인 URL로 이동
     window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=4849e81d641418ab8434257b184d1238&" +
-      "redirect_uri=http://localhost:3000/login/kakao/callback&response_type=code";
+        "redirect_uri=http://localhost:3000/login/kakao/callback&response_type=code";
   };
 
   const handleLogout = () => {
@@ -21,46 +27,88 @@ const MyHeader = () => {
     const username = localStorage.getItem('username');
     setUsername(username)
   }, []);
+  const mypage = () => {
+    nav('/mypage')
+  }
+  const siteRecommend = () => {
+    nav('/siteRecommend')
+  }
+  const mentors = () => {
+    nav('/mentors')
+  }
+  const review = () => {
+    nav('/review')
+  }
+  const recommend = () => {
+    nav('/recommend')
+  }
+
+  const homePage = () => {
+    nav('/')
+  }
+  const mentorRequests = () => {
+    nav('/mentorRequests')
+  }
+
+  const mbti = () => {
+    nav('/mbti')
+  }
 
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 
-  return (
-    <header style={headerStyle}>
-      <div style={logoStyle}><Link to="/" style={linkStyle}>하이텐트</Link></div>
-      <nav style={navStyle}>
-        <ul style={menuStyle}>
-          <li style={menuItemStyle}>
-            <Link to="/" style={linkStyle}>채용사이트 추천</Link>
-          </li>
-          <li style={menuItemStyle}>
-            <Link to="/" style={linkStyle}>멘토</Link>
-          </li>
-          <li style={menuItemStyle}>
-            <Link to="/review" style={linkStyle}>취업후기</Link>
-          </li>
-          <li style={menuItemStyle}>
-            <Link to="/mbti" style={linkStyle}>직종추천</Link>
-          </li>
-        </ul>
-      </nav>
+
+  return <div id="header">
+    <div id="header_wrap">
+      <div id="header_content">
+        <button onClick={homePage} className="header_menu">
+          <img src={logo} width="150" height="auto"/>
+        </button>
+      </div>
+
+      <div id="header_content">
+        <button className="header_menu">사이트추천</button>
+      </div>
+
+      <div id="header_content">
+        <button onClick={mentors} className="header_menu">멘토</button>
+      </div>
+
+      <div id="header_content">
+        <button onClick={review} className="header_menu">취업후기</button>
+      </div>
+
+      <div id="header_content">
+        <button onClick={mbti} className="header_menu">직종추천</button>
+      </div>
+      <div id="header_content">
+        <button onClick={review} className="header_menu_login">리뷰</button>
+      </div>
+      <div id="header_content">
+        <button onClick={mentorRequests} className="header_menu">멘토신청</button>
+      </div>
+      <div id="header_content">
+        <button onClick={mypage} className="header_menu_login">내정보</button>
+      </div>
+
       {isLoggedIn ? (
-        <>
-          <div style={loginButtonStyle}>
-            <div style={loginStyle}>
-              <p>{username}</p>
+          <>
+            <div id="header_content">
+              <button className="header_menu_login">{username}님</button>
             </div>
-            <div style={loginStyle}>
-              <p onClick={handleLogout}>Logout</p>
+            <div id="header_content">
+              <button onClick={handleLogout} className="header_menu_login">Logout</button>
             </div>
-          </div>
-        </>
+          </>
       ) : (
-        <div style={logoutButtonStyle}>
-          <p onClick={kakaoLogin}>Login</p>
-        </div>
+          <div id="header_content">
+            <button onClick={kakaoLogin} className="header_menu_login">Login</button>
+          </div>
       )}
-    </header>
-  );
+    </div>
+
+
+  </div>
+
 };
 
 const headerStyle = {
@@ -113,6 +161,6 @@ const loginStyle = {
 const logoutButtonStyle = {
   display: 'flex',
   marginLeft: '800px'
-};
+}
 
 export default MyHeader;

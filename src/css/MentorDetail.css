@@ -1,0 +1,162 @@
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+/* Mentor 정보 컨테이너 */
+.mentor-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 80%;
+    max-width: 600px;
+}
+
+/* 프로필 이미지 */
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 이름 및 소개 */
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 16px;
+}
+
+.intro {
+    margin-top: 8px;
+    color: #666666;
+}
+
+/* 연락처 정보 */
+.contact {
+    margin-top: 16px;
+}
+
+.email,
+.phone {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.contact-icon {
+    margin-right: 8px;
+}
+
+/* 멘토링 분야 리스트 */
+.mentoring-fields {
+    margin-top: 16px;
+}
+
+.field {
+    display: inline-block;
+    padding: 6px 8px;
+    margin-right: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    font-size: 14px;
+}
+
+/* */
+
+
+/* 페이지 컨테이너 설정 */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    background-color: #f7f7f7;
+}
+
+/* 왼쪽 섹션 스타일 설정 */
+.left-section {
+    flex: 1;
+    max-width: 300px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+}
+
+/* 오른쪽 섹션 스타일 설정 */
+.right-section {
+    flex: 3;
+    max-width: 900px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    margin-left: 16px;
+}
+
+/* 섹션 내부 요소들의 스타일 설정 */
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+/* 왼쪽 섹션 내부 요소 스타일 설정 */
+.left-content {
+    /* 추가적인 스타일링을 원하시면 여기에 작성 */
+}
+
+/* 오른쪽 섹션 내부 요소 스타일 설정 */
+.right-content {
+    /* 추가적인 스타일링을 원하시면 여기에 작성 */
+}
+
+/**/
+.mentor-detail {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.left-column,
+.right-column {
+    flex: 1;
+    padding: 20px;
+}
+
+.left-column {
+    border-right: 1px solid #e0e0e0;
+    padding-right: 40px;
+}
+
+.mentor-field h3,
+.mentor-intro h3,
+.mentor-career h3,
+.mentor-education h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.tags {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-right: 4px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    font-size: 12px;
+    color: #666666;
+}
