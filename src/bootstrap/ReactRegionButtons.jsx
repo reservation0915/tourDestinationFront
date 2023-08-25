@@ -10,6 +10,7 @@ const ReactRegionButtons =() =>{
     const { regionData } = useSelector(state => state.companyData)
     const dispatch = useDispatch();
     const nav = useNavigate();
+    const region = useSelector(state => state.companyData.region)
 
     const cancel = () =>{
         dispatch(setRegionData());
@@ -18,81 +19,71 @@ const ReactRegionButtons =() =>{
 
     const regionSubmit1 = (e) =>{
         const text="서울";
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(nowRegionData));
         dispatch(setRegionData());
-        nav('/');
+
+
     }
     const regionSubmit2 = (e) =>{
         const text="경기";
-        setRe({ ...nowRegionData, text });
+
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
     const regionSubmit3= (e) =>{
         const text="인천";
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
     const regionSubmit4 = (e) =>{
         const text="강원";
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
     const regionSubmit5 = (e) =>{
         const text="충남";
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
     const regionSubmit6 = (e) =>{
         const text="충북";
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
     const regionSubmit7 = (e) =>{
         const text="전남";
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
     const regionSubmit8 = (e) =>{
         const text="전북";
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
     const regionSubmit9 = (e) =>{
         const text="경남";
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
     const regionSubmit10 = (e) =>{
         const text="경북";
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
     const regionSubmit11 = (e) =>{
         const text="제주";
-        console.log(text);
-        setRe({ ...nowRegionData, text });
         dispatch(setRegion(text));
         dispatch(setRegionData());
-        nav('/');
+
     }
 
 

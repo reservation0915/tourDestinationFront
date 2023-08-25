@@ -1,7 +1,7 @@
 import '../css/buttons.css'
 import ReactSlider from "./ReactSlider";
 import {useState} from "react";
-import {setGradeData, setLocation, setRegionData} from "../feature/companydata/companydata";
+import {setGrade, setGradeData, setLocation, setRegion, setRegionData} from "../feature/companydata/companydata";
 import { useDispatch, useSelector } from 'react-redux'
 import {useNavigate} from "react-router";
 import ReactCard from "./ReactCard";
@@ -19,10 +19,11 @@ const ReactButtons=()=>{
     const[data,setData]=useState([]);
     const grade = useSelector(state => state.companyData.grade)
     const gradeData = useSelector(state => state.companyData.gradeData)
-    const region = useSelector(state => state.companyData.region)
+
     const regionData = useSelector(state => state.companyData.regionData)
-    console.log(grade);
-    console.log(region);
+
+    const region = useSelector(state => state.companyData.region)
+
     const[nowGrade,SetGrade] =useState(false);
     const regionFun =() =>{
         dispatch(setRegionData());
@@ -40,12 +41,20 @@ const ReactButtons=()=>{
     const periodFun = () =>{
 
     }
+    const reset =() =>{
+        setSiteName("");
+        setLocation("");
+        dispatch(setGrade(0));
+        dispatch(setRegion(""));
+        nav("/")
+    }
 
     const onChangeHandler = (e) => {
         const getLocation = e.target.value
         const getSiteName =e.target.value
         setLocation({ ...location, getLocation });
         setSiteName({...siteName,getSiteName});
+        nav("/siteRecommend")
     }
     const onSubmitHandler = async (e) => {
         e.preventDefault();
@@ -54,8 +63,19 @@ const ReactButtons=()=>{
             const values2 = Object.values(siteName);
             const locationValue = values.at(0);
             const siteNameValue = values2.at(0);
+            let url ='';
+            if(grade)url+=`&goe=${grade}`
+            // if(siteNameValue)url+=`&siteName=${siteNameValue}`
+            if(region)url+=`&location=${region}`
+            if(siteName)url+=`&siteName=${siteNameValue}`
+            // console.log(region);
+            // console.log(siteNameValue);
+            // console.log(url);
+            // if(location)url+=`&location=${location}`
+            // `&goe=${grade}&siteName=${siteNameValue}&location=${location}`
             const getData = await apiNoToken(`/api/v1/company` +
-                `?page=${page}&size=${size}&siteName=${siteNameValue}`, "GET")
+                `?page=${page}&size=${size}`+
+                url, "GET")
             setData(getData.content);
         } catch (error) {
             setMessage(error.response.data);
@@ -83,7 +103,7 @@ const ReactButtons=()=>{
                 <button className="w-btn-outline w-btn-gray-outline" type="button">
                     내 성향 추천
                 </button>
-                <button className="w-btn-outline w-btn-gray-outline" type="button">
+                <button onClick={reset} className="w-btn-outline w-btn-gray-outline" type="button">
                     검색 리셋
                 </button>
                 <input className="input-button" name="location" placeholder="search" onChange={onChangeHandler} />

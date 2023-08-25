@@ -67,7 +67,7 @@ const MyHeader = () => {
       </div>
 
       <div id="header_content">
-        <button onClick={homePage} className="header_menu">사이트추천</button>
+        <button onClick={siteRecommend} className="header_menu">사이트추천</button>
       </div>
 
       <div id="header_content">

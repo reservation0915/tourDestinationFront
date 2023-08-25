@@ -4,20 +4,36 @@ import {Api, apipost} from "../../network/Api";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import myProfile from "../../img/122416681.jpg";
+import ReactCard from "../../bootstrap/ReactCard";
+import ReactSlider from "../../bootstrap/ReactSlider";
+import ReactRegionButtons from "../../bootstrap/ReactRegionButtons";
+import '../../css/buttons.css'
+import '../../template/Review.css'
+import myImg from "../../img/122416681.jpg";
+import {useDispatch, useSelector} from "react-redux";
+import {setRegionData} from "../../feature/companydata/companydata";
+import {setMyMentors, setReviewBoolean} from "../../feature/mypage/myPageSlice";
 
 const MePage =()=>{
+    const [nowUser, setUser] = useState([]);
+    const reviewData=useSelector(state=>state.mypage.reviewBoolean);
+    const mentoData=useSelector(state=>state.mypage.mentoBoolean);
+    const companyData=useSelector(state=>state.mypage. companyBoolean);
+    const nowMentoData=useSelector(state=>state.mypage.mentors);
+    const dispatch = useDispatch();
+    const [nowReviewList,setReviewList]=useState([]);
+    const [nowMentors,setMentors]=useState([]);
+    const [nowCompanyList,setComPanyList]=useState([]);
     useEffect(() => {
         const id = localStorage.getItem("userId");
         const body={
             id: 1
         }
+
         const GetDataById = async () => {
             const getData = await apipost(`/userData`, "POST",id);
-            const uData = getData.body;
-            const keys = Object.keys(uData);
-            const values = Object.values(uData);
-            console.log(keys);
-            console.log(values);
+            setUser(getData.body);
+            console.log(getData)
             // const uReviews = uData.map((row)=>row.reviewList);
             // const uCompanys= uData.map((row)=>row.companyList);
             // console.log(uReviews);
@@ -28,6 +44,10 @@ const MePage =()=>{
 
     }, []);
 
+    const reviewFun =() =>{
+        dispatch(setReviewBoolean());
+    }
+
     return (
         <Center>
             <TopBanner></TopBanner>
@@ -37,61 +57,42 @@ const MePage =()=>{
                         <img style={{width : '100%', height : '100%'}} src={myProfile}/>
                     </div>
                     <div className="story_user">
-                        <div className="story_title">이태웅</div>
-                        <div className="categoryItem" style={{background : "#f9f0ff", color : "#d3adf7"}}>이태웅</div>
+                        <div className="story_title">{nowUser.username}</div>
+                        <div className="categoryItem" style={{background : "#f9f0ff", color : "#d3adf7"}}>{nowUser.password}</div>
                     </div>
 
                     <div className="flex-row">
                         <div className="field">이메일</div>
-                        <div className="contents">X</div>
+                        <div className="contents">{nowUser.email}</div>
                     </div>
                     <div className="flex-row">
-                        <div className="field">전화번호</div>
-                        <div className="contents">1년</div>
-                    </div>
-                    <div className="flex-row">
-                        <div className="field">멘토</div>
-                        <div className="contents">27세</div>
-                    </div>
-                    <div className="flex-row">
-                        <div className="field">작성글</div>
-                        <div className="contents">MES를 제외한 SpringFramework를 주로 사용하는 기업</div>
-                    </div>
-                    <div className="flex-row">
-                        <div className="field">정보수정</div>
-                        <div className="contents">MES를 제외한 SpringFramework를 주로 사용하는 기업</div>
+                        {nowUser.companyList.map(c=><>
+                            <div className="field">이메일</div>
+                            <div className="contents">{c.siteName}</div>
+                        </>)}
+
                     </div>
                 </div>
 
-                <div style={{ margin: '48px' }} className="inform-box">다른 취준생 분들께 도움을 드리기 위해 공유해 주셨습니다.정보와 용기를 얻는 용도로만 봐주세요🙂💕</div>
+                <div className="button-div">
+                    <button  onClick={reviewFun} className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
+                        내 멘토 확인
+                    </button>
+                    <button  className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
+                        작성 리뷰 확인
+                    </button>
+                    <button  className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
+                        관심 회사 확인
+                    </button>
+                    <button className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
+                        취소
+                    </button>
 
-
-                <div className="contentLine">
-                    <div className="description_container">
-                        <div className="description_title">💯 취업만족도</div>
-                        <div className="description">
-                            <p>ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</p>
-                        </div>
-                    </div>
                 </div>
 
-                <div className="contentLine">
-                    <div className="description_container">
-                        <div className="description_title">📚 업무내용</div>
-                        <div className="description">
-                            <p>ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div className="contentLine">
-                    <div className="description_container">
-                        <div className="description_title">🤝 하고싶은 말</div>
-                        <div className="description">
-                            <p>ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</p>
-                        </div>
-                    </div>
-                </div>
+
+
 
 
 
@@ -102,3 +103,8 @@ const MePage =()=>{
 
 }
 export default MePage;
+
+
+
+
+
