@@ -1,0 +1,275 @@
+.row--inset {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.justify-start {
+    -ms-flex-pack: start !important;
+    justify-content: flex-start !important;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+
+
+.infoMent{
+    margin: 48px 24px 30px 96px;
+}
+
+.infoTopMent{
+    /*가로*/
+    display: flex;
+    /*위아래 정렬*/
+    align-items: center;
+    /*gap은 flex를 한 놈들끼리 띄우는거야*/
+    gap: 10px;
+}
+
+.category{
+    padding: 50px 100px 64px 92px;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 10px;
+}
+
+.card_img{
+    border-radius: 20px 20px 20px 20px
+}
+
+.story{
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+}
+
+.story_title{
+    color: rgba(0,0,0,.85);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 20px;
+
+}
+
+.story_text{
+    margin-bottom: 20px;
+    margin-top: 10px;
+    color: rgba(0,0,0,.85);
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.categoryItem{
+    font-size: 14px;
+    padding: 2px 12px!important;
+    color: #389e0d;
+    background: #f6ffed;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.card_wrap{
+    display: flex;
+    flex-wrap: wrap;
+    gap : 20px;
+    padding: 5px 100px;
+    margin-left: 60px;
+
+}
+.card_detail{
+    width: 285px;
+    height: 335px;
+    background-color: white;
+    border: solid 1px white;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 1px 1px;
+}
+.review-css{
+    display: flex;
+}
+
+
+#header_wrap{
+
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap : 10px;
+    padding: 0px 100px;
+    margin-left: 40px;
+    margin-bottom: 40px;
+
+}
+
+#header_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+#header_content form {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-items: center;
+}
+
+img{
+    display: block;
+    margin: 0 auto;
+}
+
+.header_menu_selected{
+    color: #ff6f0f;
+    font-style: normal;
+    font-weight: 700;
+    font-size:large;
+    background-color: white;
+    border: none;
+}
+
+.header_menu{
+    color: #4d5159;
+    font-style: normal;
+    font-weight: 700;
+    font-size:large;
+    background-color: white;
+    border: none;
+}
+
+.header_menu_login{
+    color: #4d5159;
+    font-style: normal;
+    font-weight: 700;
+    font-size:large;
+    background-color: white;
+    border: none;
+    text-align: right;
+
+}
+
+.place-center{
+    padding-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile_container{
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    width : 40%;
+    min-width: 450px;
+    box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.1), 0px 3px 6px rgba(0, 0, 0, 0.2)
+}
+
+.flex-row{
+    display: flex;
+    align-items: center;
+}
+
+.flex-row-wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card_img2 {
+    width: 80px;
+    border-radius: 50%;
+    padding-right: 16px;
+}
+
+.story_user{
+    padding: 12px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.story_title{
+    margin-bottom: unset;
+    color: rgba(0,0,0,.85);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+.categoryItem{
+    margin: 4px;
+}
+
+.field{
+    font-weight: 500;
+    width: 100px;
+    color: rgb(0, 0, 0);
+    margin-right: 8px;
+    line-height: 200%;
+}
+
+.contents{
+    text-align: left;
+    color: rgb(102, 102, 102);
+    line-height: 200%;
+}
+
+.description_tool{
+
+}
+
+.description_container{
+    width: 1000px;
+    /*background-color: #fff;*/
+    /*padding: 24px;*/
+    /*border-radius: 8px;*/
+    /*max-width: 1000px;*/
+    /*box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.1), 0px 3px 6px rgba(0, 0, 0, 0.2)*/
+}
+.contentLine{
+    margin: 24px 0;
+}
+.description{
+    width: 1000px;
+}
+
+.description p {
+    /*부모에 맞게 줄바꿈*/
+    word-break: break-all;
+}
+
+.description_title{
+    font-size: 20px;
+    font-weight: bold;
+}
+.tour_detail_title{
+    color: rgba(0,0,0,.85);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 2;
+
+}
+.tour_detail_content{
+    margin-bottom: 20px;
+    margin-top: 10px;
+    color: rgba(0,0,0,.85);
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 1.4;
+}
