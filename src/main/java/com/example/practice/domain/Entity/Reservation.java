@@ -12,8 +12,6 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reservationId;
-    @OneToOne
-    private Room room;
-    @OneToOne
-    private Customer customer;
+    private Long roomId;
+    private Long customerId;
 }
