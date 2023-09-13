@@ -7,7 +7,7 @@ import SendTmpPw from "./components/pages/Login/SendTmpPw";
 import FriendsMenu from "./components/pages/Infomation/FriendsMenu";
 import FriendsRequest from "./components/pages/Layout/FriendsRequest";
 import AllFriends from "./components/pages/Layout/AllFriends";
-import Reservation from "./components/pages/Login/Reservation";
+import RoomDetail from "./components/pages/Login/RoomDetail";
 
 const router = createBrowserRouter([
   {
@@ -43,8 +43,8 @@ const router = createBrowserRouter([
     element : <AllFriends />,
   },
   {
-    path : 'reservation',
-    element : <Reservation />,
+    path : 'roomDetail',
+    element : <RoomDetail />,
   }
 ]);
 
