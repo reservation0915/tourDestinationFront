@@ -2,6 +2,7 @@
 import {useEffect, useState} from "react";
 import {Api} from "../network/Api";
 import "../css/tourdestination.css"
+import "../css/buttons.css"
 import {useNavigate} from "react-router";
 
 const TourDestination =() =>{
@@ -10,54 +11,11 @@ const TourDestination =() =>{
     const [tourDestinationByDetail,setTourDestinationByDetail] = useState([]);
     const [name,setName] = useState([]);
     const [searchBoolean, setSearchBoolean] = useState(false);
-    const [type, setType] = useState([]);
-    const getByType1 = async () => {
-        const str = "축제&행사";
-        setType(str);
-        const getData = await Api(`/api/v1/tourdestination/searchby/${type}`,"GET")
-        setTourDestinationByDetail(getData.data);
-        setSearchBoolean(true);
-    }
-    const getByType2 = async () => {
-        const str = "명소";
-        setType(str);
-        const getData = await Api(`/api/v1/tourdestination/searchby/${type}`,"GET")
-        setTourDestinationByDetail(getData.data);
-        setSearchBoolean(true);
 
+    const getByType = async (data) => {
+        getDetailData(data);
     }
-    const getByType3 = async () => {
-        const str = "음식";
-        setType(str);
-        const getData = await Api(`/api/v1/tourdestination/searchby/${type}`,"GET")
-        setTourDestinationByDetail(getData.data);
-        setSearchBoolean(true);
 
-    }
-    const getByType4 = async () => {
-        const str = "쇼핑";
-        setType(str);
-        const getData = await Api(`/api/v1/tourdestination/searchby/${type}`,"GET")
-        setTourDestinationByDetail(getData.data);
-        setSearchBoolean(true);
-
-    }
-    const getByType5 = async () => {
-        const str = "자연&관광";
-        setType(str);
-        const getData = await Api(`/api/v1/tourdestination/searchby/${type}`,"GET")
-        setTourDestinationByDetail(getData.data);
-        setSearchBoolean(true);
-
-    }
-    const getByType6 = async () => {
-        const str = "엔터테인먼트";
-        setType(str);
-        const getData = await Api(`/api/v1/tourdestination/searchby/${type}`,"GET")
-        setTourDestinationByDetail(getData.data);
-        setSearchBoolean(true);
-
-    }
 
     const onChangeHandler = (e) => {
         const getName = e.target.value
@@ -74,6 +32,7 @@ const TourDestination =() =>{
         const fetchTour = async () => {
                 const getData = await Api(`api/v1/tourdestination`, "GET");
                 console.log(getData.data);
+                console.log(getData.data);
                 settourDestination(getData.data);
         };
         fetchTour();
@@ -82,54 +41,72 @@ const TourDestination =() =>{
     const tourDestinationDetail= (mentor)=>{
         nav(`/tourdestinationdetail?id=${mentor.id}`)
     }
+    const getDetailData =async(data) =>{
+        const getData = await Api(`/api/v1/tourdestination/searchby/${data}`,"GET")
+        setTourDestinationByDetail(getData.data);
+        setSearchBoolean(true);
+    }
+    const redirect =async () =>{
+        setSearchBoolean(false);
+    }
+    const freeCount = async (data) =>{
+        const getData = await Api(`/api/v1/tourdestination/searchbypay/${data}`,"GET")
+        setTourDestinationByDetail(getData.data);
+        setSearchBoolean(true);
+    }
 
     return <div className="App">
         <div id="header">
             <div id="header_wrap">
+
                 <div id="header_content">
-                    <button onClick={getByType1} className="header_menu">
-                    </button>
+                    <button onClick={redirect} className="header_menu">전체</button>
                 </div>
 
                 <div id="header_content">
-                    <button onClick={getByType2} className="header_menu">전체</button>
-                </div>
-
-                <div id="header_content">
-                    <button onClick={getByType1} className="header_menu">축제&행사</button>
+                    <button onClick={()=>freeCount(0)} className="header_menu">무료</button>
 
                 </div>
 
                 <div id="header_content">
-                    <button onClick={getByType2} className="header_menu">명소</button>
+                    <button onClick={()=>freeCount(1)} className="header_menu">유료</button>
 
                 </div>
 
                 <div id="header_content">
-                    <button onClick={getByType3} className="header_menu">음식</button>
+                    <button onClick={()=>getByType("축제&행사")} className="header_menu">축제&행사</button>
+
+                </div>
+
+                <div id="header_content">
+                    <button onClick={()=>getByType("명소")} className="header_menu">명소</button>
+
+                </div>
+
+                <div id="header_content">
+                    <button onClick={()=>getByType("음식")} className="header_menu">음식</button>
 
                 </div>
                 <div id="header_content">
-                    <button onClick={getByType4} className="header_menu_login">쇼핑</button>
+                    <button onClick={()=>getByType("쇼핑")} className="header_menu">쇼핑</button>
 
                 </div>
                 <div id="header_content">
-                    <button onClick={getByType5} className="header_menu">자연&관광</button>
+                    <button onClick={()=>getByType("자연&관광")} className="header_menu">자연&관광</button>
                 </div>
                 <div id="header_content">
-                    <button onClick={getByType6} className="header_menu_login">엔터테인먼트</button>
+                    <button onClick={()=>getByType("엔터테인먼트")} className="header_menu">엔터테인먼트</button>
                 </div>
-                <form onSubmit={onSubmitHandler}>
-                    <div>
-                        <input className="input-button" name="name" placeholder="search" onChange={onChangeHandler} />
-                        <input type="submit" value="관광지 검색" />
-                    </div>
-                </form>
+                <div>
+                    <form onSubmit={onSubmitHandler}>
+                        <div id="header_menu_login">
+                            <input className="header_menu_search" name="name" placeholder="search" onChange={onChangeHandler} />
+                            <input className="header_menu_search" type="submit" value="관광지 검색" />
+                        </div>
+                    </form>
 
-
+                </div>
             </div>
-
-
         </div>
 
         {searchBoolean === false && <div className="card_wrap">
@@ -149,9 +126,6 @@ const TourDestination =() =>{
                             <div className="story_text">{mentor.tourDestinationContent}</div>
 
                         </div>
-
-
-                        {/*<div>{mentor.majorCareer}</div>*/}
                     </div>
                 </div>
 
@@ -185,9 +159,8 @@ const TourDestination =() =>{
 
             )}
         </div>}
-
-
     </div>
+
 
 }
 export default TourDestination;
