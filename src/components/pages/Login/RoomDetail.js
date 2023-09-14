@@ -13,11 +13,13 @@ const RoomDetail = () => {
     const [endDate, setEndDate] = useState(null);
     const [guests, setGuests] = useState(1);
     const [reservationResult, setReservationResult] = useState("");
+    const startDateString = startDate ? `${startDate.getFullYear()}-${(startDate.getMonth() + 1).toString().padStart(2, '0')}-${startDate.getDate().toString().padStart(2, '0')}` : "";
+    const endDateString = endDate ? `${endDate.getFullYear()}-${(endDate.getMonth() + 1).toString().padStart(2, '0')}-${endDate.getDate().toString().padStart(2, '0')}` : "";
 
     const handleMakeReservation = () => {
         if (startDate && endDate) {
             const nightCount = differenceInDays(endDate, startDate);
-            setReservationResult(`Reservation for ${nightCount} nights from ${startDate.toDateString()} to ${endDate.toDateString()} - Guests: ${guests}`);
+            setReservationResult(`Reservation for ${nightCount} nights from ${startDateString} to ${endDateString} - Guests: ${guests}`);
         } else {
             alert("입실 날짜와 퇴실 날짜를 선택해주세요.");
         }
@@ -66,10 +68,10 @@ const RoomDetail = () => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="guests">Number of Guests:</label>
+                        <label htmlFor="guests">인원 수 :</label>
                         <input type="number" id="guests" min="1" value={guests} onChange={(e) => setGuests(parseInt(e.target.value))} />
                     </div>
-                    <button onClick={handleMakeReservation}>예약하기</button>
+                    <button style={{backgroundColor:"red"}} onClick={handleMakeReservation}>예약하기</button>
                     <div id="reservationResult">{console.log(reservationResult)}</div>
                 </section>
                 <section style={{ backgroundColor: "orange", padding: "10px", display: "flex", justifyContent: "center" }}>
