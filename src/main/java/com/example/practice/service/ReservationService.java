@@ -1,6 +1,6 @@
 package com.example.practice.service;
 
-import com.example.practice.domain.Entity.Reservation;
+import com.example.practice.domain.request.ReservationCheckRequest;
 import com.example.practice.domain.request.ReservationSaveRequest;
 import com.example.practice.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +13,8 @@ import java.util.Optional;
 public class ReservationService {
     private final ReservationRepository reservationRepository;
 
-    public Optional<Boolean> check(Long roomId){
-        Optional<Boolean> byRoomId = reservationRepository.findByRoomId(roomId);
+    public Optional<Boolean> check(ReservationCheckRequest request){
+        Optional<Boolean> byRoomId = reservationRepository.findByRoomIdAndCheckInAndCheckOut(request.roomId(), request.checkIn(), request.checkOut());
         try {
             if (byRoomId.isEmpty()){
                 System.out.println("가능");
@@ -25,7 +25,6 @@ public class ReservationService {
             e.getMessage();
         }
         return byRoomId;
-//        daddda
     }
     public void save(ReservationSaveRequest request){
         reservationRepository.save(request.toEntity());

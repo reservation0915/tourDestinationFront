@@ -14,11 +14,9 @@ import lombok.*;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
-    private Room room; // 방
-    @OneToOne
-    private Customer customer; //예약자
+    private Long paymentId;
+    private Long roomId; // 방
+    private Long customerId; //예약자
     private Integer roomPrice; //가격
 
 }

@@ -4,6 +4,8 @@ package com.example.practice.domain.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity @Getter @Builder
 @Table(name = "customers")
 @AllArgsConstructor
@@ -13,5 +15,11 @@ public class Customer {
     private Long customerId;
     private String email;
     private String phoneNumber;
+    private Integer wallet;
+
+    @PrePersist
+    public void prePersist() {
+        this.wallet = 100000;
+    }
 
 }
