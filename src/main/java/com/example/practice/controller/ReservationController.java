@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/reservation")
-@CrossOrigin("*")
+@CrossOrigin(methods = {RequestMethod.POST}, allowCredentials = "true", originPatterns = "*")
 public class ReservationController {
     private final ReservationService reservationService;
 
