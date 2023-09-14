@@ -7,7 +7,9 @@ import "../css/customHeader.css"
 
 function MyHeader() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary"
+     style={{backgroundColor: '#ffffff'}}
+    >
       <Container style={{display:'flex',
     justifyContent:'space-between'}}>
         <Navbar.Brand href="#home">Seoul - Tour - Project</Navbar.Brand>
