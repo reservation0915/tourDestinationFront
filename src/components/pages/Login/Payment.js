@@ -1,6 +1,7 @@
 import '../../../styles/pages/layout/payment.css';
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {reservationInfo} from "../../../common/api/ApiPostService";
+import axios from "axios";
 const Payment = () => {
     const [userInfo, setUserInfo]=useState({
         name:"",
@@ -18,12 +19,24 @@ const Payment = () => {
         console.log(userInfo.phone)
     }
 
+    const [roomInfo, setRoomInfo] = useState([])
+
+
+    useEffect(() => {
+        axios.post('http://localhost:9002/api/v1/room/info/1')
+            .then((response) => {
+                setRoomInfo(response.data);
+            }).catch((err) => {
+            console.log(err)
+        });
+    }, [])
+
     return (
         <>
             <div id="platform">
                 <body id="platform-body">
                     <div id="section">
-                        <section style={{backgroundColor:"red", padding:"0 10px 0 10px"}}>
+                        <section style={{backgroundColor:"white", padding:"10px"}}>
                             <div id="firstInfo">
                                 <h3>숙소</h3>
                                 <div id="firstInfo-firstDiv">
@@ -39,20 +52,20 @@ const Payment = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <h2>숙소 이름</h2>
-                                    <h3>방이름</h3>
+                                    <h2>숙소이름 받아와야함</h2>
+                                    <h3>{roomInfo.roomName}</h3>
                                 </div>
                                 <div>
-                                    <div>날짜 및 체크인 시간</div>
-                                    <div>날짜 및 체크아웃 시간</div>
+                                    <div>체크인 날짜 받아와야함, {roomInfo.checkIn}</div>
+                                    <div>체크아웃 날짜 받아와야함 , {roomInfo.checkOut}</div>
                                 </div>    
-                                <span>가격 원</span>
+                                <span>총 금액 : {roomInfo.roomPrice}원</span>
                             </div>
                         </section>
-                        
-                        <div style={{height:"15px", color:"#f2f2f2"}}/>
 
-                        <section style={{backgroundColor:"green", padding:"0 10px 0 10px"}}>
+                        <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
+
+                        <section style={{backgroundColor:"white", padding:"10px"}}>
                             <div>
                                 <div>
                                     예약자 정보 입력
@@ -66,9 +79,9 @@ const Payment = () => {
                             </div>
                         </section>
 
-                        <div style={{height:"15px", color:"#f2f2f2"}}/>
+                        <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
 
-                        <section style={{backgroundColor:"blue"}}>
+                        <section style={{backgroundColor:"white", padding:"10px"}}>
                             <div>
                                 이용자 정보
                             </div>
@@ -78,9 +91,9 @@ const Payment = () => {
                             </div>
                         </section>
 
-                        <div style={{height:"15px", color:"#f2f2f2"}}/>
+                        <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
 
-                        <section style={{backgroundColor:"gray"}}>
+                        <section style={{backgroundColor:"white", padding:"10px"}}>
                             <div>
                                 혜택 정보
                                 <div>
@@ -93,20 +106,41 @@ const Payment = () => {
                             </div>
                         </section>
 
-                        <div style={{height:"15px", color:"#f2f2f2"}}/>
+                        <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
 
-                        <section style={{ backgroundColor: "yellow", display: "flex", flexDirection: "column" }}>
-                            <div style={{ display: "flex", flexDirection: "row" }}>
-                                <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-                                    <button style={{backgroundColor:"yellow", width:"200px"}}><img style={{width:"100px"}} src="https://image6.yanolja.com/payment/KQS5BVf5P2vhdQe0"/></button>
-                                    <input style={{borderRadius:"solid 20px black"}} type="submit" value={"네이버페이"} />
-                                    <input type="submit" value={"카카오페이"} />
-                                    <input type="submit" value={"토스페이"} />
+                        <section style={{ backgroundColor: "white", display: "flex", flexDirection: "column" }}>
+                            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                                <div style={{flexDirection: "column", alignItems: "center" }}>
+                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px", justifyContent: "center" }}><img style={{ width: "80px", height: "30px" }} src="https://image6.yanolja.com/payment/gPPJqgqGn4lZg4KB" alt="네이버페이" className="platform-site-10klw3m ei3f0hk4" /></button>
+                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><img style={{ width: "80px", height: "30px" }} src="https://image6.yanolja.com/payment/KQS5BVf5P2vhdQe0" /></button>
+                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><img style={{ width: "100px", height: "30px" }} src="https://image6.yanolja.com/payment/0pioMlyR7FIuNFFD" alt="토스페이" className="platform-site-10klw3m ei3f0hk4" /></button>
                                 </div>
-                                <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-                                    <input type="submit" value={"페이코"} />
-                                    <input type="submit" value={"휴대폰"} />
-                                    <input type="submit" value={"실시간계좌이체"} />
+                                <div style={{flexDirection: "column", alignItems: "center" }}>
+                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><img style={{ width: "80px", height: "30px" }} src="https://image6.yanolja.com/payment/cjDMzWuYxWQ6uqK2" alt="페이코" class="platform-site-10klw3m ei3f0hk4" /></button>
+                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><span style={{ fontWeight: "bold" }}>휴대폰</span></button>
+                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><span style={{ fontWeight: "bold" }}>실시간 계좌이체</span></button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
+
+                        <section style={{backgroundColor:"white", padding:"10px"}}>
+                            <div>
+                                <div style={{backgroundColor:"#fef8f2"}}>
+                                    <div>
+                                        현장결제<br/>
+                                        <span>추가인원 비용등의 현장결제 발생 상품을 확인하세요.</span>
+                                    </div>
+                                    <div>
+                                        최소불가 및 수수료<br/>
+                                        <span>취소 및 환불규정에 따라 취소불가, 수수료가 발생 할 수 있습니다.</span>
+                                    </div>
+                                    <div>
+                                        미성년자 및 법정대리인 필수<br/>
+                                        <span>미성년자는 법정대리인 동행 없이 투숙이 불가능합니다.</span>
+                                    </div>
+
                                 </div>
                             </div>
                         </section>

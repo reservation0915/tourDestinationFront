@@ -25,9 +25,18 @@ const RoomDetail = () => {
         }
     };
 
+    // axios.get('http://localhost:8080/api/v1/board')
+    //     .then((response) => {
+    //         console.log(response.data);
+    //         setBoardData(response.data);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
+
     return (
         <div style={{ backgroundColor: "rgb(242, 242, 242)", height: "100%", display: "flex", justifyContent: "center"}}>
-            <article style={{ backgroundColor: "aqua", height: "100%", width: "600px", margin: "0", padding: "0", display: "flex", justifyContent: "center", flexDirection: "column", gap: "20px" }}>
+            <article style={{ backgroundColor: "aqua", height: "100%", width: "600px", margin: "0", padding: "0", display: "flex", justifyContent: "center", flexDirection: "column"}}>
                 <section style={{ backgroundColor: "red", width: "100%", display: "flex", justifyContent: "center", flexDirection:"column" }}>
                     <div>
                         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
@@ -45,7 +54,10 @@ const RoomDetail = () => {
                     <div style={{padding: "10px", display: "flex", justifyContent: "center"}}>
                         방 이름 및 옵션 : There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
                     </div>
-                </section>                
+                </section>
+
+                <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
+
                 <section style={{ backgroundColor: "white", padding: "10px", display: "flex", justifyContent: "center" }}>
                     <div>
                         <label htmlFor="startDatePicker">입실 :</label>
@@ -74,16 +86,25 @@ const RoomDetail = () => {
                     <button style={{backgroundColor:"red"}} onClick={handleMakeReservation}>예약하기</button>
                     <div id="reservationResult">{console.log(reservationResult)}</div>
                 </section>
+
+                <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
+
                 <section style={{ backgroundColor: "orange", padding: "10px", display: "flex", justifyContent: "center" }}>
                     <div>
                         방 상세 설명 : There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
                     </div>
                 </section>
+
+                <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
+
                 <section style={{ backgroundColor: "beige", padding: "10px", display: "flex", justifyContent: "center" }}>
                     <div>
                         예약 공지사항 : There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
                     </div>
                 </section>
+
+                <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
+
                 <section style={{ backgroundColor: "gray", padding: "10px", display: "flex", justifyContent: "center" }}>
                     <div>
                         객실 후기 : There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
