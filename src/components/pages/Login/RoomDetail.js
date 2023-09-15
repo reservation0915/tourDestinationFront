@@ -7,6 +7,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { differenceInDays } from 'date-fns';
+import {useNavigate} from "react-router";
 
 const RoomDetail = () => {
     const [startDate, setStartDate] = useState(null);
@@ -15,24 +16,17 @@ const RoomDetail = () => {
     const [reservationResult, setReservationResult] = useState("");
     const startDateString = startDate ? `${startDate.getFullYear()}-${(startDate.getMonth() + 1).toString().padStart(2, '0')}-${startDate.getDate().toString().padStart(2, '0')}` : "";
     const endDateString = endDate ? `${endDate.getFullYear()}-${(endDate.getMonth() + 1).toString().padStart(2, '0')}-${endDate.getDate().toString().padStart(2, '0')}` : "";
+    const nav = useNavigate();
 
     const handleMakeReservation = () => {
         if (startDate && endDate) {
             const nightCount = differenceInDays(endDate, startDate);
             setReservationResult(`Reservation for ${nightCount} nights from ${startDateString} to ${endDateString} - Guests: ${guests}`);
+            nav(`/payment?startDate=${startDateString}&endDate=${endDateString}`)
         } else {
-            alert("입실 날짜와 퇴실 날짜를 선택해주세요.");
+            alert("입실 날짜와 퇴실 날짜를 선택 해주세요.");
         }
     };
-
-    // axios.get('http://localhost:8080/api/v1/board')
-    //     .then((response) => {
-    //         console.log(response.data);
-    //         setBoardData(response.data);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
 
     return (
         <div style={{ backgroundColor: "rgb(242, 242, 242)", height: "100%", display: "flex", justifyContent: "center"}}>
@@ -110,7 +104,6 @@ const RoomDetail = () => {
                         객실 후기 : There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
                     </div>
                 </section>
-
             </article>
         </div>
     );

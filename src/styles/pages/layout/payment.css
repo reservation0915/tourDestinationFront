@@ -4,10 +4,33 @@
 
 }
 
-#section{
-
+#pay-button{
+    margin: 1px;
+    border: solid 1px gray;
+    background-color: #ffffff;
+    width: 384px;
+    height: 40px;
+    justify-content: center;
 }
 
+#firstInfo{
+    margin-top: 10px;
+}
+
+#firstSection{
+    margin-top: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+#userInfoInput{
+    width: 130px;
+    height: 30px;
+    display:flex;
+    margin: 10px 0 10px 0;
+    border: none;
+    border-bottom: solid 1px black;
+}
 
 #platform-body{
     background-color: white;

@@ -3,27 +3,42 @@ import React, {useEffect, useState} from "react";
 import {reservationInfo} from "../../../common/api/ApiPostService";
 import axios from "axios";
 const Payment = () => {
-    const [userInfo, setUserInfo]=useState({
+    const [resUserInfo, setResUserInfo]=useState({ // 예약자 정보 객체
         name:"",
         phone:""
     });
+    const [useUserInfo, setUseUserInfo]=useState({ // 이용자 정보 객체
+        name:"",
+        phone:""
+    });
+    const url = new URL(window.location.href); // RoomDetail에서 path에 던져준 정보를 받는다
+    const startDate = url.searchParams.get('startDate');
+    const endDate = url.searchParams.get('endDate');
 
-    const onChangeUserInfo = (e) =>{
+    const onChangeResUserInfo = (e) =>{ // 입력된 예약자 정보를 저장
         const {value, name} = e.target
-        setUserInfo({...userInfo, [name]:value})
+        setResUserInfo({...resUserInfo, [name]:value})
     }
 
-    const onClickSendInfo = () => {
-        reservationInfo(userInfo);
-        console.log(userInfo.name)
-        console.log(userInfo.phone)
+    const onChangeUseUserInfo = (e) =>{ // 입력된 이용자 정보를 저장
+        const {value, name} = e.target
+        setUseUserInfo({...useUserInfo, [name]:value})
     }
 
-    const [roomInfo, setRoomInfo] = useState([])
+    const onClickSendResInfo = () => { // todo : 예약자 정보가 입력되었는지 확인
+        console.log(resUserInfo.name)
+        console.log(resUserInfo.phone)
+    }
 
+    const onClickSendUseInfo = () => { // todo : 예약자 정보가 입력되었는지 확인
+        console.log(useUserInfo.name)
+        console.log(useUserInfo.phone)
+    }
 
-    useEffect(() => {
-        axios.post('http://localhost:9002/api/v1/room/info/1')
+    const [roomInfo, setRoomInfo] = useState([]) // 선택된 Room의 정보 (useEffect를 사용해서 불러온 뒤 여기에 담는다.)
+
+    useEffect(() => { // 서버에 해당 Room의 Id를 주고 정보를 요청
+        axios.post(`http://localhost:9002/api/v1/room/info/1`)
             .then((response) => {
                 setRoomInfo(response.data);
             }).catch((err) => {
@@ -36,7 +51,7 @@ const Payment = () => {
             <div id="platform">
                 <body id="platform-body">
                     <div id="section">
-                        <section style={{backgroundColor:"white", padding:"10px"}}>
+                        <section id="firstSection">
                             <div id="firstInfo">
                                 <h3>숙소</h3>
                                 <div id="firstInfo-firstDiv">
@@ -56,8 +71,8 @@ const Payment = () => {
                                     <h3>{roomInfo.roomName}</h3>
                                 </div>
                                 <div>
-                                    <div>체크인 날짜 받아와야함, {roomInfo.checkIn}</div>
-                                    <div>체크아웃 날짜 받아와야함 , {roomInfo.checkOut}</div>
+                                    <div>{startDate}  체크인 : {roomInfo.checkIn}</div>
+                                    <div>{endDate}  체크아웃 : {roomInfo.checkOut}</div>
                                 </div>    
                                 <span>총 금액 : {roomInfo.roomPrice}원</span>
                             </div>
@@ -65,15 +80,15 @@ const Payment = () => {
 
                         <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
 
-                        <section style={{backgroundColor:"white", padding:"10px"}}>
+                        <section id="firstSection">
                             <div>
                                 <div>
                                     예약자 정보 입력
                                 </div>
                                 <div style={{flexDirection:"column"}}>
-                                    <input style={{display:"flex"}} onChange={onChangeUserInfo} name="name" type="text" placeholder="이름"/>
-                                    <input style={{display:"flex"}} onChange={onChangeUserInfo} name="phone" type="text" placeholder="전화번호"/>
-                                    <button onClick={onClickSendInfo}>등록하기</button>
+                                    <input id="userInfoInput" onChange={onChangeResUserInfo} name="name" type="text" placeholder="이름"/>
+                                    <input id="userInfoInput" onChange={onChangeResUserInfo} name="phone" type="text" placeholder="전화번호"/>
+                                    <button onClick={onClickSendResInfo}>등록하기</button>
                                 </div>
 
                             </div>
@@ -81,19 +96,24 @@ const Payment = () => {
 
                         <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
 
-                        <section style={{backgroundColor:"white", padding:"10px"}}>
+                        <section id="firstSection">
                             <div>
                                 이용자 정보
                             </div>
                             <div style={{flexDirection:"row"}}>
-                                <input style={{display:"flex"}} type="checkbox"/>
-                                <span style={{display:"flex"}}>예약자 정보와 동일합니다.</span>
+                                <input id="userInfoInput" onChange={onChangeUseUserInfo} name="name" type="text" placeholder="이름"/>
+                                <input id="userInfoInput" onChange={onChangeUseUserInfo} name="phone" type="text" placeholder="전화번호"/>
+                                <div style={{flexDirection:"row", display:"flex"}}>
+                                    <input style={{display:"flex", margin:"0 10px 0 10px"}} type="checkbox"/>
+                                    <span style={{display:"flex"}}>예약자 정보와 동일합니다.</span>
+                                </div>
+                                <button style={{marginTop:"10px"}} onClick={onClickSendUseInfo}>등록하기</button>
                             </div>
                         </section>
 
                         <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
 
-                        <section style={{backgroundColor:"white", padding:"10px"}}>
+                        <section id="firstSection">
                             <div>
                                 혜택 정보
                                 <div>
@@ -109,16 +129,17 @@ const Payment = () => {
                         <div style={{backgroundColor:"#f2f2f2", height:"20px"}}></div>
 
                         <section style={{ backgroundColor: "white", display: "flex", flexDirection: "column" }}>
+                            <div style={{margin:"5px"}}>결제 수단</div>
                             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
                                 <div style={{flexDirection: "column", alignItems: "center" }}>
-                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px", justifyContent: "center" }}><img style={{ width: "80px", height: "30px" }} src="https://image6.yanolja.com/payment/gPPJqgqGn4lZg4KB" alt="네이버페이" className="platform-site-10klw3m ei3f0hk4" /></button>
-                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><img style={{ width: "80px", height: "30px" }} src="https://image6.yanolja.com/payment/KQS5BVf5P2vhdQe0" /></button>
-                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><img style={{ width: "100px", height: "30px" }} src="https://image6.yanolja.com/payment/0pioMlyR7FIuNFFD" alt="토스페이" className="platform-site-10klw3m ei3f0hk4" /></button>
+                                    <button id="pay-button"><img style={{ width: "80px", height: "30px" }} src="https://image6.yanolja.com/payment/gPPJqgqGn4lZg4KB" alt="네이버페이" className="platform-site-10klw3m ei3f0hk4" /></button>
+                                    <button id="pay-button"><img style={{ width: "80px", height: "30px" }} src="https://image6.yanolja.com/payment/KQS5BVf5P2vhdQe0" /></button>
+                                    <button id="pay-button"><img style={{ width: "100px", height: "30px" }} src="https://image6.yanolja.com/payment/0pioMlyR7FIuNFFD" alt="토스페이" className="platform-site-10klw3m ei3f0hk4" /></button>
                                 </div>
                                 <div style={{flexDirection: "column", alignItems: "center" }}>
-                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><img style={{ width: "80px", height: "30px" }} src="https://image6.yanolja.com/payment/cjDMzWuYxWQ6uqK2" alt="페이코" class="platform-site-10klw3m ei3f0hk4" /></button>
-                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><span style={{ fontWeight: "bold" }}>휴대폰</span></button>
-                                    <button style={{ backgroundColor: "white", width: "384px", height: "40px" }}><span style={{ fontWeight: "bold" }}>실시간 계좌이체</span></button>
+                                    <button id="pay-button"><img style={{ width: "80px", height: "30px" }} src="https://image6.yanolja.com/payment/cjDMzWuYxWQ6uqK2" alt="페이코" class="platform-site-10klw3m ei3f0hk4" /></button>
+                                    <button id="pay-button"><span style={{ fontWeight: "bold" }}>휴대폰</span></button>
+                                    <button id="pay-button"><span style={{ fontWeight: "bold" }}>실시간 계좌이체</span></button>
                                 </div>
                             </div>
                         </section>
@@ -132,10 +153,12 @@ const Payment = () => {
                                         현장결제<br/>
                                         <span>추가인원 비용등의 현장결제 발생 상품을 확인하세요.</span>
                                     </div>
+                                    <div style={{height:"8px"}}></div>
                                     <div>
                                         최소불가 및 수수료<br/>
                                         <span>취소 및 환불규정에 따라 취소불가, 수수료가 발생 할 수 있습니다.</span>
                                     </div>
+                                    <div style={{height:"8px"}}></div>
                                     <div>
                                         미성년자 및 법정대리인 필수<br/>
                                         <span>미성년자는 법정대리인 동행 없이 투숙이 불가능합니다.</span>
