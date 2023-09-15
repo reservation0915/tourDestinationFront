@@ -1,6 +1,5 @@
 import '../../../styles/pages/layout/payment.css';
 import React, {useEffect, useState} from "react";
-import {reservationInfo} from "../../../common/api/ApiPostService";
 import axios from "axios";
 const Payment = () => {
     const [resUserInfo, setResUserInfo]=useState({ // 예약자 정보 객체

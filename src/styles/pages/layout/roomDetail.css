@@ -1,0 +1,50 @@
+#firstSection{
+    margin-top: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    justify-content: center;
+}
+
+#datePickerExplain{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#startDatePicker{
+    margin: 10px;
+    width: 100px;
+    height: 20px;
+}
+#endDatePicker{
+    margin: 10px;
+    width: 100px;
+    height: 20px;
+}
+#guests{
+    margin: 10px;
+    width: 100px;
+    height: 20px;
+}
+
+#resBtn{
+    border: 1px solid rgb(222, 46, 95);
+    border-radius: 0.4rem;
+    background-color: rgb(222, 46, 95);
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: normal;
+    padding: 0.9rem 0.8rem 0.8rem;
+    width: 12rem;
+    display: flex;
+    margin: 0 20px 0 20px;
+    justify-content: center;
+}
+#resBtn:hover{
+    background: rgb(178, 36, 76);
+    border-color: rgb(178, 36, 76);
+}
+
+#span{
+    font-weight: normal;
+    font-size: 14px;
+}
