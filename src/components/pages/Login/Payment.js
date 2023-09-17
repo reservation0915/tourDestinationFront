@@ -13,7 +13,6 @@ const Payment = () => {
     }, [])
 
     const [roomInfo, setRoomInfo] = useState([]) // 선택된 Room의 정보 (useEffect를 사용해서 불러온 뒤 여기에 담는다.)
-
     const [resUserInfo, setResUserInfo]=useState({ // 예약자 정보 객체
         name:"",
         phone:""
@@ -22,17 +21,16 @@ const Payment = () => {
         name:"",
         phone:""
     });
+
     const url = new URL(window.location.href); // RoomDetail에서 path에 던져준 정보를 받는다
     const startDate = url.searchParams.get('startDate');
     const endDate = url.searchParams.get('endDate');
     const peopleNum = url.searchParams.get('peopleNum')
     const roomId = url.searchParams.get('roomId')
+    const customerId = url.searchParams.get('customerId')
     const nav = useNavigate();
+    const [customerInfo, setCustomerInfo] = useState([])
 
-    const useName = useUserInfo.name;
-    const usePhone = useUserInfo.phone;
-
-    const customerId = `00000000-0000-3100-5555-000000000000`; // todo customerId을 임시로 설정
     const accName = "1번숙소"; // todo 숙소 이름을 임시로 설정
 
     const onChangeResUserInfo = (e) =>{ // 입력된 예약자 정보를 저장
@@ -44,6 +42,19 @@ const Payment = () => {
         const {value, name} = e.target
         setUseUserInfo({...useUserInfo, [name]:value})
     }
+
+
+
+    useEffect(() => {
+        axios.post(`http://localhost:9002/api/v1/customer/info/${customerId}`)// 해당 유저의 정보를 가져옴
+            .then((response) => {
+                setCustomerInfo(response.data)
+
+            }).catch((err) => {
+            alert("오류발생! 유저의 정보를 확인하지 못하였습니다.")
+            console.log(err)
+        })
+    }, [])
 
     const onClickSendResInfo = () => { // todo : 예약자 정보와 현재 로그인 되어있는 정보가 일치하는지 확인
         // 토큰에 있는 customerId를 통해 customer의 정보 (이름, 전화번호) 를 가져온다.
@@ -60,8 +71,6 @@ const Payment = () => {
     const onClickSendUseInfo = () => { // todo : 이용자 정보가 입력되었는지 확인 *중복가능
         // 이용자 정보를 post로 서버에 보내서 데이터에 저장
         alert("이용자 정보가 등록되었습니다.")
-        console.log(useUserInfo.name)
-        console.log(useUserInfo.phone)
     }
     const reservation = {
         roomId:roomId,
@@ -75,10 +84,17 @@ const Payment = () => {
     }
 
     const onClickPay = () => {
-        axios.post(`http://localhost:9002/api/v1/reservation/save`, reservation)
-        console.log(reservation)
-        alert("결제가 되었습니다.")
-        nav('/');
+        if (customerInfo.wallet >= roomInfo.roomPrice){
+            const result = customerInfo.wallet - roomInfo.roomPrice;
+            axios.put(`http://localhost:9002/api/v1/customer/update/${customerId}?result=${result}`)
+            axios.post(`http://localhost:9002/api/v1/reservation/save`, reservation)
+            alert("결제가 되었습니다.")
+            nav('/');
+        }else{
+            alert("잔고가 부족합니다")
+        }
+
+
     }
 
     return (
