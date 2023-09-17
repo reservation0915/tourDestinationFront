@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 import { differenceInDays } from 'date-fns';
 import {useNavigate} from "react-router";
 import '../../../styles/pages/layout/roomDetail.css';
+import axios from "axios";
 
 const RoomDetail = () => {
     const [startDate, setStartDate] = useState(null);
@@ -18,13 +19,30 @@ const RoomDetail = () => {
     const startDateString = startDate ? `${startDate.getFullYear()}-${(startDate.getMonth() + 1).toString().padStart(2, '0')}-${startDate.getDate().toString().padStart(2, '0')}` : "";
     const endDateString = endDate ? `${endDate.getFullYear()}-${(endDate.getMonth() + 1).toString().padStart(2, '0')}-${endDate.getDate().toString().padStart(2, '0')}` : "";
     const nav = useNavigate();
+    const roomId = 1; // todo roomId를 임의로 설정   메인에서 해당 방을 선택하면 roomId를 넘겨줘야함
+    const roomCheck = {
+        roomId:roomId,
+        checkIn:startDateString,
+        checkOut:endDateString
+    }
 
-    const handleMakeReservation = () => {
+    const handleMakeReservation = () => { // 예약하기를 눌렀을때 체크인과 체크아웃을 조회해서 있으면 이미 예약됨으로 알림 없으면 payment로 이동
         if (startDate && endDate) {
-            const nightCount = differenceInDays(endDate, startDate);
-            setReservationResult(`Reservation for ${nightCount} nights from ${startDateString} to ${endDateString} - Guests: ${guests}`);
-            nav(`/payment?startDate=${startDateString}&endDate=${endDateString}`)
-            console.log(reservationResult)
+                axios.post(`http://localhost:9002/api/v1/reservation/check`, roomCheck)
+                    .then((response) => {
+                        console.log(response.data)
+                        if (response.data == false){
+                            setReservationResult(`Reservation from ${startDateString} to ${endDateString} - Guests: ${guests}`);
+                            nav(`/payment?startDate=${startDateString}&endDate=${endDateString}&peopleNum=${guests}`)
+                            console.log(reservationResult)
+                        }else {
+                            alert("이미 예약된 방입니다.")
+                        }
+                    })
+                    .catch((err) => {
+
+                        console.log(err);
+                    });
         } else {
             alert("입실 날짜와 퇴실 날짜를 선택 해주세요.");
         }
