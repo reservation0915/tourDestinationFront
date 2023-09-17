@@ -6,7 +6,6 @@ import 'swiper/css';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { differenceInDays } from 'date-fns';
 import {useNavigate} from "react-router";
 import '../../../styles/pages/layout/roomDetail.css';
 import axios from "axios";
@@ -33,7 +32,7 @@ const RoomDetail = () => {
                         console.log(response.data)
                         if (response.data == false){
                             setReservationResult(`Reservation from ${startDateString} to ${endDateString} - Guests: ${guests}`);
-                            nav(`/payment?startDate=${startDateString}&endDate=${endDateString}&peopleNum=${guests}`)
+                            nav(`/payment?startDate=${startDateString}&endDate=${endDateString}&peopleNum=${guests}&roomId=${roomId}`)
                             console.log(reservationResult)
                         }else {
                             alert("이미 예약된 방입니다.")

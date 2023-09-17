@@ -26,12 +26,12 @@ const Payment = () => {
     const startDate = url.searchParams.get('startDate');
     const endDate = url.searchParams.get('endDate');
     const peopleNum = url.searchParams.get('peopleNum')
+    const roomId = url.searchParams.get('roomId')
     const nav = useNavigate();
 
     const useName = useUserInfo.name;
     const usePhone = useUserInfo.phone;
 
-    const roomId = 1; // todo roomId를 임시로 설정
     const customerId = `00000000-0000-3100-5555-000000000000`; // todo customerId을 임시로 설정
     const accName = "1번숙소"; // todo 숙소 이름을 임시로 설정
 
@@ -57,8 +57,9 @@ const Payment = () => {
         console.log(resUserInfo.phone)
     }
 
-    const onClickSendUseInfo = () => { // todo : 예약자 정보가 입력되었는지 확인
-        // 예약자 정보를 post로 서버에 보내서 데이터에 저장
+    const onClickSendUseInfo = () => { // todo : 이용자 정보가 입력되었는지 확인 *중복가능
+        // 이용자 정보를 post로 서버에 보내서 데이터에 저장
+        alert("이용자 정보가 등록되었습니다.")
         console.log(useUserInfo.name)
         console.log(useUserInfo.phone)
     }
@@ -138,10 +139,6 @@ const Payment = () => {
                             <div style={{flexDirection:"row"}}>
                                 <input id="userInfoInput" onChange={onChangeUseUserInfo} name="name" type="text" placeholder="이름"/>
                                 <input id="userInfoInput" onChange={onChangeUseUserInfo} name="phone" type="text" placeholder="전화번호"/>
-                                <div style={{flexDirection:"row", display:"flex"}}>
-                                    {/*<input style={{display:"flex", margin:"0 10px 0 10px"}} type="submit"/>*/}
-                                    {/*<span style={{display:"flex"}}>예약자 정보와 동일합니다.</span>*/}
-                                </div>
                                 <button style={{marginTop:"10px"}} onClick={onClickSendUseInfo}>등록하기</button>
                             </div>
                         </section>
