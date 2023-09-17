@@ -27,6 +27,7 @@ const Login = ()=>{
             )
             .then(body=>
                 window.location.href=`${body.redirectUrl}?auth=${body.auth}`
+
             )
             .catch(e=>
                     console.log(e)

@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const Auth = ()=>{
     const nav= useNavigate();

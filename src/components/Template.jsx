@@ -1,5 +1,4 @@
 import logo from "../logo.svg";
-import CustomRouter from "../routes/CustomRouter";
 import {Outlet} from "react-router";
 import {Link} from "react-router-dom";
 
@@ -15,7 +14,7 @@ const Template = ()=>{
 
             <section>
                 <div>
-                    <img src={logo} className="App-logo" alt="logo" />
+                    {/*<img src={logo} className="App-logo" alt="logo" />*/}
                     <Outlet/>
                 </div>
             </section>

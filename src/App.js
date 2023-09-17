@@ -1,16 +1,15 @@
-import MyRouter from './routes/MyRouter';
-import logo from './logo.svg';
+import { Outlet } from 'react-router';
 import './App.css';
-import {BrowserRouter} from "react-router-dom";
 import CustomRouter from "./routes/CustomRouter";
+
+
 function App() {
-  return (
-    <>
-        <CustomRouter/>
-      <MyRouter></MyRouter>
-     
-    </>
-  );
+    return (
+        <>
+            <CustomRouter></CustomRouter>
+
+        </>
+    );
 }
 
 export default App;

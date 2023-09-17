@@ -3,33 +3,68 @@ import {useState} from "react";
 import 'react-calendar/dist/Calendar.css';
 import '../css/buttons.css'
 import '../css/tourdestination.css'
+import {Api} from "../network/Api";
+import {useNavigate} from "react-router";
 const TourDestinationReservation =() =>{
     const [dateState,setDateState] = useState(false);
     const [value, onChange] = useState(new Date());
     const [value2, onChange2] = useState([]);
+    const [value3, onChange3] = useState([]);
+    const [value4, onChange4] = useState([]);
     const [date, setDate] = useState([]);
-    console.log(value2);
+    const token = localStorage.getItem("token");
 
-    // const setReservateDate =(value) =>{
-    //     setDate(value.toLocaleDateString("ko", {
-    //         year: "numeric",
-    //         month: "short",
-    //         day: "numeric",
-    //     }))
-    // }
+    //토큰에서 값가져올 필요 있음
+
+    const [user,setUser] = useState({
+        email:"", password:"",username:""
+
+    })
+    const nav = useNavigate()
+    const onSubmitHandler = (e)=>{
+        e.preventDefault();
+        reservation()
+    }
+    const reservation= ()=>{
+        // 192.168.0.184
+        fetch("http://localhost:8000/api/v1/tourdestinationreservation",
+            {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify(user)
+            })
+            .then(res=> {
+                    if (res.status === 200) nav(`/tourdestination`)
+                }
+            )
+            .catch(e=>
+                console.log(e)
+            )
+
+    }
+    const onChangeHandler = (e)=> {
+        const {name, value} =e.target
+        setUser({...user, [name]: value})
+    }
+    // return <form onSubmit={onSubmitHandler}>
+    //     <input type={"email"} name={"email"} onChange={onChangeHandler}/>
+    //     <input type={"text"} name={"username"} onChange={onChangeHandler}/>
+    //     <input type={"password"} name={"password"} onChange={onChangeHandler}/>
+    //     <select onChange={onChangeHandler} name={'role'}>
+    //         <option></option>
+    //         {roles.map(role=>
+    //             <option key={role} value={role}>{role}</option>
+    //         )}
+    //     </select>
+    //     <input type={"submit"} value={"login"} onChange={onChangeHandler}/>
+    // </form>
     const tourReservation =() =>{
         setDateState(true);
     }
     return<>
-        <select className="select-css"
-        value={value2}
-        onChange={(e) => onChange2((e.target.value))}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        </select>
         {dateState === false && <Calendar
             onChange={onChange} // useState로 포커스 변경 시 현재 날짜 받아오기
             value={value}
@@ -61,6 +96,96 @@ const TourDestinationReservation =() =>{
             </button>
         </div>
         }
+        <div className="content-div">
+            <div className="contentLine">
+                <div className="description_container">
+                    <div className="description_title">예약시간 :<select className="select-css"
+                                                                     value={value2}
+                                                                     onChange={(e) => onChange2((e.target.value))}>
+                        <option value="9">9:00</option>
+                        <option value="10">10:00</option>
+                        <option value="11">11:00</option>
+                        <option value="12">12:00</option>
+                        <option value="13">13:00</option>
+                        <option value="14">14:00</option>
+                        <option value="15">15:00</option>
+                        <option value="16">16:00</option>
+                        <option value="17">17:00</option>
+                        <option value="18">18:00</option>
+                        <option value="19">19:00</option>
+                    </select></div>
+
+                </div>
+            </div>
+
+            <div className="contentLine">
+                <div className="description_container">
+                    <div className="description_title">예약인원 : <select className="select-css"
+                                                                      value={value3}
+                                                                      onChange={(e) => onChange3((e.target.value))}>
+                        <option value="1">1명</option>
+                        <option value="2">2명</option>
+                        <option value="3">3명</option>
+                        <option value="4">4명</option>
+                        <option value="5">5명</option>
+                        <option value="6">6명</option>
+                    </select></div>
+
+                </div>
+            </div>
+
+            <div className="contentLine">
+                <div className="description_container">
+                    <div className="description_title">성명 : 이태웅</div>
+
+                </div>
+            </div>
+
+            <div className="contentLine">
+                <div className="description_container">
+                    <div className="description_title">전화번호 : 010-0000-1111</div>
+
+                </div>
+            </div>
+
+            <div className="contentLine">
+                <div className="description_container">
+                    <div className="description_title">이메일 : abcd@gmail.com</div>
+
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <div>
+                <div>
+
+                </div>
+                <div>
+
+                </div>
+
+            </div>
+            <div>
+                <div>
+
+                </div>
+                <div>
+
+                </div>
+
+            </div>
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+
+        </div>
     </>
 }
 export default TourDestinationReservation;
