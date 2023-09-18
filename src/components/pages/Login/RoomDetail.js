@@ -12,17 +12,26 @@ import axios from "axios";
 
 const RoomDetail = () => {
     // todo 해당 room을 선택하면 roomId를 통해 정보를 가져온다
-    // room save 페이지를 안만듬
     const [roomInfo, setRoomInfo] = useState([]) // 선택된 Room의 정보 (useEffect를 사용해서 불러온 뒤 여기에 담는다.)
     useEffect(() => { // 서버에 해당 Room의 Id를 주고 정보를 요청
-        axios.post(`http://localhost:9002/api/v1/room/info/${roomId}`)
+        axios.get(`http://192.168.0.249:8000/api/v1/find/room/detail/${roomId}`)
             .then((response) => {
                 setRoomInfo(response.data);
+                console.log(response.data)
             }).catch((err) => {
             console.log(err)
         });
     }, [])
-
+    useEffect(() => { // 서버에 해당 숙소의 Id를 주고 정보를 요청
+        axios.get(`http://192.168.0.249:8000/api/v1/find/accom/${accomId}`)
+            .then((response) => {
+                setAccomInfo(response.data);
+                console.log(response.data)
+            }).catch((err) => {
+            console.log(err)
+        });
+    }, [])
+    const [accomInfo, setAccomInfo] = useState(null)
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [guests, setGuests] = useState(1);
@@ -30,8 +39,9 @@ const RoomDetail = () => {
     const startDateString = startDate ? `${startDate.getFullYear()}-${(startDate.getMonth() + 1).toString().padStart(2, '0')}-${startDate.getDate().toString().padStart(2, '0')}` : "";
     const endDateString = endDate ? `${endDate.getFullYear()}-${(endDate.getMonth() + 1).toString().padStart(2, '0')}-${endDate.getDate().toString().padStart(2, '0')}` : "";
     const nav = useNavigate();
-    const customerId = "63dada52-5a00-4985-859f-06ae01471c69"; // todo customerId를 임의로 설정
-    const roomId = 2; // todo roomId를 임의로 설정   메인에서 해당 방을 선택하면 roomId를 넘겨줘야함
+    const customerId = "0aa0ecf2-7dd1-4407-9f36-ac3c172a9f7f"; // todo customerId를 임의로 설정
+    const roomId = 1; // todo roomId를 임의로 설정   메인에서 해당 방을 선택하면 roomId를 넘겨줘야함
+    const accomId = 1; // todo accomId를 임의로 설정
     const roomCheck = {
         roomId:roomId,
         checkIn:startDateString,
@@ -51,10 +61,10 @@ const RoomDetail = () => {
                         console.log(response.data)
                         if (response.data == false){
                             setReservationResult(`Reservation from ${startDateString} to ${endDateString} - Guests: ${guests}`);
-                            nav(`/payment?startDate=${startDateString}&endDate=${endDateString}&peopleNum=${guests}&roomId=${roomId}&customerId=${customerId}`)
+                            nav(`/payment?startDate=${startDateString}&endDate=${endDateString}&peopleNum=${guests}&roomId=${roomId}&customerId=${customerId}&accomName=${accomInfo.accomdationName}`)
                             console.log(reservationResult)
                         }else {
-                            alert("이미 예약된 방입니다.")
+                            alert("이미 예약된 방입니다. 다른 날짜를 선택해주세요")
                         }
                     })
                     .catch((err) => {

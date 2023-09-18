@@ -1,7 +1,6 @@
 
 #platform{
     background-color: #f2f2f2;
-
 }
 
 #pay-button{
@@ -47,6 +46,11 @@
     padding: 1.4rem 1.6rem;
     border-radius: 0.8rem;
     background-color: #f8f8f8;
+}
+
+#span{
+    font-weight: normal;
+    font-size: 14px;
 }
 
 

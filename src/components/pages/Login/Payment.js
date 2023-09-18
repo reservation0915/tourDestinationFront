@@ -4,9 +4,10 @@ import axios from "axios";
 import {useNavigate} from "react-router";
 const Payment = () => {
     useEffect(() => { // 서버에 해당 Room의 Id를 주고 정보를 요청
-        axios.post(`http://localhost:9002/api/v1/room/info/${roomId}`)
+        axios.get(`http://192.168.0.249:8000/api/v1/find/room/detail/${roomId}`)
             .then((response) => {
                 setRoomInfo(response.data);
+                console.log(response.data)
             }).catch((err) => {
             console.log(err)
         });
@@ -28,10 +29,10 @@ const Payment = () => {
     const peopleNum = url.searchParams.get('peopleNum')
     const roomId = url.searchParams.get('roomId')
     const customerId = url.searchParams.get('customerId')
+    const accName = url.searchParams.get('accomName')
     const nav = useNavigate();
     const [customerInfo, setCustomerInfo] = useState([])
 
-    const accName = "1번숙소"; // todo 숙소 이름을 임시로 설정
 
     const onChangeResUserInfo = (e) =>{ // 입력된 예약자 정보를 저장
         const {value, name} = e.target
@@ -59,7 +60,7 @@ const Payment = () => {
     const onClickSendResInfo = () => { // todo : 예약자 정보와 현재 로그인 되어있는 정보가 일치하는지 확인
         // 토큰에 있는 customerId를 통해 customer의 정보 (이름, 전화번호) 를 가져온다.
         // 입력받은 정보와 일치하면 확인되었다고 알림 아니면 일치하지 않다고 알림
-        if ((resUserInfo.name == useUserInfo.name) && (resUserInfo.phone == useUserInfo.phone)) { // 작성된 예약자 정보랑 토큰에있는 이름과 전화번호를 가져와서 일치하는지 검사
+        if ((resUserInfo.name == customerInfo.name) && (resUserInfo.phone == customerInfo.phoneNumber)) { // 작성된 예약자 정보랑 토큰에있는 이름과 전화번호를 가져와서 일치하는지 검사
             alert("확인 되었습니다.")
         } else{
             alert("정보가 일치하지 않습니다.")
@@ -106,14 +107,14 @@ const Payment = () => {
                             <div id="firstInfo">
                                 <h3>숙소</h3>
                                 <div id="firstInfo-firstDiv">
-                                    <div>
+                                    <div style={{fontWeight:"bold"}}>
                                         예약 완료 후 무료취소 안내
                                     </div>
                                     <ul>
-                                        <li>예약일시 기준 체크인 시각 이전일 경우 무료취소가 가능합니다</li>
-                                        <li>숙소 정책에 따라 일부 상품은 무료취소가 불가능합니다.</li>
+                                        <li id="span">예약일시 기준 체크인 시각 이전일 경우 무료취소가 가능합니다</li>
+                                        <li id="span">숙소 정책에 따라 일부 상품은 무료취소가 불가능합니다.</li>
                                     </ul>
-                                    <div>
+                                    <div id="span">
                                         호텔/게하/펜션  :   10분 이내 무료 취소<br/>(단, 숙소 정책에 따라 취소수수료가 부가 예외 규정이 적용되지 않을 수 있습니다.)
                                     </div>
                                 </div>
@@ -121,12 +122,13 @@ const Payment = () => {
                                     <h2>{accName}</h2>
                                     <h3>{roomInfo.roomName}</h3>
                                 </div>
-                                <div>
-                                    <div>{startDate}  체크인 : {roomInfo.checkIn}</div>
-                                    <div>{endDate}  체크아웃 : {roomInfo.checkOut}</div>
+                                <div >
+                                    <div style={{margin:"30px"}}>{startDate}  체크인 : {roomInfo.checkIn}</div>
+                                    <div style={{margin:"30px"}}>{endDate}  체크아웃 : {roomInfo.checkOut}</div>
+                                    <div style={{margin:"30px"}}>인원 수 : {peopleNum}명</div>
+                                    <div style={{margin:"30px"}}>총 금액 : {roomInfo.roomPrice}원</div>
                                 </div>    
-                                <span>인원 수 : {peopleNum}명</span>
-                                <span>총 금액 : {roomInfo.roomPrice}원</span>
+
                             </div>
                         </section>
 
