@@ -1,0 +1,57 @@
+
+#platform{
+    background-color: #f2f2f2;
+}
+
+#pay-button{
+    margin: 1px;
+    border: solid 1px gray;
+    background-color: #ffffff;
+    width: 300px;
+    height: 40px;
+    justify-content: center;
+}
+#pay-button:hover{
+    background-color: #f2f2f2;
+}
+
+#firstInfo{
+    margin-top: 10px;
+}
+
+#firstSection{
+    margin-top: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+#userInfoInput{
+    width: 130px;
+    height: 30px;
+    display:flex;
+    margin: 10px 0 10px 0;
+    border: none;
+    border-bottom: solid 1px black;
+}
+
+#platform-body{
+    background-color: white;
+    max-width: 600px;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+
+#firstInfo-firstDiv{
+    padding: 1.4rem 1.6rem;
+    border-radius: 0.8rem;
+    background-color: #f8f8f8;
+}
+
+#span{
+    font-weight: normal;
+    font-size: 14px;
+}
+
+
+

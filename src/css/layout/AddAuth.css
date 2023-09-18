@@ -1,0 +1,49 @@
+#platform{
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+}
+
+#bodyWrap{
+    background-color: #ffffff;
+    width: 600px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid 3px brown;
+}
+
+#body{
+    background-color: #f2f2f2;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#numberInput{
+    width: 170px;
+    height: 40px;
+    margin-left: 20px;
+    border: none;
+    border-bottom: solid 3px black;
+}
+
+#numberSubmit{
+    width: 100px;
+    height: 40px;
+    margin-left: 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #f2f2f2;
+    background-color: #de2e5f;
+    border-color: #de2e5f;
+}
+
+#numberSubmit:hover{
+    background-color: #b2244c;
+    border-color: #b2244c;
+}
