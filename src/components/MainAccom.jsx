@@ -6,10 +6,39 @@ import '../css/MainAccom.css';
 
 // import required modules
 import { Navigation } from 'swiper/modules';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const MainAccom = ()=>{
+    const [accoms,setAccoms] =useState([]);
+    const [rooms,setRooms] = useState([]);
+
+    const getAccomsData=()=>{
+        axios.get('http://localhost:8000/api/v1/find/accom')
+        .then((resp)=>{
+            setAccoms(resp.data.content);
+            console.log(resp.data.content);
+        })
+    }
+
+    const getRoomsData=()=>{
+        axios.get('http://localhost:8000/api/v1/find/room')
+        .then((resp)=>{
+            setRooms(resp.data);
+            console.log(resp.data);
+        })
+    }
+
+    useEffect(()=>{
+        getAccomsData();
+        getRoomsData();
+    },[]);
+
+
 
     return(<>
+    <br></br>
+    <br></br>
         <h2 className='title'>요즘 핫한 숙박 시설</h2>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper"
             spaceBetween={20}
@@ -31,16 +60,24 @@ const MainAccom = ()=>{
             </div>
             </div>
         </SwiperSlide>
-        <SwiperSlide>
-            <img src='/images/sokcho.jpg'
+        {accoms.map((el,index)=>( 
+            <SwiperSlide key={index}>
+            <div>
+            <img src={el.ImageLink}
             style={{width:"100%",height:"autho"}}
             />
+            <div>
+                {el.accomdationName}
+            </div>
+            <div>
+                별점 : {el.accomdationGrade}
+            </div>
+            <div className='price'>
+                {rooms[index]}원
+            </div>
+            </div>
         </SwiperSlide>
-        <SwiperSlide>
-            <img src='/images/sokcho.jpg'
-            style={{width:"100%",height:"autho"}}
-            />
-        </SwiperSlide>
+        ))}
         <SwiperSlide>Slide 4</SwiperSlide>
         <SwiperSlide>Slide 5</SwiperSlide>
         <SwiperSlide>Slide 6</SwiperSlide>

@@ -1,19 +1,14 @@
 import "../css/MainPage.css"
 import MainAccom from "./MainAccom";
+import RankAccoms from "./RankAccoms";
 
 const MainPage = ()=>{
 
     return(<>
     <div className="container">
-            <p>dfaf</p>
-            <p>dfaf</p>
-            <p>dfaf</p>
-            <p>dfaf</p>
-            <p>dfaf</p>
 
-
-    
         <MainAccom></MainAccom>
+        <RankAccoms></RankAccoms>
       
     </div>
     </>)
