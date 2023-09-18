@@ -7,7 +7,7 @@ export const Api = async (url, method, data) => {
         url,
         method,
         data,
-        withCredentials: true // withCredentials 설정 추가
+        // withCredentials: true // withCredentials 설정 추가
     });
     return body;
 };
