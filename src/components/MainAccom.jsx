@@ -73,17 +73,13 @@ const MainAccom = ()=>{
                 별점 : {el.accomdationGrade}
             </div>
             <div className='price'>
-                {rooms[index]}원
+            {/* {el.room.length==0 ? '준비중입니다':`${el.room[0].roomPrice}원`} */}
+                {el.room.length==0 ? '준비중입니다':`${rooms[index]}원`}
             </div>
             </div>
         </SwiperSlide>
         ))}
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+
       </Swiper>
     </>)
 }
