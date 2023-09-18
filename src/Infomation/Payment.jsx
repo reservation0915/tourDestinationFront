@@ -47,7 +47,7 @@ const Payment = () => {
 
 
     useEffect(() => {
-        axios.post(`http://localhost:9002/api/v1/customer/info/${customerId}`)// 해당 유저의 정보를 가져옴
+        axios.post(`http://192.168.0.249:8000/api/v1/customer/info/${customerId}`)// 해당 유저의 정보를 가져옴
             .then((response) => {
                 setCustomerInfo(response.data)
 
@@ -87,8 +87,8 @@ const Payment = () => {
     const onClickPay = () => {
         if (customerInfo.wallet >= roomInfo.roomPrice){
             const result = customerInfo.wallet - roomInfo.roomPrice;
-            axios.put(`http://localhost:9002/api/v1/customer/update/${customerId}?result=${result}`)
-            axios.post(`http://localhost:9002/api/v1/reservation/save`, reservation)
+            axios.put(`http://192.168.0.249:8000/api/v1/customer/update/${customerId}?result=${result}`)
+            axios.post(`http://192.168.0.249:8000/api/v1/reservation/save`, reservation)
             alert("결제가 되었습니다.")
             nav('/');
         }else{

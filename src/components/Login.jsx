@@ -1,5 +1,4 @@
 import {useState} from "react";
-import {json, useNavigate} from "react-router";
 
 const Login = ()=>{
     const [user,setUser] = useState({
@@ -9,11 +8,9 @@ const Login = ()=>{
         e.preventDefault();
         login()
     }
-    //
-    //
     const login= ()=>{
         // 192.168.0.184
-        fetch("http://localhost:8080/api/v1/auth/login",
+        fetch("http://192.168.0.249:8000/api/v1/auth/login",
             {
                 method:"POST",
                 headers: {
@@ -22,9 +19,9 @@ const Login = ()=>{
                 },
                 body: JSON.stringify(user)
             })
-            .then(res=>
-                res.json()
-            )
+            .then((response) => {
+                return response.json()
+            })
             .then(body=>
                 window.location.href=`${body.redirectUrl}?auth=${body.auth}`
 

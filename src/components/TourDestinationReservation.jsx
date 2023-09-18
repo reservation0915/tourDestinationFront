@@ -27,7 +27,7 @@ const TourDestinationReservation =() =>{
     }
     const reservation= ()=>{
         // 192.168.0.184
-        fetch("http://localhost:8000/api/v1/tourdestinationreservation",
+        fetch("http://192.168.0.249:8000/api/v1/tourdestinationreservation",
             {
                 method:"POST",
                 headers: {

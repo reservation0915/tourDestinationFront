@@ -22,7 +22,7 @@ const Signup = ()=>{
     }
     const login= ()=>{
         // 192.168.0.184
-        fetch("http://localhost:8080/api/v1/auth/signup",
+        fetch("http://192.168.0.249:8000/api/v1/auth/signup",
             {
                 method:"POST",
                 headers: {

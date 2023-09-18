@@ -56,7 +56,7 @@ const RoomDetail = () => {
 
     const handleMakeReservation = () => { // 예약하기를 눌렀을때 체크인과 체크아웃을 조회해서 있으면 이미 예약됨으로 알림 없으면 payment로 이동
         if (startDate && endDate) {
-                axios.post(`http://localhost:9002/api/v1/reservation/check`, roomCheck)
+                axios.post(`http://192.168.0.249:8000/api/v1/reservation/check`, roomCheck)
                     .then((response) => {
                         console.log(response.data)
                         if (response.data == false){
@@ -126,7 +126,7 @@ const RoomDetail = () => {
                         </div>
                         <div style={{justifyContent:"center", display:"flex", alignItems: "center" }}>
                             <div style={{margin:"0 15px 0 20px"}}>
-                                <label htmlFor="guests"><span id="span">인원 수 : </span></label>
+                                <label htmlFor="guests"><span id="span">최대 인원 수 : </span></label>
                                 <input type="number" id="guests" min="1" value={guests} onChange={(e) => setGuests(parseInt(e.target.value))} />
                             </div>
                             <button id="resBtn" onClick={handleMakeReservation}>예약하기</button>

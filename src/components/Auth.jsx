@@ -7,7 +7,7 @@ const Auth = ()=>{
     const auth = queryParameters.get("auth")
     const check = ()=>{
         // 192.168.0.184
-        fetch("http://localhost:8080/api/v1/myuser/me",
+        fetch("http://192.168.0.249:8000/api/v1/myuser/me",
             {
                 headers:{
                     "Authorization": `Bearer ${auth}`
@@ -25,7 +25,7 @@ const Auth = ()=>{
             )
     }
     const getMe = ()=> {
-        return fetch(`http://localhost:8080/api/v1/auth/me`,
+        return fetch(`http://192.168.0.249:8000/api/v1/auth/me`,
             {headers:{
                     "Authorization": `Bearer ${auth}`
                 }}
@@ -34,7 +34,7 @@ const Auth = ()=>{
                 res.json()
             )
             .then(body=> {
-                nav("/my/register",{state: {me:body}})
+                nav("/addauth",{state: {me:body}})
             })
             .catch(()=>nav("/login"))
     }

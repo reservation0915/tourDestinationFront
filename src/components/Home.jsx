@@ -1,12 +1,11 @@
 import {useNavigate} from "react-router";
 import {useEffect} from "react";
-import {Api} from "../network/Api";
 
 const HOME = ()=>{
     const nav = useNavigate();
     useEffect(() => {
         const tourDestinationDetail= ()=>{
-            nav(`/tourdestination`)
+            nav(`/main`)
         }
         tourDestinationDetail();
 

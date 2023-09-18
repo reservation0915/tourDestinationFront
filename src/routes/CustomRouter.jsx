@@ -11,6 +11,7 @@ import TourDestinationReservation from "../components/TourDestinationReservation
 import RoomDetail from "../Infomation/RoomDetail";
 import Payment from "../Infomation/Payment";
 import AddAuthSerivce from "../Infomation/AddAuthSerivce";
+import MainPage from "../components/MainPage";
 
 
 const CustomRouter = ()=>{
@@ -32,8 +33,11 @@ const CustomRouter = ()=>{
             path : "/payment",
             component : <Payment />,
         },{
-            path : '/add',
+            path : '/addauth',
             component : <AddAuthSerivce />,
+        },{
+            path : '/main',
+            component : <MainPage />,
         }
     ]
     return <Routes>

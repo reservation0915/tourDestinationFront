@@ -3,8 +3,6 @@ import {useLocation, useNavigate, useParams} from "react-router";
 
 const MySignup = ()=>{
     const location = useLocation()
-
-
     const [user,setUser] = useState({
         email:"", username:"", role:"",age:0
     })
@@ -20,7 +18,7 @@ const MySignup = ()=>{
     }
     const login= ()=>{
         // 192.168.0.184
-        fetch("http://localhost:8080/api/v1/myuser",
+        fetch("http://192.168.0.249:8000/api/v1/myuser",
             {
                 method:"POST",
                 headers: {

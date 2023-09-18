@@ -35,11 +35,11 @@ const TourDestination =() =>{
 
     // useEffect(() => {
     //     const fetchTour = async () => {
-    //             const getData = await Api(`http://localhost:9010/api/v1/tourdestination`, "GET");
+    //             const getData = await Api(`http://192.168.0.249:8000/api/v1/tourdestination`, "GET");
     //             settourDestination(getData.data);
     //     };
     //     // const getToken = async () => {
-    //     //     const getData = await Api(`http://localhost:8080/api/v1/auth/getTokenInfo/${tokenData}`, "GET");
+    //     //     const getData = await Api(`http://192.168.0.249:8000/api/v1/auth/getTokenInfo/${tokenData}`, "GET");
     //     //     settourDestination(getData.data);
     //     //     console.log(getData.data)
     //     // };
@@ -49,11 +49,11 @@ const TourDestination =() =>{
     // }, []);
     useEffect(() => {
         // const fetchTour = async () => {
-        //         const getData = await Api(`http://localhost:9010/api/v1/tourdestination`, "GET");
+        //         const getData = await Api(`http://192.168.0.249:8000/api/v1/tourdestination`, "GET");
         //         settourDestination(getData.data);
         // };
         const getToken = async () => {
-            const getData = await Api(`http://localhost:8080/api/v1/auth/getTokenInfo/${tokenData}`, "GET");
+            const getData = await Api(`http://192.168.0.249:8000/api/v1/auth/getTokenInfo/${tokenData}`, "GET");
             settourDestination(getData.data);
             console.log(getData.data)
         };

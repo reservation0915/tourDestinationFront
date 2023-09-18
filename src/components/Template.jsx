@@ -1,5 +1,6 @@
 import {Outlet} from "react-router";
 import {Link} from "react-router-dom";
+import MyHeader from "./MyHeader";
 
 const Template = ()=>{
     return <div className="App">
@@ -13,7 +14,7 @@ const Template = ()=>{
 
             <section>
                 <div>
-                    {/*<img src={logo} className="App-logo" alt="logo" />*/}
+                    <MyHeader/>
                     <Outlet/>
                 </div>
             </section>
