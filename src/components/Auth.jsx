@@ -17,7 +17,6 @@ const Auth = ()=>{
                 res.json()
             )
             .then(body=> {
-                console.log(body)
                 localStorage.setItem("token", auth)
                 nav("/home")
             })

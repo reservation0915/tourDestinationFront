@@ -5,16 +5,20 @@ import "../css/tourdestination.css"
 import "../css/buttons.css"
 import {useNavigate} from "react-router";
 
+
 const TourDestination =() =>{
     const nav = useNavigate();
     const [tourDestination, settourDestination] = useState([]);
     const [tourDestinationByDetail,setTourDestinationByDetail] = useState([]);
     const [name,setName] = useState([]);
     const [searchBoolean, setSearchBoolean] = useState(false);
+    // const [tokenData,setTokenData] = useState([]);
+    const tokenData = localStorage.getItem("token");
 
     const getByType = async (data) => {
         getDetailData(data);
     }
+
 
 
     const onChangeHandler = (e) => {
@@ -28,14 +32,33 @@ const TourDestination =() =>{
             setSearchBoolean(true);
             setTourDestinationByDetail(getData.data);
     }
+
+    // useEffect(() => {
+    //     const fetchTour = async () => {
+    //             const getData = await Api(`http://localhost:9010/api/v1/tourdestination`, "GET");
+    //             settourDestination(getData.data);
+    //     };
+    //     // const getToken = async () => {
+    //     //     const getData = await Api(`http://localhost:8080/api/v1/auth/getTokenInfo/${tokenData}`, "GET");
+    //     //     settourDestination(getData.data);
+    //     //     console.log(getData.data)
+    //     // };
+    //     fetchTour();
+    //     // getToken();
+    //
+    // }, []);
     useEffect(() => {
-        const fetchTour = async () => {
-                const getData = await Api(`api/v1/tourdestination`, "GET");
-                console.log(getData.data);
-                console.log(getData.data);
-                settourDestination(getData.data);
+        // const fetchTour = async () => {
+        //         const getData = await Api(`http://localhost:9010/api/v1/tourdestination`, "GET");
+        //         settourDestination(getData.data);
+        // };
+        const getToken = async () => {
+            const getData = await Api(`http://localhost:8080/api/v1/auth/getTokenInfo/${tokenData}`, "GET");
+            settourDestination(getData.data);
+            console.log(getData.data)
         };
-        fetchTour();
+        // fetchTour();
+        getToken();
 
     }, []);
     const tourDestinationDetail= (mentor)=>{
@@ -109,33 +132,33 @@ const TourDestination =() =>{
             </div>
         </div>
 
-        {searchBoolean === false && <div className="card_wrap">
-            {tourDestination.map((mentor, idx) =>
-                <div key={idx} onClick={() => {tourDestinationDetail(mentor)}}>
-                    <div className="card_detail">
-                        <div className="card_img">
-                            <img style={{width: '285px', height: '210px'}}
-                                 src={mentor.tourDestinationPicture
-                                 }/>
-                        </div>
-                        <div className="story">
-                            <div className="story_title">{mentor.tourDestinationName}</div>
+        {/*{searchBoolean === false && <div className="card_wrap">*/}
+        {/*            {tourDestination.map((mentor, idx) =>*/}
+        {/*                <div key={idx} onClick={() => {tourDestinationDetail(mentor)}}>*/}
+        {/*                    <div className="card_detail">*/}
+        {/*                        <div className="card_img">*/}
+        {/*                            <img style={{width: '285px', height: '210px'}}*/}
+        {/*                                 src={mentor.tourDestinationPicture*/}
+        {/*                                 }/>*/}
+        {/*                        </div>*/}
+        {/*                        <div className="story">*/}
+        {/*                            <div className="story_title">{mentor.tourDestinationName}</div>*/}
 
-                        </div>
-                        <div className="story">
-                            <div className="story_text">{mentor.tourDestinationContent}</div>
+        {/*                        </div>*/}
+        {/*                        <div className="story">*/}
+        {/*                            <div className="story_text">{mentor.tourDestinationContent}</div>*/}
 
-                        </div>
-                    </div>
-                </div>
+        {/*                        </div>*/}
+        {/*                    </div>*/}
+        {/*                </div>*/}
 
 
-            )}
-        </div>
-        }
-        {searchBoolean === true && <div className="card_wrap">
-            {tourDestinationByDetail.map((mentor, idx) =>
-                <div key={idx} onClick={() => {tourDestinationDetail(mentor)}}>
+        {/*            )}*/}
+        {/*        </div>*/}
+        {/*        }*/}
+                    {searchBoolean === true && <div className="card_wrap">
+                        {tourDestinationByDetail.map((mentor, idx) =>
+                            <div key={idx} onClick={() => {tourDestinationDetail(mentor)}}>
                     <div className="card_detail">
                         <div className="card_img">
                             <img style={{width: '285px', height: '210px'}}
