@@ -41,7 +41,7 @@ const TourDestination =() =>{
     useEffect(() => {
 
 
-        fetchTour();
+        fetchTour()
 
 
     }, []);

@@ -1,10 +1,10 @@
 import Calendar from "react-calendar";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import 'react-calendar/dist/Calendar.css';
 import '../css/buttons.css'
 import '../css/tourdestination.css'
-import {Api} from "../network/Api";
 import {useNavigate} from "react-router";
+import axios from "axios";
 const TourDestinationReservation =() =>{
     const [dateState,setDateState] = useState(false);
     const [value, onChange] = useState(new Date());
@@ -13,6 +13,7 @@ const TourDestinationReservation =() =>{
     const [value4, onChange4] = useState([]);
     const [date, setDate] = useState([]);
     const token = localStorage.getItem("token");
+
 
     //토큰에서 값가져올 필요 있음
 
@@ -37,7 +38,7 @@ const TourDestinationReservation =() =>{
                 body: JSON.stringify(user)
             })
             .then(res=> {
-                    if (res.status === 200) nav(`/tourdestination`)
+                    if (res.status === 200) nav(`/main`)
                 }
             )
             .catch(e=>
@@ -51,6 +52,9 @@ const TourDestinationReservation =() =>{
     }
     const tourReservation =() =>{
         setDateState(true);
+    }
+    const goToHome =() =>{
+        nav(`/main`);
     }
     return<>
         <form onSubmit={onSubmitHandler}>
@@ -139,13 +143,18 @@ const TourDestinationReservation =() =>{
 
                 <div className="contentLine">
                     <div className="description_container">
-                        <div className="description_title">이메일 : abcd@gmail.com</div>
+                        <div className="description_title">이메일 : </div>
 
                     </div>
                 </div>
+                <div className="button-div">
+                    <button onClick={goToHome} className="w-btn-outline w-btn-gray-outline select-buttons-each" type="button">
+                        예약
+                    </button>
+                </div>
 
             </div>
-            <input type={"submit"} value={"login"} onChange={onChangeHandler}/>
+
 
         </form>
 

@@ -6,10 +6,10 @@ const Template = ()=>{
     return <div className="App">
         <div className={"App-header"}>
             <header style={{width:'100%'}}>
-                <div style={{width:'100%',display:"flex", justifyContent: "space-around"}}>
-                    <Link to={"/login"}>login</Link>
-                    <Link to={"/register"}>signup</Link>
-                </div>
+                {/*<div style={{width:'100%',display:"flex", justifyContent: "space-around"}}>*/}
+                {/*    <Link to={"/login"}>login</Link>*/}
+                {/*    <Link to={"/register"}>signup</Link>*/}
+                {/*</div>*/}
             </header>
 
             <section>

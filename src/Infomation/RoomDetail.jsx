@@ -128,7 +128,7 @@ const RoomDetail = () => {
                         <div style={{justifyContent:"center", display:"flex", alignItems: "center" }}>
                             <div style={{margin:"0 35px 0 20px"}}>
                                 <label htmlFor="guests"><span id="span">최대 인원 수 : </span></label>
-                                <input type="number" id="guests" min="1" value={guests} onChange={(e) => setGuests(parseInt(e.target.value))} />
+                                <input type="number" id="guests" min="1"  max={roomInfo.roomMaxPerson} value={guests} onChange={(e) => setGuests(parseInt(e.target.value))} />
                             </div>
                             <button id="resBtn" onClick={handleMakeReservation}>예약하기</button>
                         </div>

@@ -11,7 +11,8 @@ import { useEffect, useState } from 'react';
 
 const HotelAccom = ()=>{
     const [accoms,setAccoms] =useState([]);
-    
+    const url = new URL(window.location.href); // AddAuth에서 path에 던져준 정보를 받는다
+    const customerId = url.searchParams.get('customerId');
     const getAccomsData=()=>{
         axios.get('http://192.168.0.249:8000/api/v1/find/accom/hotel')
         .then((resp)=>{
@@ -53,7 +54,7 @@ const HotelAccom = ()=>{
         {accoms.map((el,index)=>( 
             <SwiperSlide key={index}>
             <div>
-                <a href={`/roomdetail?roomid=${el.room.length==0 ? null:`${el.room[0].id}`}`}>
+                <a href={`/roomdetail?roomId=${el.room.length==0 ? null:`${el.room[0].id}`}&customerId=${customerId}&accomId=${el.id}`}>
             <img src={el.ImageLink}
             style={{width:"100%",height:"auto"}}
             />

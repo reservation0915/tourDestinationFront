@@ -22,7 +22,7 @@ const TourDestinationDetail =() =>{
 
     return <div className="App">
             <div className="tour_detail">
-                <div className="tour_detail_title">
+                <div className="tour_detail_title" style={{textAlign:"center"}}>
                     <p>{detail.tourDestinationName}</p>
                 </div>
                 <div className="tour_detail_picture">

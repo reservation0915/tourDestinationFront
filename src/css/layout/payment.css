@@ -60,5 +60,20 @@
 
 }
 
+#submit{
+    width: 100px;
+    height: 40px;
+    color: #ffffff;
+    border-radius: 10px;
+    border-color: #de2e5f;
+    background-color: #de2e5f;
+}
+
+#submit:hover{
+    color: black;
+    border-color: #b2244c;
+    background-color: #b2244c;
+}
+
 
 

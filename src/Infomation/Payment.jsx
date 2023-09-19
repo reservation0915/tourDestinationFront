@@ -90,7 +90,7 @@ const Payment = () => {
             axios.put(`http://192.168.0.249:8000/api/v1/customer/update/${customerId}?result=${result}`)
             axios.post(`http://192.168.0.249:8000/api/v1/reservation/save`, reservation)
             alert("결제가 되었습니다.")
-            nav('/');
+            nav('/main');
         }else{
             alert("잔고가 부족합니다")
         }
@@ -142,7 +142,7 @@ const Payment = () => {
                                 <div style={{flexDirection:"column"}}>
                                     <input id="userInfoInput" onChange={onChangeResUserInfo} name="name" type="text" placeholder="이름"/>
                                     <input id="userInfoInput" onChange={onChangeResUserInfo} name="phone" type="text" placeholder="전화번호"/>
-                                    <button onClick={onClickSendResInfo}>확인</button>
+                                    <button id="submit" onClick={onClickSendResInfo}>확인</button>
                                 </div>
 
                             </div>
@@ -157,7 +157,7 @@ const Payment = () => {
                             <div style={{flexDirection:"row"}}>
                                 <input id="userInfoInput" onChange={onChangeUseUserInfo} name="name" type="text" placeholder="이름"/>
                                 <input id="userInfoInput" onChange={onChangeUseUserInfo} name="phone" type="text" placeholder="전화번호"/>
-                                <button style={{marginTop:"10px"}} onClick={onClickSendUseInfo}>등록하기</button>
+                                <button id="submit" style={{marginTop:"10px"}} onClick={onClickSendUseInfo}>등록하기</button>
                             </div>
                         </section>
 
