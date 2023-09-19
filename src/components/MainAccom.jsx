@@ -19,7 +19,6 @@ const MainAccom = ()=>{
         axios.get('http://192.168.0.249:8000/api/v1/find/accom')
         .then((resp)=>{
             setAccoms(resp.data.content);
-            console.log(resp.data.content);
         })
     }
 
@@ -27,7 +26,6 @@ const MainAccom = ()=>{
         axios.get('http://192.168.0.249:8000/api/v1/find/room')
         .then((resp)=>{
             setRooms(resp.data);
-            console.log(resp.data);
         })
     }
 

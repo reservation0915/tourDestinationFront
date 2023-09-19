@@ -12,6 +12,7 @@ import RoomDetail from "../Infomation/RoomDetail";
 import Payment from "../Infomation/Payment";
 import AddAuthSerivce from "../Infomation/AddAuthSerivce";
 import MainPage from "../components/MainPage";
+import End from "../Infomation/End";
 
 
 const CustomRouter = ()=>{
@@ -38,6 +39,9 @@ const CustomRouter = ()=>{
         },{
             path : '/main',
             component : <MainPage />,
+        },{
+            path : '/end',
+            component : <End />,
         }
     ]
     return <Routes>

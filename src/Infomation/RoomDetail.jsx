@@ -40,7 +40,6 @@ const RoomDetail = () => {
         axios.get(`http://192.168.0.249:8000/api/v1/find/room/detail/${roomId}`)
             .then((response) => {
                 setRoomInfo(response.data);
-                console.log(response.data)
             }).catch((err) => {
             console.log(err)
         });
@@ -49,7 +48,6 @@ const RoomDetail = () => {
         axios.get(`http://192.168.0.249:8000/api/v1/find/accom/${accomId}`)
             .then((response) => {
                 setAccomInfo(response.data);
-                console.log(response.data)
             }).catch((err) => {
             console.log(err)
         });
@@ -59,17 +57,14 @@ const RoomDetail = () => {
         if (startDate && endDate) {
                 axios.post(`http://192.168.0.249:8000/api/v1/reservation/check`, roomCheck)
                     .then((response) => {
-                        console.log(response.data)
                         if (response.data == false){
                             setReservationResult(`Reservation from ${startDateString} to ${endDateString} - Guests: ${guests}`);
                             nav(`/payment?startDate=${startDateString}&endDate=${endDateString}&peopleNum=${guests}&roomId=${roomId}&customerId=${customerId}&accomName=${accomInfo.accomdationName}`)
-                            console.log(reservationResult)
                         }else {
                             alert("이미 예약된 방입니다. 다른 날짜를 선택해주세요")
                         }
                     })
                     .catch((err) => {
-
                         console.log(err);
                     });
         } else {

@@ -7,7 +7,6 @@ const Payment = () => {
         axios.get(`http://192.168.0.249:8000/api/v1/find/room/detail/${roomId}`)
             .then((response) => {
                 setRoomInfo(response.data);
-                console.log(response.data)
             }).catch((err) => {
             console.log(err)
         });
@@ -46,14 +45,13 @@ const Payment = () => {
 
 
 
-    useEffect(() => {
+    useEffect(() =>  {
         axios.post(`http://192.168.0.249:8000/api/v1/customer/info/${customerId}`)// 해당 유저의 정보를 가져옴
             .then((response) => {
                 setCustomerInfo(response.data)
 
             }).catch((err) => {
             alert("오류발생! 유저의 정보를 확인하지 못하였습니다.")
-            console.log(err)
         })
     }, [])
 
@@ -65,8 +63,6 @@ const Payment = () => {
         } else{
             alert("정보가 일치하지 않습니다.")
         }
-        console.log(resUserInfo.name)
-        console.log(resUserInfo.phone)
     }
 
     const onClickSendUseInfo = () => { // todo : 이용자 정보가 입력되었는지 확인 *중복가능
@@ -83,7 +79,6 @@ const Payment = () => {
         checkIn:startDate,
         checkOut:endDate
     }
-
     const onClickPay = () => {
         if (customerInfo.wallet >= roomInfo.roomPrice){
             const result = customerInfo.wallet - roomInfo.roomPrice;
@@ -94,8 +89,6 @@ const Payment = () => {
         }else{
             alert("잔고가 부족합니다")
         }
-
-
     }
 
     return (
