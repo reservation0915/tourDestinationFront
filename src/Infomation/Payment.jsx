@@ -122,9 +122,9 @@ const Payment = () => {
                                     <h2>{accName}</h2>
                                     <h3>{roomInfo.roomName}</h3>
                                 </div>
-                                <div >
-                                    <div style={{margin:"30px"}}>{startDate}  체크인 : {roomInfo.checkIn}</div>
-                                    <div style={{margin:"30px"}}>{endDate}  체크아웃 : {roomInfo.checkOut}</div>
+                                <div id="infoCheck">
+                                    <div style={{margin:"30px"}}>{startDate}  체크인 : 오후 {roomInfo.checkIn}시</div>
+                                    <div style={{margin:"30px"}}>{endDate}  체크아웃 : 오전 {roomInfo.checkOut}시</div>
                                     <div style={{margin:"30px"}}>인원 수 : {peopleNum}명</div>
                                     <div style={{margin:"30px"}}>총 금액 : {roomInfo.roomPrice}원</div>
                                 </div>    

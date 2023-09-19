@@ -14,12 +14,12 @@ function MyHeader() {
     >
       <Container style={{display:'flex',
     justifyContent:'space-between'}}>
-        <Navbar.Brand href="#home">Seoul - Tour - Project</Navbar.Brand>
+        <Navbar.Brand href="/main">Seoul - Tour - Project</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="custom-navbar">
           <Nav id="custom-navbar">
-            <Nav.Link href="#home">홈</Nav.Link>
-            <Nav.Link href="#link">관광 명소</Nav.Link>
+            <Nav.Link href="/main">홈</Nav.Link>
+            <Nav.Link href="/tourdestination">관광 명소</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">드롭 1</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

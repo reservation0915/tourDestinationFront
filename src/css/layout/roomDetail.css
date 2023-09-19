@@ -1,5 +1,5 @@
 #firstSection{
-    margin-top: 10px;
+    margin: 20px 0 20px 0;
     background-color: #ffffff;
     padding: 10px;
     justify-content: center;
@@ -14,18 +14,22 @@
     margin: 10px;
     width: 100px;
     height: 20px;
+    border: none;
     border-bottom: solid 1px black;
 }
 #endDatePicker{
     margin: 10px;
     width: 100px;
     height: 20px;
+    border: none;
     border-bottom: solid 1px black;
 }
 #guests{
     margin: 10px;
     width: 100px;
     height: 20px;
+    border: none;
+    border-bottom: solid 1px black;
 }
 
 #resBtn{

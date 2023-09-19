@@ -13,6 +13,29 @@ import axios from "axios";
 const RoomDetail = () => {
     // todo 해당 room을 선택하면 roomId를 통해 정보를 가져온다
     const [roomInfo, setRoomInfo] = useState([]) // 선택된 Room의 정보 (useEffect를 사용해서 불러온 뒤 여기에 담는다.)
+    const [accomInfo, setAccomInfo] = useState(null)
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [guests, setGuests] = useState(1);
+    const [reservationResult, setReservationResult] = useState("");
+    const startDateString = startDate ? `${startDate.getFullYear()}-${(startDate.getMonth() + 1).toString().padStart(2, '0')}-${startDate.getDate().toString().padStart(2, '0')}` : "";
+    const endDateString = endDate ? `${endDate.getFullYear()}-${(endDate.getMonth() + 1).toString().padStart(2, '0')}-${endDate.getDate().toString().padStart(2, '0')}` : "";
+    const nav = useNavigate();
+    const url = new URL(window.location.href); // AccomMain path에 던져준 정보를 받는다
+    const customerId = url.searchParams.get('customerId');
+    const roomId = url.searchParams.get('roomId');
+    const accomId = url.searchParams.get('accomId');
+    const roomCheck = {
+        roomId:roomId,
+        checkIn:startDateString,
+        checkOut:endDateString
+    }
+    const imageUrls = [
+        roomInfo.roomImage1,
+        roomInfo.roomImage2,
+        roomInfo.roomImage3,
+        roomInfo.roomImage4
+    ];
     useEffect(() => { // 서버에 해당 Room의 Id를 주고 정보를 요청
         axios.get(`http://192.168.0.249:8000/api/v1/find/room/detail/${roomId}`)
             .then((response) => {
@@ -31,28 +54,6 @@ const RoomDetail = () => {
             console.log(err)
         });
     }, [])
-    const [accomInfo, setAccomInfo] = useState(null)
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const [guests, setGuests] = useState(1);
-    const [reservationResult, setReservationResult] = useState("");
-    const startDateString = startDate ? `${startDate.getFullYear()}-${(startDate.getMonth() + 1).toString().padStart(2, '0')}-${startDate.getDate().toString().padStart(2, '0')}` : "";
-    const endDateString = endDate ? `${endDate.getFullYear()}-${(endDate.getMonth() + 1).toString().padStart(2, '0')}-${endDate.getDate().toString().padStart(2, '0')}` : "";
-    const nav = useNavigate();
-    const customerId = "0aa0ecf2-7dd1-4407-9f36-ac3c172a9f7f"; // todo customerId를 임의로 설정
-    const roomId = 1; // todo roomId를 임의로 설정   메인에서 해당 방을 선택하면 roomId를 넘겨줘야함
-    const accomId = 1; // todo accomId를 임의로 설정
-    const roomCheck = {
-        roomId:roomId,
-        checkIn:startDateString,
-        checkOut:endDateString
-    }
-    const imageUrls = [
-        roomInfo.roomImage1,
-        roomInfo.roomImage2,
-        roomInfo.roomImage3,
-        roomInfo.roomImage4
-    ];
 
     const handleMakeReservation = () => { // 예약하기를 눌렀을때 체크인과 체크아웃을 조회해서 있으면 이미 예약됨으로 알림 없으면 payment로 이동
         if (startDate && endDate) {
@@ -125,7 +126,7 @@ const RoomDetail = () => {
                             </div>
                         </div>
                         <div style={{justifyContent:"center", display:"flex", alignItems: "center" }}>
-                            <div style={{margin:"0 15px 0 20px"}}>
+                            <div style={{margin:"0 35px 0 20px"}}>
                                 <label htmlFor="guests"><span id="span">최대 인원 수 : </span></label>
                                 <input type="number" id="guests" min="1" value={guests} onChange={(e) => setGuests(parseInt(e.target.value))} />
                             </div>
@@ -138,8 +139,8 @@ const RoomDetail = () => {
 
                 <section id="firstSection">
                     <div>
-                        <h3>기본정보</h3>
-                        <span>
+                        <h3 style={{fontWeight:"bold"}}>기본정보</h3>
+                        <span id="span">
                             [현대프리미엄아울렛PKG] 객실(파크뷰 업그레이드) + 1만원 현대백화점 상품권 + 커피교환권 2장 + 회전목마 이용권 (김포/송도 한정) <br/>
                             [현대 아울렛 바우처 유의사항] 조기소진시 사전안내 없이 제공이 불가할 수 있습니다.<br/>
                             상품권 제공기간 : 9/11~10/9 체크인건에 한해 제공<br/>
@@ -158,8 +159,8 @@ const RoomDetail = () => {
 
                 <section id="firstSection">
                     <div>
-                        <h3>예약공지</h3>
-                        <span>
+                        <h3 style={{fontWeight:"bold"}}>예약공지</h3>
+                        <span id="span">
                             · 체크인/체크아웃 시간 룸타입 공지, 연박불가상품 확인 필수<br/>
                             [레스토랑 안내]<br/>
                             · Level 19 / 상설뷔페<br/>
@@ -187,7 +188,7 @@ const RoomDetail = () => {
 
                 <section id="firstSection" style={{marginBottom:"40px"}}>
                     <div>
-                        <h3>객실 후기</h3>
+                        <h3 style={{fontWeight:"bold"}}>객실 후기</h3>
                         <div style={{textAlign:"center"}}>
                             <p>작성된 후기가 없습니다.</p>
                             <p>객실을 이용하고 후기를 작성해보세요!</p>

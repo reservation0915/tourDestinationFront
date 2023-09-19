@@ -49,7 +49,8 @@ const CustomRouter = ()=>{
             <Route path='/tourdestination' element={<TourDestination />}></Route>
             <Route path='/tourdestinationdetail' element={<TourDestinationDetail />}></Route>
             <Route path='/tourdestinationreservation' element={<TourDestinationReservation />}></Route>
-            {/*<Route path='/roomdetail' element={<RoomDetail />}></Route>*/}
+
+
             {/*<Route path='/payment' element={<Payment />}></Route>*/}
             {/*<Route path='/add' element={<AddAuthSerivce />}></Route>*/}
         </Route>

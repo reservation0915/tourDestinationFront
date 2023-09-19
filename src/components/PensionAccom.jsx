@@ -36,28 +36,16 @@ const PentionAccom = ()=>{
             spaceBetween={20}
             slidesPerView={3}
         >
-        <SwiperSlide>
-            <div>
-            <img src='/images/sokcho.jpg'
-            style={{width:"100%",height:"autho"}}
-            />
-            <div>
-                속초 아이파크스위트 호텔 앤 레지던스
-            </div>
-            <div>
-                별점 : 4.5
-            </div>
-            <div className='price'>
-                52000원
-            </div>
-            </div>
-        </SwiperSlide>
         {accoms.map((el,index)=>( 
             <SwiperSlide key={index}>
             <div>
+                <a href={`/roomdetail?roomid=${el.room.length==0 ? null:`${el.room[0].id}`}`}>
             <img src={el.ImageLink}
             style={{width:"100%",height:"autho"}}
-            />
+            /></a>
+
+
+
             <div>
                 {el.accomdationName}
             </div>

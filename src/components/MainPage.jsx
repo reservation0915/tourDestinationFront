@@ -10,7 +10,7 @@ const MainPage = ()=>{
     <div className="container">
 
         <MainAccom></MainAccom>
-        <RankAccoms></RankAccoms>
+        {/*<RankAccoms></RankAccoms>*/}
         <HotelAccom></HotelAccom>
         <PentionAccom></PentionAccom>
     </div>

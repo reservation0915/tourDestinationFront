@@ -53,9 +53,11 @@ const HotelAccom = ()=>{
         {accoms.map((el,index)=>( 
             <SwiperSlide key={index}>
             <div>
+                <a href={`/roomdetail?roomid=${el.room.length==0 ? null:`${el.room[0].id}`}`}>
             <img src={el.ImageLink}
             style={{width:"100%",height:"auto"}}
             />
+                </a>
             <div>
                 {el.accomdationName}
             </div>

@@ -31,7 +31,7 @@ const AddAuthSerivce = () => {
         axios.post(`http://192.168.0.249:8000/api/v1/customer/save`,saveUser)
         console.log(saveUser)
         alert("환영합니다")
-        nav('/main')
+        nav(`/main?customerId=${saveUser.customerId}`)
     }
 
 
